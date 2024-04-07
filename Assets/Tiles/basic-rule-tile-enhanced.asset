@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: basic-rule-tile
+  m_Script: {fileID: 11500000, guid: 1e5de0492eaf804469f55adb948c6a39, type: 3}
+  m_Name: basic-rule-tile-enhanced
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 1751990025, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
+  m_DefaultSprite: {fileID: 2062793751, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
@@ -967,3 +967,11 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
+  alwaysConnect: 1
+  tilesToConnectTo:
+  - {fileID: 11400000, guid: 7698e1c4100e629478b8c1c363d9e260, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 540d8e2fdc84e3e4e87530e722593d1a, type: 2}
+  - {fileID: 11400000, guid: 268d75045079b774a841c4b812349ca9, type: 2}
+  checkSelf: 1

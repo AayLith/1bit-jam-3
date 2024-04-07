@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c779848d9dd029409ca676b49e10a18, type: 3}
   m_Name: hill-override-tile
   m_EditorClassIdentifier: 
-  m_Tile: {fileID: 11400000, guid: 540d8e2fdc84e3e4e87530e722593d1a, type: 2}
+  m_Tile: {fileID: 11400000, guid: f1692405d1a75cf4788959d291d01a6a, type: 2}
   m_Sprites:
   - m_OriginalSprite: {fileID: 1751990025, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
     m_OverrideSprite: {fileID: -669713515, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
   - m_OriginalSprite: {fileID: 765242518, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
     m_OverrideSprite: {fileID: -1066445936, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
   m_GameObjects: []
-  m_InstanceTile: {fileID: 7763579589412755119}
---- !u!114 &7763579589412755119
+  m_InstanceTile: {fileID: 6183207092552739445}
+--- !u!114 &6183207092552739445
 MonoBehaviour:
   m_ObjectHideFlags: 8
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,10 +29,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: basic-rule-tile (Override)
+  m_Script: {fileID: 11500000, guid: 1e5de0492eaf804469f55adb948c6a39, type: 3}
+  m_Name: basic-rule-tile-enhanced (Override)
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: 2062793751, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
@@ -118,7 +118,7 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 020000000100000001000000010000000100000001000000
+    m_Neighbors: 02000000010000000100000001000000010000000100000001000000
     m_NeighborPositions:
     - {x: 0, y: 1, z: 0}
     - {x: -1, y: 0, z: 0}
@@ -126,6 +126,46 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     - {x: 1, y: 0, z: 0}
+    - {x: -1, y: 1, z: 0}
+    m_RuleTransform: 0
+  - m_Id: 48
+    m_Sprites:
+    - {fileID: 861637331, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.5
+    m_Output: 0
+    m_ColliderType: 1
+    m_RandomTransform: 0
+    m_Neighbors: 01000000010000000100000001000000010000000200000001000000
+    m_NeighborPositions:
+    - {x: -1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    m_RuleTransform: 0
+  - m_Id: 47
+    m_Sprites:
+    - {fileID: 861637331, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.5
+    m_Output: 0
+    m_ColliderType: 1
+    m_RandomTransform: 0
+    m_Neighbors: 010000000100000001000000010000000100000002000000
+    m_NeighborPositions:
+    - {x: -1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 1, z: 0}
     m_RuleTransform: 0
   - m_Id: 5
     m_Sprites:
@@ -926,7 +966,7 @@ MonoBehaviour:
     - {x: -1, y: 1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 47
+  - m_Id: 49
     m_Sprites:
     - {fileID: 1500824129, guid: a9653b5c48178f24db4d7f1c8d0ceb88, type: 3}
     m_GameObject: {fileID: 0}
@@ -947,3 +987,10 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
+  alwaysConnect: 1
+  tilesToConnectTo:
+  - {fileID: 11400000, guid: 540d8e2fdc84e3e4e87530e722593d1a, type: 2}
+  - {fileID: 11400000, guid: 268d75045079b774a841c4b812349ca9, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 6183207092552739445}
+  checkSelf: 1
