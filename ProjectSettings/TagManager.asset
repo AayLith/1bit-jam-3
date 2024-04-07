@@ -12,6 +12,16 @@ TagManager:
   - Water
   - UI
   - 
+  - Player
+  - 
+  - Ground
+  - Wall
+  - Trap
+  - 
+  - Item
+  - Item pickup
+  - 
+  - Enemies
   - 
   - 
   - 
@@ -22,20 +32,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - item x groundwall
+  - item x pickup
+  - item x player
+  - item x ennemy
   - 
   m_SortingLayers:
   - name: Default
