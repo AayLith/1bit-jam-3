@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     private bool flashWhileInvulnerable = true;
     public static PlayerController instance;
 
-    [SerializeField] bool isGrounded = false;
+    public bool isGrounded = false;
     int groundCollisions = 0;
     bool lockInput = false;
+
+    public float maxFallSpeed = -9f;
 
 
     [Header ( "Stats" )]
@@ -31,6 +33,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] ItemCollision groundShell;
     private Health healthComponent;
     private SpriteRenderer sprite;
+    private Rigidbody2D rb;
+
+    private float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+    private float jumpBufferTime = 0.1f;
+    private float jumpBufferCounter;
+    private bool jumpPressed = false;
+    private bool jumpReleased = false;
+
+    private float horizontalInput;
+    private bool submitInput;
+    private bool fire1Input;
 
     private void Awake ()
     {
@@ -39,6 +53,7 @@ public class PlayerController : MonoBehaviour
         jump = defaultJump;
         healthComponent = GetComponent<Health>();
         sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         if(sprite == null)
         {
             sprite = GetComponentInChildren<SpriteRenderer>();
@@ -49,56 +64,99 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Update ()
+    private void Update()
     {
-        // Update positions
-        transform.rotation = Quaternion.identity;
-        if ( shell )
-        {
-            shell.transform.position = shellSlot.transform.position;
-            shell.transform.rotation = Quaternion.identity;
-        }
-        var xAxis = Input.GetAxis("Horizontal");
-        if( !isGrounded)
-        {
-            xAxis *= airMovementFactor;
-        }
-        // Walk
-        if ( xAxis > inputDeadZoneAmount || xAxis < -inputDeadZoneAmount )
-        {
-            GetComponent<Rigidbody2D> ().velocity = new Vector2 ( xAxis * speed , GetComponent<Rigidbody2D> ().velocity.y );
-            transform.localScale = new Vector3 ( Mathf.Sign ( GetComponent<Rigidbody2D> ().velocity.x ) , 1 , 1 );
-        }
-        
-        // Jump
-        if ( isGrounded && Input.GetAxis ( "Jump" ) > inputDeadZoneAmount )
-            GetComponent<Rigidbody2D> ().velocity = new Vector2 ( GetComponent<Rigidbody2D> ().velocity.x , jump );
-
-        // Pickup shell
-        if ( !lockInput && groundShell.item != null && Input.GetAxis ( "Submit" ) > inputDeadZoneAmount )
-        {
-            // if already has a shell
-            if ( shell != null )
-            {
-                shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( Mathf.Sign ( transform.localScale.x ) * 0.5f , 1 );
-                dropShell ();
-            }
-
-            // pickup the shell
-            pickUpShell ( groundShell.item );
-
-            StartCoroutine ( lockInputsDelay () );
-        }
-
-        // Throw shell
-        if ( !lockInput && shell != null && Input.GetAxis ( "Fire1" ) > 0.1f )
-        {
-            shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( Mathf.Sign ( transform.localScale.x ) * 10f , 2f );
-            dropShell ();
-            StartCoroutine ( lockInputsDelay () );
-        }
-
+        HandleInput();
         FlashIfInvulnerable();
+        HandleActions();
+    }
+
+    private void FixedUpdate()
+    {
+        HandleMovement();
+        if (jumpPressed)
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        //Handle Jumping
+        if (jumpPressed && (coyoteTimeCounter > 0f && jumpBufferCounter > 0f))
+        {
+            HandleJump();
+        }
+
+        if (jumpReleased && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+        ClampFallSpeed();
+        jumpPressed = false;
+        jumpReleased = false;
+    }
+
+    private void HandleInput()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpPressed = true;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            jumpReleased = true;
+        }
+
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        submitInput = Input.GetAxis("Submit") > inputDeadZoneAmount;
+        fire1Input = Input.GetAxis("Fire1") > 0.1f;
+    }
+
+    private void ClampFallSpeed()
+    {
+        if (rb.velocity.y < maxFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
+        }
+    }
+    private void HandleMovement()
+    {
+        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+    }
+
+    void HandleJump()
+    {
+        // Full jump if the jump button is held down
+        rb.velocity = new Vector2(rb.velocity.x, jump);
+        coyoteTimeCounter = 0;
+        jumpBufferCounter = 0;
+        isGrounded = false;
+    }
+
+    private void HandleActions()
+    {
+        // Pickup or throw shell
+        if (!lockInput)
+        {
+            if (submitInput && groundShell.item != null)
+            {
+                pickUpShell(shell);
+            }
+            else if (fire1Input && shell != null)
+            {
+                dropShell();
+            }
+        }
     }
     float flashesPerSecond = 4;
     void FlashIfInvulnerable()
@@ -153,7 +211,8 @@ public class PlayerController : MonoBehaviour
     private Stopwatch invulnerabilityTimer = new Stopwatch();
     private void OnCollisionEnter2D ( Collision2D collision )
     {
-        if ( collision.gameObject.layer == LayerMask.NameToLayer ( "Ground" ) )
+        int layerMask = (1 << 27) | (1 << 28) | (1 << 29) | (1 << 30);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || (layerMask & (1 << collision.gameObject.layer)) != 0)
             groundCollisions++;
         if ( groundCollisions > 0 )
             isGrounded = true;

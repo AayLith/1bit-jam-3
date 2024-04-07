@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082144443300507016}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -50,21 +50,21 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 2
+  m_Material: {fileID: 6200000, guid: f5c524ab17a675045bf438a7d2d997bc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Interpolate: 2
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &1249109079553378628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,10 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashWhileInvulnerable: 1
   isGrounded: 0
-  defaultSpeed: 3
-  speed: 3
-  defaultJump: 5
-  jump: 5
+  maxFallSpeed: -9
+  defaultSpeed: 5
+  speed: 5
+  defaultJump: 9
+  jump: 9
   shellSlot: {fileID: 4661353751082670895}
   shell: {fileID: 0}
   groundShell: {fileID: 4607640413153976682}
@@ -359,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 9196086292926636740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: 0.44, y: -0.87, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
