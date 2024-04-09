@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    enum playerDirection { right, left }
+
+    [SerializeField]
+    bool addPlayerVelocityToThrow = true;
     [SerializeField]
     private const float inputDeadZoneAmount = 0.1f;
     [SerializeField]
@@ -14,9 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool flashWhileInvulnerable = true;
     public static PlayerController instance;
+    private playerDirection direction = playerDirection.right;
 
     public bool isGrounded = false;
-    int groundCollisions = 0;
     bool lockInput = false;
 
     public float maxFallSpeed = -9f;
@@ -27,10 +31,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
     [SerializeField] float defaultJump;
     public float jump;
+    public float throwStrengthHorizontal = 10;
+    public float throwStrengthVertical = 3;
 
     public GameObject shellSlot;
     public Shell shell;
-    [SerializeField] ItemCollision groundShell;
+    [SerializeField] private Collision2DRecorder physicsShape;
+    [SerializeField] private Collision2DTriggerRecorder groundShell;
+    [SerializeField] private Collision2DTriggerRecorder groundCollider;
+    [SerializeField] private Collision2DTriggerRecorder hitCollider;
     private Health healthComponent;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
@@ -51,12 +60,12 @@ public class PlayerController : MonoBehaviour
         instance = this;
         speed = defaultSpeed;
         jump = defaultJump;
-        healthComponent = GetComponent<Health>();
-        sprite = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        if(sprite == null)
+        healthComponent = GetComponent<Health> ();
+        sprite = GetComponent<SpriteRenderer> ();
+        rb = GetComponent<Rigidbody2D> ();
+        if ( sprite == null )
         {
-            sprite = GetComponentInChildren<SpriteRenderer>();
+            sprite = GetComponentInChildren<SpriteRenderer> ();
         }
         if ( healthComponent != null )
         {
@@ -64,17 +73,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update ()
     {
-        HandleInput();
-        FlashIfInvulnerable();
-        HandleActions();
+        HandleInput ();
+        FlashIfInvulnerable ();
+        HandleActions ();
+        if ( shell != null )
+            HandleShell ();
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate ()
     {
-        HandleMovement();
-        if (jumpPressed)
+        HandleGrounded ();
+        HandleMovement ();
+
+        if ( jumpPressed )
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -84,33 +97,37 @@ public class PlayerController : MonoBehaviour
         }
 
         //Handle Jumping
-        if (jumpPressed && (coyoteTimeCounter > 0f && jumpBufferCounter > 0f))
+        if ( jumpPressed && ( coyoteTimeCounter > 0f && jumpBufferCounter > 0f ) )
         {
-            HandleJump();
+            HandleJump ();
         }
 
-        if (jumpReleased && rb.velocity.y > 0)
+        if ( jumpReleased && rb.velocity.y > 0 )
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2 ( rb.velocity.x , rb.velocity.y * 0.5f );
         }
-        ClampFallSpeed();
+        ClampFallSpeed ();
         jumpPressed = false;
         jumpReleased = false;
     }
 
-    private void HandleInput()
+    private void HandleInput ()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump"))
+        //if ( Input.GetAxis ( "Horizontal" ) > inputDeadZoneAmount || Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
+            horizontalInput = Input.GetAxis ( "Horizontal" );
+        if ( horizontalInput > 0 ) direction = playerDirection.right;
+        else if ( horizontalInput < 0 ) direction = playerDirection.left;
+
+        if ( Input.GetButtonDown ( "Jump" ) )
         {
             jumpPressed = true;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
         }
 
-        if (isGrounded)
+        if ( isGrounded )
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -118,59 +135,75 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-        submitInput = Input.GetAxis("Submit") > inputDeadZoneAmount;
-        fire1Input = Input.GetAxis("Fire1") > 0.1f;
+        submitInput = Input.GetAxis ( "Submit" ) > inputDeadZoneAmount;
+        fire1Input = Input.GetAxis ( "Fire1" ) > inputDeadZoneAmount;
     }
 
-    private void ClampFallSpeed()
+    private void ClampFallSpeed ()
     {
-        if (rb.velocity.y < maxFallSpeed)
+        if ( rb.velocity.y < maxFallSpeed )
         {
-            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
+            rb.velocity = new Vector2 ( rb.velocity.x , maxFallSpeed );
         }
     }
-    private void HandleMovement()
+
+    private void HandleGrounded ()
     {
-        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        if ( groundCollider.collisions.Count > 0 )
+            isGrounded = true;
+        else
+            isGrounded = false;
     }
 
-    void HandleJump()
+    private void HandleMovement ()
+    {
+        rb.velocity = new Vector2 ( horizontalInput * speed , rb.velocity.y );
+    }
+
+    private void HandleShell ()
+    {
+        shell.transform.position = shellSlot.transform.position;
+    }
+
+    private void HandleJump ()
     {
         // Full jump if the jump button is held down
-        rb.velocity = new Vector2(rb.velocity.x, jump);
+        rb.velocity = new Vector2 ( rb.velocity.x , jump );
         coyoteTimeCounter = 0;
         jumpBufferCounter = 0;
         isGrounded = false;
     }
 
-    private void HandleActions()
+    private void HandleActions ()
     {
         // Pickup or throw shell
-        if (!lockInput)
+        if ( !lockInput )
         {
-            if (submitInput && groundShell.item != null)
+            if ( submitInput && groundShell.collisions.Count > 0 )
             {
-                pickUpShell(shell);
+                if ( shell != null )
+                    dropShell ();
+                pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
             }
-            else if (fire1Input && shell != null)
+            else if ( fire1Input && shell != null )
             {
-                dropShell();
+                ThrowShell ();
             }
         }
     }
     float flashesPerSecond = 4;
-    void FlashIfInvulnerable()
+    void FlashIfInvulnerable ()
     {
-        bool invulnerable = CheckAndGetIsInvulnerable();
-        if(invulnerable)
+        bool invulnerable = CheckAndGetIsInvulnerable ();
+        if ( invulnerable )
         {
             //bool black = sprite.color==Color.black;
-            float seconds = (float) invulnerabilityTimer.Elapsed.TotalSeconds * flashesPerSecond;
+            float seconds = ( float ) invulnerabilityTimer.Elapsed.TotalSeconds * flashesPerSecond;
             // bool shouldBeBlack = Mathf.RoundToInt(seconds) > Mathf.FloorToInt(seconds);
             float period = 1 / flashesPerSecond;
-            float mod = seconds % (2 * period);
+            float mod = seconds % ( 2 * period );
             bool shouldBeBlack = mod < period;
-            if(shouldBeBlack)
+            if ( shouldBeBlack )
             {
                 sprite.color = Color.black;
             }
@@ -189,15 +222,25 @@ public class PlayerController : MonoBehaviour
         shell.GetComponent<Rigidbody2D> ().gravityScale = 0;
         shell.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
     }
-    private void OnDeath()
-    {
-        UnityEngine.Debug.Log("Player death");
-    }
+
     void dropShell ()
     {
         shell.transform.parent = null;
-        shell.GetComponent<Rigidbody2D> ().gravityScale = 1;
+        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
         shell = null;
+    }
+
+    void ThrowShell ()
+    {
+        shell.transform.parent = null;
+        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
+        shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrengthHorizontal : -throwStrengthHorizontal , throwStrengthVertical ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
+        shell = null;
+    }
+
+    private void OnDeath ()
+    {
+        UnityEngine.Debug.Log ( "Player death" );
     }
 
     IEnumerator lockInputsDelay ()
@@ -206,43 +249,36 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds ( 0.1f );
         lockInput = false;
     }
+
     [SerializeField]
     private float invulnerabilityPeriodAfterTakingDamageSeconds = 0.5f;
-    private Stopwatch invulnerabilityTimer = new Stopwatch();
+    private Stopwatch invulnerabilityTimer = new Stopwatch ();
     private void OnCollisionEnter2D ( Collision2D collision )
     {
-        int layerMask = (1 << 27) | (1 << 28) | (1 << 29) | (1 << 30);
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || (layerMask & (1 << collision.gameObject.layer)) != 0)
-            groundCollisions++;
-        if ( groundCollisions > 0 )
-            isGrounded = true;
+        int layerMask = ( 1 << 27 ) | ( 1 << 28 ) | ( 1 << 29 ) | ( 1 << 30 );
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || (layerMask & (1 << collision.gameObject.layer)) != 0)
+        //    groundCollisions++;
+        //if ( groundCollisions > 0 )
+        //    isGrounded = true;
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
         if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
         {
-            bool invulnerable = CheckAndGetIsInvulnerable();
-            if (!invulnerable)
+            bool invulnerable = CheckAndGetIsInvulnerable ();
+            if ( !invulnerable )
             {
-                healthComponent.TakeDamage(damageDealer.damageToPlayer);
-                invulnerabilityTimer = Stopwatch.StartNew();
+                healthComponent.TakeDamage ( damageDealer.damageToPlayer );
+                invulnerabilityTimer = Stopwatch.StartNew ();
             }
 
         }
     }
 
-    private bool CheckAndGetIsInvulnerable()
+    private bool CheckAndGetIsInvulnerable ()
     {
-        if (invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds)
+        if ( invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds )
         {
-            invulnerabilityTimer.Stop();
+            invulnerabilityTimer.Stop ();
         }
         return invulnerabilityTimer.IsRunning;
-    }
-
-    private void OnCollisionExit2D ( Collision2D collision )
-    {
-        if ( collision.gameObject.layer == LayerMask.NameToLayer ( "Ground" ) )
-            groundCollisions--;
-        if ( groundCollisions == 0 )
-            isGrounded = false;
     }
 }

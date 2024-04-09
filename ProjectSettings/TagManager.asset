@@ -13,13 +13,17 @@ TagManager:
   - UI
   - 
   - Player
-  - 
+  - PlayerPhysics
   - Ground
   - Wall
   - Trap
-  - 
+  - GroundCheck
   - Item
   - Item pickup
+  - ItemToGround
+  - ItemToPlayer
+  - 
+  - 
   - 
   - Enemies
   - 
@@ -32,10 +36,6 @@ TagManager:
   - 
   - 
   - 
-  - item x groundwall
-  - item x pickup
-  - item x player
-  - item x ennemy
   - 
   m_SortingLayers:
   - name: Default

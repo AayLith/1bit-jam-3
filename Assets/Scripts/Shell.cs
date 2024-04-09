@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
-    public Rigidbody2D playerCollision;
+    public Collider2D playerCollision;
+
+    private void Update ()
+    {
+        transform.rotation = Quaternion.identity;
+    }
 
     public void outlineOn ()
     {
