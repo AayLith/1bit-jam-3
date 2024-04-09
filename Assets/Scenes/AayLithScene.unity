@@ -864,17 +864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e46f3f8327b346408df012088437b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1121617072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4023211854478282446, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-  m_PrefabInstance: {fileID: 7693492570176032307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa41c1f3f4a5c04a9a79f4de2ac902a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1154544731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,17 +1070,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1225320005 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7262198870414195444, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-  m_PrefabInstance: {fileID: 7693492570176032307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa41c1f3f4a5c04a9a79f4de2ac902a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1416404282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,28 +3496,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2085925756 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5484537934447158201, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-  m_PrefabInstance: {fileID: 7693492570176032307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa41c1f3f4a5c04a9a79f4de2ac902a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2108737145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1697561268178819309, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-  m_PrefabInstance: {fileID: 7693492570176032307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c9b54fa94c20e4aa3a56b682bfbcf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2147192988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3705,22 +3661,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-      propertyPath: groundShell
-      value: 
-      objectReference: {fileID: 1121617072}
-    - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-      propertyPath: hitCollider
-      value: 
-      objectReference: {fileID: 2085925756}
-    - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-      propertyPath: physicsShape
-      value: 
-      objectReference: {fileID: 2108737145}
-    - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
-      propertyPath: groundCollider
-      value: 
-      objectReference: {fileID: 1225320005}
     - target: {fileID: 3973410099849050304, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
