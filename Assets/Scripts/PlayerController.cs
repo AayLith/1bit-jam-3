@@ -52,8 +52,9 @@ public class PlayerController : MonoBehaviour
     private bool jumpReleased = false;
 
     private float horizontalInput;
-    private bool submitInput;
-    private bool fire1Input;
+    private bool pickupInput;
+    private bool throwInput;
+    private bool dropInput;
 
     private void Awake ()
     {
@@ -135,8 +136,9 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
-        submitInput = Input.GetAxis ( "Submit" ) > inputDeadZoneAmount;
-        fire1Input = Input.GetAxis ( "Fire1" ) > inputDeadZoneAmount;
+        pickupInput = Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount;
+        throwInput = Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount;
+        dropInput = Input.GetAxis ( "Drop Shell" ) > inputDeadZoneAmount;
     }
 
     private void ClampFallSpeed ()
@@ -179,15 +181,19 @@ public class PlayerController : MonoBehaviour
         // Pickup or throw shell
         if ( !lockInput )
         {
-            if ( submitInput && groundShell.collisions.Count > 0 )
+            if ( pickupInput && groundShell.collisions.Count > 0 )
             {
                 if ( shell != null )
                     dropShell ();
                 pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
             }
-            else if ( fire1Input && shell != null )
+            else if ( throwInput && shell != null )
             {
                 ThrowShell ();
+            }
+            else if ( dropInput && shell != null )
+            {
+                dropShell ();
             }
         }
     }
