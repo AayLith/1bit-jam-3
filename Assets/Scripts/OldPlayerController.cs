@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 public class OldPlayerController : MonoBehaviour
-{
+{/*
     [SerializeField]
     private const float inputDeadZoneAmount = 0.1f;
     [SerializeField]
@@ -185,5 +185,5 @@ public class OldPlayerController : MonoBehaviour
             groundCollisions--;
         if (groundCollisions == 0)
             isGrounded = false;
-    }
+    }*/
 }
