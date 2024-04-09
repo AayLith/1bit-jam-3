@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private bool pickupInput;
     private bool throwInput;
-    private bool dropInput;
 
     private void Awake ()
     {
@@ -114,8 +113,9 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInput ()
     {
-        //if ( Input.GetAxis ( "Horizontal" ) > inputDeadZoneAmount || Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
+        if ( Input.GetAxis ( "Horizontal" ) > inputDeadZoneAmount || Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
             horizontalInput = Input.GetAxis ( "Horizontal" );
+        else horizontalInput = 0;
         if ( horizontalInput > 0 ) direction = playerDirection.right;
         else if ( horizontalInput < 0 ) direction = playerDirection.left;
 
@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
         }
         pickupInput = Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount;
         throwInput = Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount;
-        dropInput = Input.GetAxis ( "Drop Shell" ) > inputDeadZoneAmount;
     }
 
     private void ClampFallSpeed ()
@@ -181,19 +180,16 @@ public class PlayerController : MonoBehaviour
         // Pickup or throw shell
         if ( !lockInput )
         {
-            if ( pickupInput && groundShell.collisions.Count > 0 )
+            if ( pickupInput )
             {
                 if ( shell != null )
                     dropShell ();
-                pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
+                if ( groundShell.collisions.Count > 0 )
+                    pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
             }
             else if ( throwInput && shell != null )
             {
                 ThrowShell ();
-            }
-            else if ( dropInput && shell != null )
-            {
-                dropShell ();
             }
         }
     }
