@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
 
     private void Hide()
     {
-
+        SetAnimationState(AnimationState.Hiding);
     }
 
     private void Flee()
@@ -92,6 +92,7 @@ public class EnemyController : MonoBehaviour
             facingLeft = Mathf.Sign(deltaPos.x) == -1;
             var xSpeed = Mathf.Sign(deltaPos.x) * movementSpeed;
             rb.velocity =   Vector3.Lerp(rb.velocity,new Vector2(xSpeed,rb.velocity.y),0.8f);
+            SetAnimationState(AnimationState.Walking);
         }
     }
     private void SearchForPlayer()
@@ -101,7 +102,8 @@ public class EnemyController : MonoBehaviour
 
     private void BeIdle()
     {
-
+        SetAnimationState(AnimationState.Idle);
+        rb.velocity = Vector3.Lerp(rb.velocity,new Vector2(0,rb.velocity.y),0.9f);
     }
 
     private RaycastHit2D? FindPlayer()
