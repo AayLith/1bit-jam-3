@@ -113,7 +113,7 @@ public class EnemyController : MonoBehaviour
         {
             int layerMask = 1 << playerLayer;
             ContactFilter2D filter2D = new ContactFilter2D();
-            filter2D.layerMask = layerMask;
+            //filter2D.layerMask = layerMask;
             var hits = Physics2D.RaycastAll(transform.position,deltaPosition.normalized,visionRange,layerMask);
             Debug.DrawRay(transform.position,deltaPosition.normalized*visionRange,Color.red);
             if(hits.Length > 0)
@@ -124,7 +124,6 @@ public class EnemyController : MonoBehaviour
                     UnityEngine.Debug.Log($"{hitPlayer.gameObject.name} == {player.gameObject.name}");
                     if(hitPlayer !=null)
                     {
-                        UnityEngine.Debug.Log("Found player!");
                         return hit;
                     }
                 }
@@ -157,7 +156,6 @@ public class EnemyController : MonoBehaviour
             else
             {   // can't see player
                 currentState = EnemyState.Idle;
-                UnityEngine.Debug.Log("Could not find player");
             }
         }
     }
