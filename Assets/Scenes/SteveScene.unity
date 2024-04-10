@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 427545159}
   - component: {fileID: 427545160}
   - component: {fileID: 427545161}
+  - component: {fileID: 427545162}
   m_Layer: 20
   m_Name: shell-enemy
   m_TagString: Untagged
@@ -306,7 +307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa79b92ff0d06bf45b2f7eec98bc947d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  secondsPerState: 2
+  currentState: 0
+  visionRange: 200
+  movementSpeed: 3
+  playerLayer: 7
+  playerCentreOffset: {x: 0, y: -0.25, z: 0}
+  fleeHealthFraction: 0.25
 --- !u!50 &427545160
 Rigidbody2D:
   serializedVersion: 4
@@ -379,6 +386,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.76, y: 0.88}
   m_EdgeRadius: 0
+--- !u!114 &427545162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427545155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e37357df95aa746a88419f61edc297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &529372099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,6 +3432,37 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1794235331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794235332}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1794235332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794235331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03, y: -0.256, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1909189520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3503,3 +3554,4 @@ SceneRoots:
   - {fileID: 214357723}
   - {fileID: 1909189522}
   - {fileID: 427545157}
+  - {fileID: 1794235332}
