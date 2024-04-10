@@ -1,0 +1,854 @@
+fileFormatVersion: 2
+guid: 0f33f2840e7d8a74eb8406e07d98c806
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: Basic_1_bit_tilemap2_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 506598954f19c424487cd2e18840ca95
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 64
+      width: 16
+      height: 16
+    spriteID: a735c437afe23e246be0c2370e355729
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 64
+      width: 16
+      height: 16
+    spriteID: ec3418bf6dd664945937ec9446a838ad
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 3bcba142435c438468f5fdc688047313
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 3b020296fe2fe2b47bab37132143961f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 20fd9ef5e5524b4438a7d7ada5b354bc
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 64
+      width: 16
+      height: 16
+    spriteID: bd4704cb0587dac48bf3df2c5a40767d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 112
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 0ca7c576915a4d24a8c0f60826ce7bff
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 128
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 86e8dc7ba2b9aa8478c2e7d222c2e9a0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 144
+      y: 64
+      width: 16
+      height: 16
+    spriteID: d37153b2808a8b44596be17ef8f63ec9
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 160
+      y: 64
+      width: 16
+      height: 16
+    spriteID: 015cd25651eab774fba6554bef559c20
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 64
+      width: 16
+      height: 16
+    spriteID: ce8b477cedb8ab346bff66ae5d1d873c
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 0aded0dbe65a3a84b9fb5213e45ba562
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 48
+      width: 16
+      height: 16
+    spriteID: c624e5ae2f3da044188f19dd7bd0303d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 48
+      width: 16
+      height: 16
+    spriteID: d739e7f13a6f31f41938369ccdd800b2
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 5cd0eebac98df4c48bba47998452bfa3
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 48
+      width: 16
+      height: 16
+    spriteID: d9271324a566e8f469e932009a11fec1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 27c22ce63df7e504eb8d1a86db8365c5
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 2cceb484367c71943bd4c4bb5952fb6a
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 112
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 0758dd335f512fe49814f30a6f036449
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 128
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 5ff3a2ca88577434084a30c3155ef054
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 144
+      y: 48
+      width: 16
+      height: 16
+    spriteID: ff565564cfaee40488d9691c9a1e8f84
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 160
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 28b04308e08981f489e57a6b3a0514c8
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 48
+      width: 16
+      height: 16
+    spriteID: 27e99a40bb052a04796e4891b7f9f571
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 32
+      width: 16
+      height: 16
+    spriteID: 68ad88f736f354c49bab8b03456c1df2
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_25
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 32
+      width: 16
+      height: 16
+    spriteID: a2b94ed1b2b0ca7468515b99057aeff0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_26
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 32
+      width: 16
+      height: 16
+    spriteID: c4707f9f15207f743a3531a2d3024b46
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_27
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 32
+      width: 16
+      height: 16
+    spriteID: 42b7410af64c0ff44b22dc9b1cb6fd46
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 32
+      width: 16
+      height: 16
+    spriteID: a7f41c099c047334bb564f1cf63e2ce6
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_29
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 32
+      width: 16
+      height: 16
+    spriteID: a2cb697e43e17ea4eb96e1e37d42dd04
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_30
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 32
+      width: 16
+      height: 16
+    spriteID: eb766fd5f537e714498a717f5d36aee2
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 112
+      y: 32
+      width: 16
+      height: 16
+    spriteID: b8d948c061cc2bf459add5aada92534d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 128
+      y: 32
+      width: 16
+      height: 16
+    spriteID: cafb6b6e0ca236f468c3283af843019d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 144
+      y: 32
+      width: 16
+      height: 16
+    spriteID: f06f0fb16bf0be946b8555148f444ec5
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 160
+      y: 32
+      width: 16
+      height: 16
+    spriteID: 3fb843c10a41a954cae92d1181d82452
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_35
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 32
+      width: 16
+      height: 16
+    spriteID: 77ececd00cfe9df4990e16971d362426
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_36
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 90cef4b766d5a59428fd056281bf3b4b
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_37
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 3060b4087735102499efbb9477bd1134
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_38
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 16
+      width: 16
+      height: 16
+    spriteID: d9765b3b768f93f4485006ef79eb6a0c
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_39
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 339c02f365e52614ca8b6f21d5484ff0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_40
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 43ae41a93b28379428370628f3dbc0a4
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_41
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 4c652503799d4ca478ebaacbcbb8e731
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_42
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 16
+      width: 16
+      height: 16
+    spriteID: de9d11f725856d346a5bf68929a30164
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_43
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 112
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 0e15fab1a7948fc448850c11bc9a130d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_44
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 128
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 08075ad8f426ba74ab4212a08e21adc9
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_45
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 144
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 17f626ff86119d343891801cd7c67ab7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_46
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 160
+      y: 16
+      width: 16
+      height: 16
+    spriteID: 28fc8383a9c38e2458b5c3e4d9c9194d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_47
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 16
+      width: 16
+      height: 16
+    spriteID: ef3a7d7800aafe14fa663e202accb812
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_48
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 16
+      height: 16
+    spriteID: abd28879a4dec7240aba10966b681b3e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_49
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 16
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 86d8b3c50c2f58846bcb6eb4d2e13b01
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_50
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 42872d1854ba46e4e87023f966d7bd22
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_51
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 2917078a9c4d598429e43bdcf09226bc
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_52
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 64
+      y: 0
+      width: 16
+      height: 16
+    spriteID: dc36370989bec7348b1439254a8d05c0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_53
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 0
+      width: 16
+      height: 16
+    spriteID: e08a7ea48fa6794479e7a2784a587f30
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_54
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 4caa96e7624e72945a9519021b2128c7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_55
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 112
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 5407e2304c2bf9a4c8feb9223bbe3815
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_56
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 128
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 40f5fe947db59214a9b4bc7ea1051676
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_57
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 144
+      y: 0
+      width: 16
+      height: 16
+    spriteID: de33871dbd5b054489356d9edd3e9df0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_58
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 160
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 5d786a4d86b60df41b0aec40323c6a9e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Basic_1_bit_tilemap2_59
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 0
+      width: 16
+      height: 16
+    spriteID: 7faa9bae03601044aa8c1f956bdf2db6
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
