@@ -311,7 +311,9 @@ MonoBehaviour:
   currentState: 0
   visionRange: 4
   movementSpeed: 3
-  playerLayer: 7
+  visionLayers:
+    serializedVersion: 2
+    m_Bits: 1664
   playerCentreOffset: {x: 0, y: -0.25, z: 0}
   fleeHealthFraction: 0.25
 --- !u!50 &427545160

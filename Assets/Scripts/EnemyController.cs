@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float movementSpeed;
     [SerializeField]
-    private int playerLayer = 7;
+    private LayerMask visionLayers;
     [SerializeField]
     private Vector3 playerCentreOffset = new Vector2(0,-0.25f);
     private Health health;
@@ -111,21 +111,16 @@ public class EnemyController : MonoBehaviour
 
         if (distance < visionRange)
         {
-            int layerMask = 1 << playerLayer;
-            ContactFilter2D filter2D = new ContactFilter2D();
-            //filter2D.layerMask = layerMask;
-            var hits = Physics2D.RaycastAll(transform.position,deltaPosition.normalized,visionRange,layerMask);
+            
+            
+            var hits = Physics2D.RaycastAll(transform.position,deltaPosition.normalized,visionRange,visionLayers);
             Debug.DrawRay(transform.position,deltaPosition.normalized*visionRange,Color.red);
             if(hits.Length > 0)
             {
-                foreach(var hit in hits)
+                var hitPlayer = hits[0].collider.gameObject.GetComponentInParent<PlayerController>();
+                if(hitPlayer !=null)
                 {
-                    var hitPlayer = hit.collider.gameObject.GetComponentInParent<PlayerController>();
-                    UnityEngine.Debug.Log($"{hitPlayer.gameObject.name} == {player.gameObject.name}");
-                    if(hitPlayer !=null)
-                    {
-                        return hit;
-                    }
+                    return hits[0];
                 }
             }
         }
