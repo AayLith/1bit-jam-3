@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
       propertyPath: jump
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
       propertyPath: speed
@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
       propertyPath: defaultJump
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1249109079553378628, guid: fc4d23467961f5b42aa76d1aef5616c8, type: 3}
       propertyPath: defaultSpeed
