@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum AnimationState
 {
-    Idle=0,
-    Walking=1,
-    Hiding=2
+    Idle = 0,
+    Walking = 1,
+    Hiding = 2,
+    Jumping
 }

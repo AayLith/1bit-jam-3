@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private Health healthComponent;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
+    private Animator animationController;
 
     private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             healthComponent.onDeath += OnDeath;
         }
+        animationController = GetComponentInChildren<Animator>();
     }
 
     private void Update ()
@@ -159,6 +161,14 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement ()
     {
         rb.velocity = new Vector2 ( horizontalInput * speed , rb.velocity.y );
+        if(Mathf.Abs(horizontalInput) > float.Epsilon)
+        {
+            SetAnimationState(AnimationState.Walking);
+        }
+        else if(isGrounded)
+        {
+            SetAnimationState(AnimationState.Idle);
+        }
     }
 
     private void HandleShell ()
@@ -278,5 +288,11 @@ public class PlayerController : MonoBehaviour
             invulnerabilityTimer.Stop ();
         }
         return invulnerabilityTimer.IsRunning;
+    }
+
+    private void SetAnimationState(AnimationState state)
+    {
+        UnityEngine.Debug.Log("Setting animation state to " + Enum.GetName(typeof(AnimationState), state));
+        animationController.SetInteger("state",(int) state);
     }
 }
