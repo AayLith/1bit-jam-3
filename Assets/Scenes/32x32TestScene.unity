@@ -424,6 +424,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9082725286024555613, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8728865531068862793, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -7285664312654349834, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -2023,10 +2031,18 @@ PrefabInstance:
     - target: {fileID: 835088918765139044, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
-      objectReference: {fileID: 578681295}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129748454614588093, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2314956806064062341, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_Name
       value: 1bitLDTK
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187105094555880647, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4661601482286486157, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
@@ -2035,7 +2051,7 @@ PrefabInstance:
     - target: {fileID: 4661601482286486157, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
-      objectReference: {fileID: 578681294}
+      objectReference: {fileID: 0}
     - target: {fileID: 6815022132018686475, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -3572,21 +3588,17 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[13].Array.data[3].Y
       value: 30000000
       objectReference: {fileID: 0}
+    - target: {fileID: 8875146181611051571, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -7407669852775482241, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+    - {fileID: -2814415679060218191, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: -5765183769023986340, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
---- !u!19719996 &578681294 stripped
-TilemapCollider2D:
-  m_CorrespondingSourceObject: {fileID: -2303680527439377120, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
-  m_PrefabInstance: {fileID: 578681293}
-  m_PrefabAsset: {fileID: 0}
---- !u!19719996 &578681295 stripped
-TilemapCollider2D:
-  m_CorrespondingSourceObject: {fileID: -5614406243242406134, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
-  m_PrefabInstance: {fileID: 578681293}
-  m_PrefabAsset: {fileID: 0}
 --- !u!19719996 &578681296 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: -7881620958769606769, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
