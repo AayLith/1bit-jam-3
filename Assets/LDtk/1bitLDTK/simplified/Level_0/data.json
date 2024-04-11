@@ -9,11 +9,9 @@
 	"neighbourLevels": [],
 	"customFields" : {},
 	"layers": [
-		"Background.png",
 		"Collision_Autolayer.png",
 		"Details.png",
-		"Walls.png",
-		"Tester.png"
+		"Walls.png"
 	],
 	"entities" : {}
 }
