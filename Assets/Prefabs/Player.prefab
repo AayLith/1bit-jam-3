@@ -57,7 +57,7 @@ Rigidbody2D:
   m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: f5c524ab17a675045bf438a7d2d997bc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -87,8 +87,8 @@ MonoBehaviour:
   maxFallSpeed: -9
   defaultSpeed: 5
   speed: 5
-  defaultJump: 9
-  jump: 9
+  defaultJump: 12
+  jump: 12
   throwStrengthHorizontal: 10
   throwStrengthVertical: 3
   shellSlot: {fileID: 4661353751082670895}

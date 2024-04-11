@@ -257,11 +257,7 @@ public class PlayerController : MonoBehaviour
     private Stopwatch invulnerabilityTimer = new Stopwatch ();
     private void OnCollisionEnter2D ( Collision2D collision )
     {
-        int layerMask = ( 1 << 27 ) | ( 1 << 28 ) | ( 1 << 29 ) | ( 1 << 30 );
-        //if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || (layerMask & (1 << collision.gameObject.layer)) != 0)
-        //    groundCollisions++;
-        //if ( groundCollisions > 0 )
-        //    isGrounded = true;
+        
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
         if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
         {

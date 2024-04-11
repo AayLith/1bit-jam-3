@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ enum EnemyState
 {
     Idle,
     SearchingForPlayer,
+    Alert,
     ChasingPlayer,
     FleeingFromPlayer,
     Hiding
@@ -16,12 +18,18 @@ enum EnemyState
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
+    private const int waitBeforeChaseOrFleeSeconds = 1;
+    [SerializeField]
+    private const int alertJumpVelocity = 3;
+    [SerializeField]
     private float secondsPerState = 2;
     private Animator animator;
     [SerializeField]
     private EnemyState currentState = EnemyState.Idle;
     [SerializeField]
     private float visionRange = 50;
+    [SerializeField]
+    private float playerSpottedDelay = 2;
     private float secondsInCurrentState = 0;
     private PlayerController player;
     private SpriteRenderer spriteRenderer;
@@ -34,6 +42,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 playerCentreOffset = new Vector2(0,-0.25f);
     private Health health;
     private Rigidbody2D rb;
+    private Vector2?  lastKnownPlayerPosition = null;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +63,7 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         UpdateState();
+        // Debug.Log("Current enemy state: "+Enum.GetName(typeof(EnemyState), currentState));
         switch (currentState)
         {
             case EnemyState.Idle:
@@ -81,17 +91,27 @@ public class EnemyController : MonoBehaviour
 
     private void Flee()
     {
-
-    }
-    private void ChasePlayer()
-    {
         var hit = FindPlayer();
-        if (hit != null)
+        if (hit != null || lastKnownPlayerPosition != null)
         {
-            var deltaPos = hit.Value.point - (Vector2) transform.position;
+            var deltaPos = lastKnownPlayerPosition.Value - (Vector2) transform.position;
+            deltaPos *= -1;  //flip, we want to get away from player
             facingLeft = Mathf.Sign(deltaPos.x) == -1;
             var xSpeed = Mathf.Sign(deltaPos.x) * movementSpeed;
             rb.velocity =   Vector3.Lerp(rb.velocity,new Vector2(xSpeed,rb.velocity.y),0.8f);
+            SetAnimationState(AnimationState.Walking);
+        }
+    }
+    private void ChasePlayer()
+    {
+        FindPlayer();
+        UnityEngine.Debug.Log($"player spotted while chasing? {lastKnownPlayerPosition}");
+        if ( lastKnownPlayerPosition != null)
+        {
+            var deltaPos = lastKnownPlayerPosition.Value - (Vector2) transform.position;
+            facingLeft = Mathf.Sign(deltaPos.x) == -1;
+            var xSpeed = Mathf.Sign(deltaPos.x) * movementSpeed;
+            rb.velocity = Vector3.Lerp(rb.velocity,new Vector2(xSpeed,rb.velocity.y),0.8f);
             SetAnimationState(AnimationState.Walking);
         }
     }
@@ -100,10 +120,17 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    private void Alerted()
+    {
+        UnityEngine.Debug.Log("Alerted!");
+        rb.velocity = new Vector2(rb.velocity.x, alertJumpVelocity);
+    }
+
     private void BeIdle()
     {
         SetAnimationState(AnimationState.Idle);
         rb.velocity = Vector3.Lerp(rb.velocity,new Vector2(0,rb.velocity.y),0.9f);
+        lastKnownPlayerPosition = null;
     }
 
     private RaycastHit2D? FindPlayer()
@@ -122,6 +149,7 @@ public class EnemyController : MonoBehaviour
                 var hitPlayer = hits[0].collider.gameObject.GetComponentInParent<PlayerController>();
                 if(hitPlayer !=null)
                 {
+                    lastKnownPlayerPosition = hitPlayer.transform.position;
                     return hits[0];
                 }
             }
@@ -131,22 +159,56 @@ public class EnemyController : MonoBehaviour
     }
     [SerializeField]
     private float fleeHealthFraction = 0.25f;
+
+    private IEnumerator SwitchStates(EnemyState stateNow, float waitBeforeActionSeconds, EnemyState nextState)
+    {
+        switchingState = true;
+        SwitchState(stateNow);
+        yield return new WaitForSeconds(waitBeforeActionSeconds);
+        SwitchState(nextState);
+        Debug.Log("Switched state to "+Enum.GetName(typeof(EnemyState), nextState));
+        switchingState = false;
+    }
+
+    private void SwitchState(EnemyState state)
+    {
+        currentState = state;
+        //Default to walking
+        AnimationState animationState = AnimationState.Walking;
+        switch (state)
+        {
+            case EnemyState.Idle:
+                animationState = AnimationState.Idle;
+                break;
+            case EnemyState.Hiding:
+                animationState = AnimationState.Hiding;
+                break;
+        }
+        SetAnimationState(animationState);
+    }
+    bool switchingState = false;
     private void UpdateState()
     {   FindPlayer();
+
+        
         secondsInCurrentState += Time.fixedDeltaTime;
-        if(secondsInCurrentState > secondsPerState)
+        if(!switchingState && secondsInCurrentState > secondsPerState)
         {
             var hit = FindPlayer();
             if(hit != null)
             {
-                UnityEngine.Debug.Log("Found player");
+                
+                // flee from player by default
+                var newState = EnemyState.FleeingFromPlayer;
                 if(health.CurrentHealth / health.MaxHealth > fleeHealthFraction)
-                {   // can see player, healthy, chase
-                    currentState = EnemyState.ChasingPlayer;
+                {   // healthy, chase player
+                    newState = EnemyState.ChasingPlayer;
                 }
-                else
-                {   // can see player, low health, flee
-                    currentState = EnemyState.FleeingFromPlayer;
+                if(newState != currentState && !switchingState)
+                {   // don't alert if we're not changing state
+                    Alerted();
+                    Debug.Log("Found player, new state "+Enum.GetName(typeof(EnemyState), newState));
+                    StartCoroutine(SwitchStates(EnemyState.Alert, waitBeforeChaseOrFleeSeconds, newState));
                 }
                 
             }

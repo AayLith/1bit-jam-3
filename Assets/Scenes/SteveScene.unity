@@ -310,6 +310,7 @@ MonoBehaviour:
   secondsPerState: 2
   currentState: 0
   visionRange: 4
+  playerSpottedDelay: 1
   movementSpeed: 3
   visionLayers:
     serializedVersion: 2
