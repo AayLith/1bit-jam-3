@@ -7,5 +7,5 @@ public enum AnimationState
     Idle = 0,
     Walking = 1,
     Hiding = 2,
-    Jumping
+    Jumping = 3,
 }
