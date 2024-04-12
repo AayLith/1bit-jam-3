@@ -44,6 +44,17 @@ public class PlayerControls : MonoBehaviour
     private float invulnerabilityPeriodAfterTakingDamageSeconds = 0.5f;
     private Stopwatch invulnerabilityTimer = new Stopwatch ();
 
+    [Header ( "Colliders" )]
+    public BoxCollider2D physicsCollider;
+    public Vector2 defaultColliderSize;
+    public Vector2 smallShellColliderSize;
+    public Vector2 mediumShellColliderSize;
+    public Vector2 tallShellColliderSize;
+    public Vector2 defaultCollideOffset;
+    public Vector2 smallShellColliderOffset;
+    public Vector2 mediumShellColliderOffset;
+    public Vector2 tallShellColliderOffset;
+
     [Header ( "Objects" )]
     private CharacterController2D _controller;
     private Animator _animator;
@@ -219,7 +230,7 @@ public class PlayerControls : MonoBehaviour
                     foreach ( Collider2D c in groundShell.collisions )
                         if ( c.transform.parent.GetComponent<Shell> () != s )
                         {
-                            pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
+                            pickUpShell ( c.transform.parent.GetComponent<Shell> () );
                             break;
                         }
                 }
@@ -228,6 +239,7 @@ public class PlayerControls : MonoBehaviour
             else if ( Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount && shell != null )
             {
                 ThrowShell ();
+                dropShell ();
                 StartCoroutine ( lockInputsDelay () );
             }
         }
@@ -235,7 +247,7 @@ public class PlayerControls : MonoBehaviour
 
     void HandleShell ()
     {
-        // shell.transform.position = shellSlot.transform.position;
+        shell.transform.position = shellSlot.transform.position;
     }
 
     private void ClampFallSpeed ()
@@ -275,22 +287,48 @@ public class PlayerControls : MonoBehaviour
         s.transform.position = shellSlot.transform.position;
         s.GetComponent<Rigidbody2D> ().gravityScale = 0;
         //s.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
-        s.playerCollision.GetComponent<Collider2D> ().enabled = false;
+        s.playerCollision.enabled = false;
+        s.groundCollision.enabled = false;
+        shellCollider ();
     }
 
     void dropShell ()
     {
         shell.transform.parent = null;
         shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
+        shell.groundCollision.enabled = true;
         shell = null;
+        disableShellColliders ();
     }
 
     void ThrowShell ()
     {
-        shell.transform.parent = null;
-        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
-        shell = null;
+    }
+
+    void shellCollider ()
+    {
+        switch ( shell.shellHeight )
+        {
+            case Shell.shellHeights.small:
+                physicsCollider.size = smallShellColliderSize;
+                physicsCollider.offset = smallShellColliderOffset;
+                break;
+            case Shell.shellHeights.medium:
+                physicsCollider.size = mediumShellColliderSize;
+                physicsCollider.offset = mediumShellColliderOffset;
+                break;
+            case Shell.shellHeights.tall:
+                physicsCollider.size = tallShellColliderSize;
+                physicsCollider.offset = tallShellColliderOffset;
+                break;
+        }
+    }
+
+    void disableShellColliders ()
+    {
+        physicsCollider.size = defaultColliderSize;
+        physicsCollider.offset = defaultCollideOffset;
     }
 
     private void OnDeath ()

@@ -99,7 +99,7 @@ Camera:
   near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -253,7 +253,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.5}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!1 &8376960081822664990
 GameObject:
@@ -355,7 +355,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376960081822664990}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2e65e1c4bb0294340b0499d231b6e76d, type: 2}
   m_CullingMode: 0
@@ -394,6 +394,15 @@ MonoBehaviour:
   flashWhileInvulnerable: 1
   addPlayerVelocityToThrow: 1
   flashesPerSecond: 4
+  physicsCollider: {fileID: 8381934543478636013}
+  defaultColliderSize: {x: 0.5, y: 0.4}
+  smallShellColliderSize: {x: 0.5, y: 0.8}
+  mediumShellColliderSize: {x: 0.5, y: 1.2}
+  tallShellColliderSize: {x: 0.5, y: 1.6}
+  defaultCollideOffset: {x: 0, y: -0.3}
+  smallShellColliderOffset: {x: 0, y: -0.1}
+  mediumShellColliderOffset: {x: 0, y: 0.1}
+  tallShellColliderOffset: {x: 0, y: 0.3}
   groundShell: {fileID: 3992220565883280827}
   shellSlot: {fileID: 1798492938648038993}
   shell: {fileID: 0}
