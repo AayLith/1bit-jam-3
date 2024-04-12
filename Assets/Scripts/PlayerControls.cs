@@ -132,7 +132,7 @@ public class PlayerControls : MonoBehaviour
         if ( shell != null )
             HandleShell ();
 
-        _controller.move ( _velocity * Time.deltaTime * ( shell ? shellCarrySpeedMult : 1 ) );
+        _controller.move ( _velocity * Time.deltaTime );
 
         // grab our current _velocity to use as a base for all calculations
         _velocity = _controller.velocity;
@@ -143,7 +143,7 @@ public class PlayerControls : MonoBehaviour
         if ( Input.GetAxis ( "Horizontal" ) > inputDeadZoneAmount )
         {
             direction = playerDirection.right;
-            normalizedHorizontalSpeed = 1;
+            normalizedHorizontalSpeed = 1 * ( shell ? shellCarrySpeedMult : 1 );
             if ( transform.localScale.x < 0f )
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
@@ -153,7 +153,7 @@ public class PlayerControls : MonoBehaviour
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
             direction = playerDirection.left;
-            normalizedHorizontalSpeed = -1;
+            normalizedHorizontalSpeed = -1 * ( shell ? shellCarrySpeedMult : 1 );
             if ( transform.localScale.x > 0f )
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
@@ -211,10 +211,18 @@ public class PlayerControls : MonoBehaviour
         {
             if ( Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount )
             {
-                if ( shell != null )
+                Shell s = shell;
+                if ( shell )
                     dropShell ();
                 if ( groundShell.collisions.Count > 0 )
-                    pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
+                {
+                    foreach ( Collider2D c in groundShell.collisions )
+                        if ( c.transform.parent.GetComponent<Shell> () != s )
+                        {
+                            pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
+                            break;
+                        }
+                }
                 StartCoroutine ( lockInputsDelay () );
             }
             else if ( Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount && shell != null )
@@ -227,7 +235,7 @@ public class PlayerControls : MonoBehaviour
 
     void HandleShell ()
     {
-        shell.transform.position = shellSlot.transform.position;
+        // shell.transform.position = shellSlot.transform.position;
     }
 
     private void ClampFallSpeed ()
@@ -263,12 +271,11 @@ public class PlayerControls : MonoBehaviour
     void pickUpShell ( Shell s )
     {
         shell = s;
-        shell.transform.parent = shellSlot.transform;
-        shell.transform.position = shellSlot.transform.position;
-        shell.transform.rotation = Quaternion.identity;
-        shell.GetComponent<Rigidbody2D> ().gravityScale = 0;
-        //shell.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
-        shell.playerCollision.GetComponent<Collider2D> ().enabled = false;
+        s.transform.parent = shellSlot.transform;
+        s.transform.position = shellSlot.transform.position;
+        s.GetComponent<Rigidbody2D> ().gravityScale = 0;
+        //s.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
+        s.playerCollision.GetComponent<Collider2D> ().enabled = false;
     }
 
     void dropShell ()
