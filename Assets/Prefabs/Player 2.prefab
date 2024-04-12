@@ -384,16 +384,18 @@ MonoBehaviour:
   runSpeed: 8
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 3
+  jumpHeight: 2.5
   maxFallSpeed: -9
+  shellCarrySpeedMult: 0.5
   coyoteTime: 0.1
   jumpBufferTime: 0.1
+  shellCarryJumpMult: 0.5
   throwStrength: {x: 10, y: 3}
   flashWhileInvulnerable: 1
   addPlayerVelocityToThrow: 1
   flashesPerSecond: 4
   groundShell: {fileID: 3992220565883280827}
-  shellSlot: {fileID: 0}
+  shellSlot: {fileID: 1798492938648038993}
   shell: {fileID: 0}
 --- !u!114 &1376846720663531455
 MonoBehaviour:
