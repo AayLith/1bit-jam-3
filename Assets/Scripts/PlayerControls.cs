@@ -23,8 +23,8 @@ public class PlayerControls : MonoBehaviour
     public float shellCarrySpeedMult = 0.5f;
 
     [Header ( "Jump" )]
-    public float coyoteTime = 0.1f;
-    private float coyoteTimeCounter = 0.1f;
+    public float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
     public float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
     public float shellCarryJumpMult = 0.5f;
@@ -131,8 +131,24 @@ public class PlayerControls : MonoBehaviour
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update ()
     {
-        if ( _controller.isGrounded )
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpPressed = true;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            jumpReleased = true;
+        }
+
+        if (_controller.isGrounded)
+        {
             _velocity.y = 0;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
 
         HandleHorizontal ();
         HandleJump ();
@@ -149,6 +165,7 @@ public class PlayerControls : MonoBehaviour
             _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
         jumpReleased = false;
+        jumpPressed = false;
 
         _controller.move ( _velocity * Time.deltaTime );
 
@@ -191,10 +208,11 @@ public class PlayerControls : MonoBehaviour
 
     void HandleJump ()
     {
-        if ( _controller.isGrounded && Input.GetAxis ( "Jump" ) > inputDeadZoneAmount && coyoteTimeCounter > 0f )
+        if (jumpPressed && coyoteTimeCounter > 0f )
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             _animator.Play ( Animator.StringToHash ( "Jump" ) );
+            coyoteTimeCounter = 0;
         }
 
         // apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
@@ -203,20 +221,12 @@ public class PlayerControls : MonoBehaviour
         // apply gravity before moving
         _velocity.y += gravity * Time.deltaTime;
 
-        if ( _controller.isGrounded )
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-
         // Used for short jumps
         if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
         }
+        
     }
 
     void HandleVertical ()
