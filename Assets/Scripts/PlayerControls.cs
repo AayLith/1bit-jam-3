@@ -20,12 +20,14 @@ public class PlayerControls : MonoBehaviour
     public float jumpHeight = 3;
     public float maxFallSpeed = -9;
     private float normalizedHorizontalSpeed = 0;
+    public float shellCarrySpeedMult = 0.5f;
 
     [Header ( "Jump" )]
     public float coyoteTime = 0.1f;
     private float coyoteTimeCounter = 0.1f;
     public float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
+    public float shellCarryJumpMult = 0.5f;
 
     [Header ( "Shell" )]
     public Vector2 throwStrength = new Vector2 ( 10 , 3 );
@@ -130,7 +132,7 @@ public class PlayerControls : MonoBehaviour
         if ( shell != null )
             HandleShell ();
 
-        _controller.move ( _velocity * Time.deltaTime );
+        _controller.move ( _velocity * Time.deltaTime * ( shell ? shellCarrySpeedMult : 1 ) );
 
         // grab our current _velocity to use as a base for all calculations
         _velocity = _controller.velocity;
@@ -169,9 +171,9 @@ public class PlayerControls : MonoBehaviour
 
     void HandleJump ()
     {
-        if ( _controller.isGrounded && Input.GetAxis ( "Jump" ) > inputDeadZoneAmount )//&& coyoteTimeCounter > 0f )
+        if ( _controller.isGrounded && Input.GetAxis ( "Jump" ) > inputDeadZoneAmount && coyoteTimeCounter > 0f )
         {
-            _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity );
+            _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             _animator.Play ( Animator.StringToHash ( "Jump" ) );
         }
 
@@ -195,7 +197,7 @@ public class PlayerControls : MonoBehaviour
     {
         // if holding down bump up our movement amount and turn off one way platform detection for a frame.
         // this lets us jump down through one way platforms
-        if ( _controller.isGrounded && Input.GetKey ( KeyCode.DownArrow ) )
+        if ( _controller.isGrounded && Input.GetAxis ( "Vertical" ) < -inputDeadZoneAmount )
         {
             _velocity.y *= 3f;
             _controller.ignoreOneWayPlatformsThisFrame = true;
@@ -207,16 +209,18 @@ public class PlayerControls : MonoBehaviour
         // Pickup or throw shell
         if ( !lockInput )
         {
-            if ( pickupInput )
+            if ( Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount )
             {
                 if ( shell != null )
                     dropShell ();
                 if ( groundShell.collisions.Count > 0 )
                     pickUpShell ( groundShell.collisions[ 0 ].transform.parent.GetComponent<Shell> () );
+                StartCoroutine ( lockInputsDelay () );
             }
-            else if ( throwInput && shell != null )
+            else if ( Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount && shell != null )
             {
                 ThrowShell ();
+                StartCoroutine ( lockInputsDelay () );
             }
         }
     }
@@ -255,6 +259,7 @@ public class PlayerControls : MonoBehaviour
             }
         }
     }
+
     void pickUpShell ( Shell s )
     {
         shell = s;
@@ -262,7 +267,8 @@ public class PlayerControls : MonoBehaviour
         shell.transform.position = shellSlot.transform.position;
         shell.transform.rotation = Quaternion.identity;
         shell.GetComponent<Rigidbody2D> ().gravityScale = 0;
-        shell.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
+        //shell.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
+        shell.playerCollision.GetComponent<Collider2D> ().enabled = false;
     }
 
     void dropShell ()
