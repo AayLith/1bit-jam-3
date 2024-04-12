@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     enum playerDirection { right, left }
+    private playerDirection direction = playerDirection.right;
 
     [SerializeField]
     bool addPlayerVelocityToThrow = true;
@@ -18,12 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool flashWhileInvulnerable = true;
     public static PlayerController instance;
-    private playerDirection direction = playerDirection.right;
 
     public bool isGrounded = false;
     bool lockInput = false;
 
     public float maxFallSpeed = -9f;
+    public Vector2 throwStrength = new Vector2 ( 10 , 3 );
 
 
     [Header ( "Stats" )]
@@ -31,8 +32,6 @@ public class PlayerController : MonoBehaviour
     public float speed;
     [SerializeField] float defaultJump;
     public float jump;
-    public float throwStrengthHorizontal = 10;
-    public float throwStrengthVertical = 3;
 
     public GameObject shellSlot;
     public Shell shell;
@@ -246,7 +245,7 @@ public class PlayerController : MonoBehaviour
     {
         shell.transform.parent = null;
         shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
-        shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrengthHorizontal : -throwStrengthHorizontal , throwStrengthVertical ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
+        shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
         shell = null;
     }
 
