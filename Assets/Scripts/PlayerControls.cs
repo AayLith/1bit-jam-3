@@ -184,6 +184,8 @@ public class PlayerControls : MonoBehaviour
 
             if ( _controller.isGrounded )
                 _animator.Play ( Animator.StringToHash ( "Idle" ) );
+            else if ( _velocity.y < 0 )
+                _animator.Play ( Animator.StringToHash ( "Fall" ) );
         }
     }
 
