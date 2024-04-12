@@ -210,6 +210,7 @@ public class PlayerControls : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
+        // Used for short jumps
         if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
