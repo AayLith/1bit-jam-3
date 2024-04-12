@@ -166,7 +166,7 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash ( "Run" ) );
+                _animator.Play ( Animator.StringToHash  ( "Run" ) );
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
