@@ -143,6 +143,13 @@ public class PlayerControls : MonoBehaviour
         if ( shell != null )
             HandleShell ();
 
+        // short jump
+        if ( jumpReleased && _velocity.y > 0 )
+        {
+            _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
+        }
+        jumpReleased = false;
+
         _controller.move ( _velocity * Time.deltaTime );
 
         // grab our current _velocity to use as a base for all calculations
@@ -201,6 +208,11 @@ public class PlayerControls : MonoBehaviour
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if ( Input.GetButtonUp ( "Jump" ) )
+        {
+            jumpReleased = true;
         }
     }
 
