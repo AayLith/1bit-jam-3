@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -25
-  runSpeed: 8
+  runSpeed: 5
   groundDamping: 20
   inAirDamping: 5
   jumpHeight: 2.5

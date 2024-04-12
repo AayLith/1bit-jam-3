@@ -538,7 +538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCollision: {fileID: 1520294299}
-  maxFallSpeed: -5
 --- !u!1 &826554735
 GameObject:
   m_ObjectHideFlags: 0
