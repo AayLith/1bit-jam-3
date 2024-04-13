@@ -119,21 +119,21 @@ public class PlayerControls : MonoBehaviour
 
     void onTriggerEnterEvent ( Collider2D collision )
     {
-        Debug.Log( "Trigger enter: " + collision.gameObject.name );
+        Debug.Log ( "Trigger enter: " + collision.gameObject.name );
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
         if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
         {
             bool invulnerable = CheckAndGetIsInvulnerable ();
             if ( !invulnerable )
             {
-                Debug.Log($"Damage taken {damageDealer.damageToPlayer}");
+                Debug.Log ( $"Damage taken {damageDealer.damageToPlayer}" );
                 healthComponent.TakeDamage ( damageDealer.damageToPlayer );
                 invulnerabilityTimer = Stopwatch.StartNew ();
             }
 
         }
         Debug.Log ( "onTriggerEnterEvent: " + collision.gameObject.name );
-        
+
     }
 
 
@@ -148,16 +148,16 @@ public class PlayerControls : MonoBehaviour
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update ()
     {
-        if (Input.GetButtonDown("Jump"))
+        if ( Input.GetButtonDown ( "Jump" ) )
         {
             jumpPressed = true;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
         }
 
-        if (_controller.isGrounded)
+        if ( _controller.isGrounded )
         {
             _velocity.y = 0;
             coyoteTimeCounter = coyoteTime;
@@ -176,11 +176,6 @@ public class PlayerControls : MonoBehaviour
         if ( shell != null )
             HandleShell ();
 
-        // short jump
-        if ( jumpReleased && _velocity.y > 0 )
-        {
-            _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
-        }
         jumpReleased = false;
         jumpPressed = false;
 
@@ -200,7 +195,10 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                SetAnimationState(AnimationState.Running);
+            {
+                SetAnimationState ( AnimationState.Running );
+                SetAnimation ( "Run" );
+            }
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
@@ -210,25 +208,35 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                SetAnimationState(AnimationState.Running);
+            {
+                SetAnimationState ( AnimationState.Running );
+                SetAnimation ( "Run" );
+            }
         }
         else
         {
             normalizedHorizontalSpeed = 0;
 
             if ( _controller.isGrounded )
-                SetAnimationState(AnimationState.Idle);
+            {
+                SetAnimationState ( AnimationState.Idle );
+                SetAnimation ( "Idle" );
+            }
             else if ( _velocity.y < 0 )
-                SetAnimationState(AnimationState.Falling);
+            {
+                SetAnimationState ( AnimationState.Falling );
+                SetAnimation ( "Fall" );
+            }
         }
     }
 
     void HandleJump ()
     {
-        if (jumpPressed && coyoteTimeCounter > 0f )
+        if ( jumpPressed && coyoteTimeCounter > 0f )
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
-            SetAnimationState(AnimationState.Jumping);
+            SetAnimationState ( AnimationState.Jumping );
+            SetAnimation ( "Jump" );
             coyoteTimeCounter = 0;
         }
 
@@ -242,8 +250,13 @@ public class PlayerControls : MonoBehaviour
         if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
+        }        
+        // short jump
+        if ( jumpReleased && _velocity.y > 0 )
+        {
+            _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
-        
+
     }
 
     void HandleVertical ()
@@ -377,16 +390,16 @@ public class PlayerControls : MonoBehaviour
     {
         UnityEngine.Debug.Log ( "Player death" );
         // Check if there is a last activated checkpoint.
-            if (Checkpoint.lastCheckpoint != null)
-            {
-                // Teleport the player to the last activated checkpoint.
-                transform.position = Checkpoint.lastCheckpoint.position;
-                Debug.Log("Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position);
-            }
-            else
-            {
-                Debug.LogWarning("No checkpoint has been activated yet.");
-            }
+        if ( Checkpoint.lastCheckpoint != null )
+        {
+            // Teleport the player to the last activated checkpoint.
+            transform.position = Checkpoint.lastCheckpoint.position;
+            Debug.Log ( "Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position );
+        }
+        else
+        {
+            Debug.LogWarning ( "No checkpoint has been activated yet." );
+        }
     }
 
     private bool CheckAndGetIsInvulnerable ()
@@ -405,9 +418,14 @@ public class PlayerControls : MonoBehaviour
         lockInput = false;
     }
 
-    public void SetAnimationState(AnimationState state)
+    public void SetAnimationState ( AnimationState state )
     {
         // Debug.Log("Setting animation state to " + System.Enum.GetName(typeof(AnimationState), state));
-        _animator.SetInteger("state",(int) state);
+        _animator.SetInteger ( "state" , ( int ) state ); // This always breaks when input are pressed too fast
+    }
+
+    public void SetAnimation ( string name )
+    {
+        _animator.Play ( Animator.StringToHash ( name ) );
     }
 }
