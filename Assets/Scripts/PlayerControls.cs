@@ -430,7 +430,8 @@ public class PlayerControls : ResetableObject
     protected override void reset ()
     {
         base.reset ();
-        dropShell ();
+        if ( shell )
+            dropShell ();
         _velocity = Vector3.zero;
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
@@ -441,6 +442,7 @@ public class PlayerControls : ResetableObject
         }
         else
         {
+            transform.position = startPosition;
             Debug.LogWarning ( "No checkpoint has been activated yet." );
         }
     }
