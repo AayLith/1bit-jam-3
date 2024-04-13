@@ -24,7 +24,13 @@ ScriptedImporter:
     _asset: {instanceID: 0}
   - _key: Walls_3
     _asset: {instanceID: 0}
-  _entities: []
+  _entities:
+  - _key: Moving_Platforms
+    _asset: {fileID: 4769294290291333154, guid: dea0308e2244b2342a0d4b5e41c471cb, type: 3}
+  - _key: Checkpoints
+    _asset: {fileID: 5939842656334817234, guid: 2568d622c98881b4698fa3db49114e92, type: 3}
+  - _key: Shell1
+    _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 

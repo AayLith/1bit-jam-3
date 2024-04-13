@@ -12,5 +12,76 @@
 		"Pikes.png",
 		"Walls.png"
 	],
-	"entities" : {}
+	"entities": {
+		"Checkpoints": [
+			{
+				"id": "Checkpoints",
+				"iid": "3303d720-d7b0-11ee-86bf-6fb7fc5f00a0",
+				"layer": "Game_Objects",
+				"x": 464,
+				"y": 688,
+				"width": 32,
+				"height": 32,
+				"color": 4415959,
+				"customFields" : {}
+			},
+			{
+				"id": "Checkpoints",
+				"iid": "33f14460-d7b0-11ee-86bf-79177a033589",
+				"layer": "Game_Objects",
+				"x": 656,
+				"y": 688,
+				"width": 32,
+				"height": 32,
+				"color": 4415959,
+				"customFields" : {}
+			},
+			{
+				"id": "Checkpoints",
+				"iid": "aa7cb5b0-d7b0-11ee-86bf-9fb934ed728c",
+				"layer": "Game_Objects",
+				"x": 848,
+				"y": 624,
+				"width": 32,
+				"height": 32,
+				"color": 4415959,
+				"customFields" : {}
+			},
+			{
+				"id": "Checkpoints",
+				"iid": "b4bfd0c0-d7b0-11ee-86bf-7d81727982ba",
+				"layer": "Game_Objects",
+				"x": 1264,
+				"y": 624,
+				"width": 32,
+				"height": 32,
+				"color": 4415959,
+				"customFields" : {}
+			}
+		],
+		"Moving_Platforms": [
+			{
+				"id": "Moving_Platforms",
+				"iid": "b16bc3c0-d7b0-11ee-86bf-394b5ff6a020",
+				"layer": "Game_Objects",
+				"x": 912,
+				"y": 656,
+				"width": 32,
+				"height": 32,
+				"color": 12470831,
+				"customFields" : {}
+			},
+			{
+				"id": "Moving_Platforms",
+				"iid": "eec66630-d7b0-11ee-86bf-5be2000809d6",
+				"layer": "Game_Objects",
+				"x": 1232,
+				"y": 656,
+				"width": 32,
+				"height": 32,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		]
+	}
 }
