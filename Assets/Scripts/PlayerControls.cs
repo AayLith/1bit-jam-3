@@ -183,7 +183,7 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash  ( "Run" ) );
+                SetAnimationState(AnimationState.Running);
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
@@ -193,16 +193,16 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash ( "Run" ) );
+                SetAnimationState(AnimationState.Running);
         }
         else
         {
             normalizedHorizontalSpeed = 0;
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash ( "Idle" ) );
+                SetAnimationState(AnimationState.Idle);
             else if ( _velocity.y < 0 )
-                _animator.Play ( Animator.StringToHash ( "Fall" ) );
+                SetAnimationState(AnimationState.Falling);
         }
     }
 
@@ -211,7 +211,7 @@ public class PlayerControls : MonoBehaviour
         if (jumpPressed && coyoteTimeCounter > 0f )
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
-            _animator.Play ( Animator.StringToHash ( "Jump" ) );
+            SetAnimationState(AnimationState.Jumping);
             coyoteTimeCounter = 0;
         }
 
@@ -375,5 +375,11 @@ public class PlayerControls : MonoBehaviour
         lockInput = true;
         yield return new WaitForSeconds ( 0.1f );
         lockInput = false;
+    }
+
+    public void SetAnimationState(AnimationState state)
+    {
+        // UnityEngine.Debug.Log("Setting animation state to " + System.Enum.GetName(typeof(AnimationState), state));
+        _animator.SetInteger("state",(int) state);
     }
 }

@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2 ( horizontalInput * speed , rb.velocity.y );
         if(Mathf.Abs(horizontalInput) > float.Epsilon)
         {
-            SetAnimationState(AnimationState.Walking);
+            SetAnimationState(AnimationState.Running);
         }
         else if(isGrounded)
         {
