@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour
             facingLeft = Mathf.Sign(deltaPos.x) == -1;
             var xSpeed = Mathf.Sign(deltaPos.x) * movementSpeed;
             rb.velocity =   Vector3.Lerp(rb.velocity,new Vector2(xSpeed,rb.velocity.y),0.8f);
-            SetAnimationState(AnimationState.Walking);
+            SetAnimationState(AnimationState.Running);
         }
     }
     private void ChasePlayer()
@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
             facingLeft = Mathf.Sign(deltaPos.x) == -1;
             var xSpeed = Mathf.Sign(deltaPos.x) * movementSpeed;
             rb.velocity = Vector3.Lerp(rb.velocity,new Vector2(xSpeed,rb.velocity.y),0.8f);
-            SetAnimationState(AnimationState.Walking);
+            SetAnimationState(AnimationState.Running);
         }
     }
     private void SearchForPlayer()
@@ -174,7 +174,7 @@ public class EnemyController : MonoBehaviour
     {
         currentState = state;
         //Default to walking
-        AnimationState animationState = AnimationState.Walking;
+        AnimationState animationState = AnimationState.Running;
         switch (state)
         {
             case EnemyState.Idle:

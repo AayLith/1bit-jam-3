@@ -6,6 +6,8 @@ using UnityEngine;
 using static Health;
 using UnityEngine.U2D;
 using System.Diagnostics;
+using Debug = UnityEngine.Debug;
+using Unity.VisualScripting;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -23,8 +25,8 @@ public class PlayerControls : MonoBehaviour
     public float shellCarrySpeedMult = 0.5f;
 
     [Header ( "Jump" )]
-    public float coyoteTime = 0.1f;
-    private float coyoteTimeCounter = 0.1f;
+    public float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
     public float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
     public float shellCarryJumpMult = 0.5f;
@@ -41,6 +43,7 @@ public class PlayerControls : MonoBehaviour
     private bool addPlayerVelocityToThrow = true;
     [SerializeField]
     private float flashesPerSecond = 4;
+    [SerializeField]
     private float invulnerabilityPeriodAfterTakingDamageSeconds = 0.5f;
     private Stopwatch invulnerabilityTimer = new Stopwatch ();
 
@@ -105,7 +108,7 @@ public class PlayerControls : MonoBehaviour
 
     void onControllerCollider ( RaycastHit2D hit )
     {
-        // bail out on plain old ground hits cause they arent very interesting
+        // bail out on plain old ground hits cause they aren't very interesting
         if ( hit.normal.y == 1f )
             return;
 
@@ -114,9 +117,23 @@ public class PlayerControls : MonoBehaviour
     }
 
 
-    void onTriggerEnterEvent ( Collider2D col )
+    void onTriggerEnterEvent ( Collider2D collision )
     {
-        UnityEngine.Debug.Log ( "onTriggerEnterEvent: " + col.gameObject.name );
+        Debug.Log( "Trigger enter: " + collision.gameObject.name );
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
+        if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
+        {
+            bool invulnerable = CheckAndGetIsInvulnerable ();
+            if ( !invulnerable )
+            {
+                Debug.Log($"Damage taken {damageDealer.damageToPlayer}");
+                healthComponent.TakeDamage ( damageDealer.damageToPlayer );
+                invulnerabilityTimer = Stopwatch.StartNew ();
+            }
+
+        }
+        Debug.Log ( "onTriggerEnterEvent: " + collision.gameObject.name );
+        
     }
 
 
@@ -131,8 +148,24 @@ public class PlayerControls : MonoBehaviour
     // the Update loop contains a very simple example of moving the character around and controlling the animation
     void Update ()
     {
-        if ( _controller.isGrounded )
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpPressed = true;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            jumpReleased = true;
+        }
+
+        if (_controller.isGrounded)
+        {
             _velocity.y = 0;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
 
         HandleHorizontal ();
         HandleJump ();
@@ -149,6 +182,7 @@ public class PlayerControls : MonoBehaviour
             _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
         jumpReleased = false;
+        jumpPressed = false;
 
         _controller.move ( _velocity * Time.deltaTime );
 
@@ -166,7 +200,7 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash  ( "Run" ) );
+                SetAnimationState(AnimationState.Running);
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
@@ -176,47 +210,40 @@ public class PlayerControls : MonoBehaviour
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash ( "Run" ) );
+                SetAnimationState(AnimationState.Running);
         }
         else
         {
             normalizedHorizontalSpeed = 0;
 
             if ( _controller.isGrounded )
-                _animator.Play ( Animator.StringToHash ( "Idle" ) );
+                SetAnimationState(AnimationState.Idle);
             else if ( _velocity.y < 0 )
-                _animator.Play ( Animator.StringToHash ( "Fall" ) );
+                SetAnimationState(AnimationState.Falling);
         }
     }
 
     void HandleJump ()
     {
-        if ( _controller.isGrounded && Input.GetAxis ( "Jump" ) > inputDeadZoneAmount && coyoteTimeCounter > 0f )
+        if (jumpPressed && coyoteTimeCounter > 0f )
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
-            _animator.Play ( Animator.StringToHash ( "Jump" ) );
+            SetAnimationState(AnimationState.Jumping);
+            coyoteTimeCounter = 0;
         }
 
-        // apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
+        // apply horizontal speed smoothing it. don't really do this with Lerp. Use SmoothDamp or something that provides more control
         var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
         _velocity.x = Mathf.Lerp ( _velocity.x , normalizedHorizontalSpeed * runSpeed , Time.deltaTime * smoothedMovementFactor );
         // apply gravity before moving
         _velocity.y += gravity * Time.deltaTime;
-
-        if ( _controller.isGrounded )
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
 
         // Used for short jumps
         if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
         }
+        
     }
 
     void HandleVertical ()
@@ -349,6 +376,17 @@ public class PlayerControls : MonoBehaviour
     private void OnDeath ()
     {
         UnityEngine.Debug.Log ( "Player death" );
+        // Check if there is a last activated checkpoint.
+            if (Checkpoint.lastCheckpoint != null)
+            {
+                // Teleport the player to the last activated checkpoint.
+                transform.position = Checkpoint.lastCheckpoint.position;
+                Debug.Log("Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position);
+            }
+            else
+            {
+                Debug.LogWarning("No checkpoint has been activated yet.");
+            }
     }
 
     private bool CheckAndGetIsInvulnerable ()
@@ -365,5 +403,11 @@ public class PlayerControls : MonoBehaviour
         lockInput = true;
         yield return new WaitForSeconds ( 0.1f );
         lockInput = false;
+    }
+
+    public void SetAnimationState(AnimationState state)
+    {
+        // Debug.Log("Setting animation state to " + System.Enum.GetName(typeof(AnimationState), state));
+        _animator.SetInteger("state",(int) state);
     }
 }
