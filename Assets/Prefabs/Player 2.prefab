@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 6282166469367552029}
   m_Layer: 8
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,6 +395,7 @@ MonoBehaviour:
   flashWhileInvulnerable: 1
   addPlayerVelocityToThrow: 1
   flashesPerSecond: 4
+  invulnerabilityPeriodAfterTakingDamageSeconds: 0.5
   physicsCollider: {fileID: 8381934543478636013}
   defaultColliderSize: {x: 0.5, y: 0.4}
   smallShellColliderSize: {x: 0.5, y: 0.8}
