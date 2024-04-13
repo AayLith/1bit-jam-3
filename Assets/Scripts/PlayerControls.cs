@@ -263,7 +263,7 @@ public class PlayerControls : ResetableObject
         // this lets us jump down through one way platforms
         if ( _controller.isGrounded && Input.GetAxis ( "Vertical" ) < -inputDeadZoneAmount )
         {
-            _velocity.y *= 3f;
+            //_velocity.y *= 3f; // superjump
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
     }
