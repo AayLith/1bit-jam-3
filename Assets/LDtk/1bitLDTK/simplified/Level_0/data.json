@@ -139,6 +139,32 @@
 				"color": 15389866,
 				"customFields" : {}
 			}
+		],
+		"Shell1": [
+			{
+				"id": "Shell1",
+				"iid": "404be940-d7b0-11ee-86bf-4379a9b468e0",
+				"layer": "Game_Objects",
+				"x": 336,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 14120515,
+				"customFields" : {}
+			}
+		],
+		"Shell2": [
+			{
+				"id": "Shell2",
+				"iid": "41911370-d7b0-11ee-86bf-d7d8ef245876",
+				"layer": "Game_Objects",
+				"x": 816,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 14984818,
+				"customFields" : {}
+			}
 		]
 	}
 }
