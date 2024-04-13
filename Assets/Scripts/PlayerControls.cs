@@ -6,6 +6,8 @@ using UnityEngine;
 using static Health;
 using UnityEngine.U2D;
 using System.Diagnostics;
+using Debug = UnityEngine.Debug;
+using Unity.VisualScripting;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -41,6 +43,7 @@ public class PlayerControls : MonoBehaviour
     private bool addPlayerVelocityToThrow = true;
     [SerializeField]
     private float flashesPerSecond = 4;
+    [SerializeField]
     private float invulnerabilityPeriodAfterTakingDamageSeconds = 0.5f;
     private Stopwatch invulnerabilityTimer = new Stopwatch ();
 
@@ -116,18 +119,20 @@ public class PlayerControls : MonoBehaviour
 
     void onTriggerEnterEvent ( Collider2D collision )
     {
+        Debug.Log( "Trigger enter: " + collision.gameObject.name );
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
         if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
         {
             bool invulnerable = CheckAndGetIsInvulnerable ();
             if ( !invulnerable )
             {
+                Debug.Log($"Damage taken {damageDealer.damageToPlayer}");
                 healthComponent.TakeDamage ( damageDealer.damageToPlayer );
                 invulnerabilityTimer = Stopwatch.StartNew ();
             }
 
         }
-        UnityEngine.Debug.Log ( "onTriggerEnterEvent: " + collision.gameObject.name );
+        Debug.Log ( "onTriggerEnterEvent: " + collision.gameObject.name );
         
     }
 
@@ -371,6 +376,17 @@ public class PlayerControls : MonoBehaviour
     private void OnDeath ()
     {
         UnityEngine.Debug.Log ( "Player death" );
+        // Check if there is a last activated checkpoint.
+            if (Checkpoint.lastCheckpoint != null)
+            {
+                // Teleport the player to the last activated checkpoint.
+                transform.position = Checkpoint.lastCheckpoint.position;
+                Debug.Log("Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position);
+            }
+            else
+            {
+                Debug.LogWarning("No checkpoint has been activated yet.");
+            }
     }
 
     private bool CheckAndGetIsInvulnerable ()
@@ -391,7 +407,7 @@ public class PlayerControls : MonoBehaviour
 
     public void SetAnimationState(AnimationState state)
     {
-        // UnityEngine.Debug.Log("Setting animation state to " + System.Enum.GetName(typeof(AnimationState), state));
+        // Debug.Log("Setting animation state to " + System.Enum.GetName(typeof(AnimationState), state));
         _animator.SetInteger("state",(int) state);
     }
 }
