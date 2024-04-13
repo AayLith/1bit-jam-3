@@ -31,6 +31,8 @@ ScriptedImporter:
     _asset: {fileID: 5939842656334817234, guid: 2568d622c98881b4698fa3db49114e92, type: 3}
   - _key: Shell1
     _asset: {instanceID: 0}
+  - _key: Player
+    _asset: {fileID: 8376960081822664990, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
