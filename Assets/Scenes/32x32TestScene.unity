@@ -888,7 +888,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 583806036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ea1b46bc357fc4e97ac258682193df, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b92882b8591ff4dbdbcca2b383bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStartingCheckpoint: 0
@@ -10774,7 +10774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304545483}
   - component: {fileID: 1304545482}
-  - component: {fileID: 1304545481}
+  - component: {fileID: 1304545484}
   m_Layer: 21
   m_Name: Checkpoint (3)
   m_TagString: Untagged
@@ -10782,19 +10782,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1304545481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304545480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ea1b46bc357fc4e97ac258682193df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStartingCheckpoint: 0
 --- !u!61 &1304545482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10855,6 +10842,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1304545484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304545480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b92882b8591ff4dbdbcca2b383bf56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStartingCheckpoint: 0
 --- !u!1 &1468596409
 GameObject:
   m_ObjectHideFlags: 0
@@ -10942,7 +10942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1468596409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ea1b46bc357fc4e97ac258682193df, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b92882b8591ff4dbdbcca2b383bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStartingCheckpoint: 1
@@ -30219,7 +30219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2131904669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ea1b46bc357fc4e97ac258682193df, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b92882b8591ff4dbdbcca2b383bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStartingCheckpoint: 0
@@ -30289,14 +30289,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8376960081822664990, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1445724482917957622}
+      addedObject: {fileID: 1445724482917957631}
   m_SourcePrefab: {fileID: 100100000, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
 --- !u!1 &1445724482917957612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8376960081822664990, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
   m_PrefabInstance: {fileID: 1445724482917957611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1445724482917957622
+--- !u!114 &1445724482917957631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30305,7 +30305,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445724482917957612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35ceb2bcef8986f4f901c983bc6e2f14, type: 3}
+  m_Script: {fileID: 11500000, guid: c861fd6976d82d04eb29818dc9ea5b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
