@@ -9,7 +9,7 @@ public class Notification
 {
     public enum notifications
     {
-
+        resetlevel
     }
     public enum datas
     {

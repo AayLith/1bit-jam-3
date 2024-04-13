@@ -9,7 +9,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Unity.VisualScripting;
 
-public class PlayerControls : MonoBehaviour
+public class PlayerControls : ResetableObject
 {
     enum playerDirection { right, left }
     private playerDirection direction = playerDirection.right;
@@ -176,9 +176,6 @@ public class PlayerControls : MonoBehaviour
         if ( shell != null )
             HandleShell ();
 
-        jumpReleased = false;
-        jumpPressed = false;
-
         _controller.move ( _velocity * Time.deltaTime );
 
         // grab our current _velocity to use as a base for all calculations
@@ -197,7 +194,7 @@ public class PlayerControls : MonoBehaviour
             if ( _controller.isGrounded )
             {
                 SetAnimationState ( AnimationState.Running );
-                SetAnimation ( "Run" );
+                PlayAnimation ( "Run" );
             }
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
@@ -210,7 +207,7 @@ public class PlayerControls : MonoBehaviour
             if ( _controller.isGrounded )
             {
                 SetAnimationState ( AnimationState.Running );
-                SetAnimation ( "Run" );
+                PlayAnimation ( "Run" );
             }
         }
         else
@@ -220,12 +217,12 @@ public class PlayerControls : MonoBehaviour
             if ( _controller.isGrounded )
             {
                 SetAnimationState ( AnimationState.Idle );
-                SetAnimation ( "Idle" );
+                PlayAnimation ( "Idle" );
             }
             else if ( _velocity.y < 0 )
             {
                 SetAnimationState ( AnimationState.Falling );
-                SetAnimation ( "Fall" );
+                PlayAnimation ( "Fall" );
             }
         }
     }
@@ -236,7 +233,7 @@ public class PlayerControls : MonoBehaviour
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             SetAnimationState ( AnimationState.Jumping );
-            SetAnimation ( "Jump" );
+            PlayAnimation ( "Jump" );
             coyoteTimeCounter = 0;
         }
 
@@ -246,17 +243,18 @@ public class PlayerControls : MonoBehaviour
         // apply gravity before moving
         _velocity.y += gravity * Time.deltaTime;
 
-        // Used for short jumps
+        // Short jumps
         if ( Input.GetButtonUp ( "Jump" ) )
         {
             jumpReleased = true;
-        }        
-        // short jump
+        }
         if ( jumpReleased && _velocity.y > 0 )
         {
             _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
 
+        jumpReleased = false;
+        jumpPressed = false;
     }
 
     void HandleVertical ()
@@ -389,17 +387,7 @@ public class PlayerControls : MonoBehaviour
     private void OnDeath ()
     {
         UnityEngine.Debug.Log ( "Player death" );
-        // Check if there is a last activated checkpoint.
-        if ( Checkpoint.lastCheckpoint != null )
-        {
-            // Teleport the player to the last activated checkpoint.
-            transform.position = Checkpoint.lastCheckpoint.position;
-            Debug.Log ( "Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position );
-        }
-        else
-        {
-            Debug.LogWarning ( "No checkpoint has been activated yet." );
-        }
+        NotificationCenter.instance.PostNotification ( this , Notification.notifications.resetlevel );
     }
 
     private bool CheckAndGetIsInvulnerable ()
@@ -424,8 +412,36 @@ public class PlayerControls : MonoBehaviour
         _animator.SetInteger ( "state" , ( int ) state ); // This always breaks when input are pressed too fast
     }
 
-    public void SetAnimation ( string name )
+    public void PlayAnimation ( string name )
     {
         _animator.Play ( Animator.StringToHash ( name ) );
+    }
+
+    public override void receiveNotification ( Notification notification )
+    {
+        switch ( notification.name )
+        {
+            case Notification.notifications.resetlevel:
+                reset ();
+                break;
+        }
+    }
+
+    protected override void reset ()
+    {
+        base.reset ();
+
+        _velocity = Vector3.zero;
+        // Check if there is a last activated checkpoint.
+        if ( Checkpoint.lastCheckpoint != null )
+        {
+            // Teleport the player to the last activated checkpoint.
+            transform.position = Checkpoint.lastCheckpoint.position;
+            Debug.Log ( "Teleported to the last activated checkpoint at: " + Checkpoint.lastCheckpoint.position );
+        }
+        else
+        {
+            Debug.LogWarning ( "No checkpoint has been activated yet." );
+        }
     }
 }

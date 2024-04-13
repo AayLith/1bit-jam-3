@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shell : MonoBehaviour
+public class Shell : ResetableObject
 {
     public Collider2D playerCollision;
     public Collider2D groundCollision;
@@ -17,5 +17,15 @@ public class Shell : MonoBehaviour
     public void outlineOff ()
     {
 
+    }
+
+    public override void receiveNotification ( Notification notification )
+    {
+        switch ( notification.name )
+        {
+            case Notification.notifications.resetlevel:
+                reset ();
+                break;
+        }
     }
 }
