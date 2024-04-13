@@ -2105,7 +2105,12 @@ ScriptedImporter:
       width: 32
       height: 32
     spriteID: be3fa85e2600f2f478396ce226af79d3
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -14, y: -8}
+      - {x: -14, y: -16}
+      - {x: 14, y: -16}
+      - {x: 14, y: -8}
     tessellationDetail: 0
   - name: _X32Tileset_129
     originalName: 
@@ -2119,7 +2124,12 @@ ScriptedImporter:
       width: 32
       height: 32
     spriteID: 85c34f4b391fb86458333b7459c56065
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 8, y: 14}
+      - {x: 8, y: -14}
+      - {x: 16, y: -14}
+      - {x: 16, y: 14}
     tessellationDetail: 0
   - name: _X32Tileset_130
     originalName: 

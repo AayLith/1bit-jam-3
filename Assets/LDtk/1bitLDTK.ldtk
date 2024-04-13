@@ -2187,7 +2187,7 @@
 		{
 			"__cWid": 16,
 			"__cHei": 16,
-			"identifier": "_X32Tileset2",
+			"identifier": "_X32Tileset",
 			"uid": 2,
 			"relPath": "1bitLDTK/32x32Tileset.png",
 			"embedAtlas": null,
