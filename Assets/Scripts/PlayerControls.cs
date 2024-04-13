@@ -430,7 +430,7 @@ public class PlayerControls : ResetableObject
     protected override void reset ()
     {
         base.reset ();
-
+        dropShell ();
         _velocity = Vector3.zero;
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
