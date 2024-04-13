@@ -105,7 +105,7 @@ public class PlayerControls : MonoBehaviour
 
     void onControllerCollider ( RaycastHit2D hit )
     {
-        // bail out on plain old ground hits cause they arent very interesting
+        // bail out on plain old ground hits cause they aren't very interesting
         if ( hit.normal.y == 1f )
             return;
 
@@ -114,9 +114,21 @@ public class PlayerControls : MonoBehaviour
     }
 
 
-    void onTriggerEnterEvent ( Collider2D col )
+    void onTriggerEnterEvent ( Collider2D collision )
     {
-        UnityEngine.Debug.Log ( "onTriggerEnterEvent: " + col.gameObject.name );
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer> ();
+        if ( damageDealer != null && damageDealer.damageToPlayer > 0 )
+        {
+            bool invulnerable = CheckAndGetIsInvulnerable ();
+            if ( !invulnerable )
+            {
+                healthComponent.TakeDamage ( damageDealer.damageToPlayer );
+                invulnerabilityTimer = Stopwatch.StartNew ();
+            }
+
+        }
+        UnityEngine.Debug.Log ( "onTriggerEnterEvent: " + collision.gameObject.name );
+        
     }
 
 
@@ -215,7 +227,7 @@ public class PlayerControls : MonoBehaviour
             coyoteTimeCounter = 0;
         }
 
-        // apply horizontal speed smoothing it. dont really do this with Lerp. Use SmoothDamp or something that provides more control
+        // apply horizontal speed smoothing it. don't really do this with Lerp. Use SmoothDamp or something that provides more control
         var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
         _velocity.x = Mathf.Lerp ( _velocity.x , normalizedHorizontalSpeed * runSpeed , Time.deltaTime * smoothedMovementFactor );
         // apply gravity before moving

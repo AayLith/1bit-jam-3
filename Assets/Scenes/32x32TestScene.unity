@@ -10673,6 +10673,25 @@ TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: -612662021862248953, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
   m_PrefabInstance: {fileID: 2094623296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1432106176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8997424524575851999, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+  m_PrefabInstance: {fileID: 2094623296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1432106182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432106176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4ec7f638b6a8841a1e470e6827fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToPlayer: 10
+  damageToEnemy: 0
 --- !u!1 &1520294297
 GameObject:
   m_ObjectHideFlags: 0
@@ -25602,6 +25621,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
       objectReference: {fileID: 2094623297}
+    - target: {fileID: -4103256764548639801, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: -941856935721592475, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.91
@@ -29506,10 +29529,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8997424524575851999, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8997424524575851999, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1432106182}
   m_SourcePrefab: {fileID: -5765183769023986340, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
 --- !u!19719996 &2094623297 stripped
 TilemapCollider2D:
