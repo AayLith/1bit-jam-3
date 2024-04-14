@@ -41,7 +41,7 @@ ScriptedImporter:
     _asset: {instanceID: 0}
   - _key: Enemy
     _asset: {instanceID: 0}
-  - _key: Pressure_Plate
+  - _key: PressurePlate
     _asset: {fileID: 2002073921549188920, guid: 2817f8c18f724a549a56836b20d52b61, type: 3}
   _enumGenerate: 0
   _enumPath: 
