@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 4883715826016436347}
   - component: {fileID: 232468407704892674}
   - component: {fileID: 7057268948451949902}
-  - component: {fileID: 6381124422527649335}
-  - component: {fileID: 1056106418953561675}
   - component: {fileID: 6948712656151223900}
   m_Layer: 22
   m_Name: PressurePlate
@@ -148,52 +146,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6381124422527649335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002073921549188920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5c21450a94e94865d0abafcdd2bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _iid: baee5610-d7b0-11ee-b354-7517322d0c43
---- !u!114 &1056106418953561675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002073921549188920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7ddb701b71745808211adadad5e49d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityDrawer:
-    _identifier: Pressure_Plate
-    _enabled: 1
-    _smartColor: {r: 0.30784315, g: 0.11960784, b: 0.32352942, a: 0.66}
-    _entityMode: 2
-    _drawTile: 0
-    _hollow: 1
-    _showName: 1
-    _transform: {fileID: 454340238789694620}
-    _texPath: 
-    _texRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    _pivot: {x: 0.5, y: 0.5}
-    _fillOpacity: 1
-    _lineOpacity: 1
-    _size: {x: 1, y: 1}
-  _fieldDrawers: []
 --- !u!50 &6948712656151223900
 Rigidbody2D:
   serializedVersion: 4
