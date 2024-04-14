@@ -19,10 +19,10 @@
 				"iid": "b16bc3c0-d7b0-11ee-86bf-394b5ff6a020",
 				"layer": "Game_Objects",
 				"x": 912,
-				"y": 656,
+				"y": 624,
 				"width": 32,
 				"height": 32,
-				"color": 12470831,
+				"color": 4098376,
 				"customFields" : {}
 			},
 			{
@@ -30,10 +30,10 @@
 				"iid": "eec66630-d7b0-11ee-86bf-5be2000809d6",
 				"layer": "Game_Objects",
 				"x": 1232,
-				"y": 656,
+				"y": 624,
 				"width": 32,
 				"height": 32,
-				"color": 12470831,
+				"color": 4098376,
 				"customFields" : {}
 			},
 			{
@@ -44,7 +44,7 @@
 				"y": 688,
 				"width": 32,
 				"height": 32,
-				"color": 12470831,
+				"color": 4098376,
 				"customFields" : {}
 			},
 			{
@@ -55,7 +55,18 @@
 				"y": 560,
 				"width": 32,
 				"height": 32,
-				"color": 12470831,
+				"color": 4098376,
+				"customFields" : {}
+			},
+			{
+				"id": "Moving_Platforms",
+				"iid": "be0b4d80-d7b0-11ee-b354-0d80ff3af625",
+				"layer": "Game_Objects",
+				"x": 816,
+				"y": 624,
+				"width": 32,
+				"height": 32,
+				"color": 4098376,
 				"customFields" : {}
 			}
 		],
@@ -65,7 +76,7 @@
 				"iid": "b4bfd0c0-d7b0-11ee-86bf-7d81727982ba",
 				"layer": "Game_Objects",
 				"x": 1264,
-				"y": 624,
+				"y": 592,
 				"width": 32,
 				"height": 32,
 				"color": 4415959,
@@ -108,7 +119,7 @@
 				"id": "Checkpoints",
 				"iid": "59aa50d0-d7b0-11ee-86bf-3bc72ad5f326",
 				"layer": "Game_Objects",
-				"x": 688,
+				"x": 656,
 				"y": 688,
 				"width": 32,
 				"height": 32,
@@ -120,7 +131,7 @@
 				"iid": "5f2339a0-d7b0-11ee-86bf-d37461eb1a33",
 				"layer": "Game_Objects",
 				"x": 848,
-				"y": 624,
+				"y": 592,
 				"width": 32,
 				"height": 32,
 				"color": 4415959,
@@ -132,37 +143,61 @@
 				"id": "Player",
 				"iid": "69b8cc60-d7b0-11ee-86bf-7d76b74bdc5c",
 				"layer": "Game_Objects",
-				"x": 272,
+				"x": 240,
 				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 15389866,
+				"color": 3079936,
 				"customFields" : {}
 			}
 		],
-		"Shell1": [
+		"NormalShell": [
 			{
-				"id": "Shell1",
+				"id": "NormalShell",
 				"iid": "404be940-d7b0-11ee-86bf-4379a9b468e0",
 				"layer": "Game_Objects",
 				"x": 336,
 				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 14120515,
+				"color": 16217634,
 				"customFields" : {}
-			}
-		],
-		"Shell2": [
+			},
 			{
-				"id": "Shell2",
-				"iid": "41911370-d7b0-11ee-86bf-d7d8ef245876",
+				"id": "NormalShell",
+				"iid": "40340720-d7b0-11ee-b354-6301d0c684e3",
 				"layer": "Game_Objects",
-				"x": 816,
+				"x": 784,
 				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 14984818,
+				"color": 16217634,
+				"customFields" : {}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "9f97e480-d7b0-11ee-b354-f583ad727811",
+				"layer": "Game_Objects",
+				"x": 208,
+				"y": 400,
+				"width": 32,
+				"height": 32,
+				"color": 14957380,
+				"customFields" : {}
+			}
+		],
+		"Pressure_Plate": [
+			{
+				"id": "Pressure_Plate",
+				"iid": "baee5610-d7b0-11ee-b354-7517322d0c43",
+				"layer": "Game_Objects",
+				"x": 720,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 6830188,
 				"customFields" : {}
 			}
 		]

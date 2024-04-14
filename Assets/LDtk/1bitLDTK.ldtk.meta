@@ -31,10 +31,18 @@ ScriptedImporter:
     _asset: {fileID: 4769294290291333154, guid: dea0308e2244b2342a0d4b5e41c471cb, type: 3}
   - _key: Checkpoints
     _asset: {fileID: 5939842656334817234, guid: 2568d622c98881b4698fa3db49114e92, type: 3}
-  - _key: Shell1
+  - _key: NormalShell
     _asset: {fileID: 5853233868171607574, guid: 326007edbbc09914b824e57ac2797aea, type: 3}
-  - _key: Shell2
-    _asset: {fileID: 8916829299381768202, guid: 2023045f18c1a2e4bb96c7027915d7bb, type: 3}
+  - _key: SkullShell
+    _asset: {instanceID: 0}
+  - _key: SunshadeShell
+    _asset: {instanceID: 0}
+  - _key: GeyserShell
+    _asset: {instanceID: 0}
+  - _key: Enemy
+    _asset: {instanceID: 0}
+  - _key: Pressure_Plate
+    _asset: {fileID: 2002073921549188920, guid: 2817f8c18f724a549a56836b20d52b61, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
