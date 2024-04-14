@@ -166,6 +166,7 @@ public class PlayerControls : ResetableObject
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            _animator.SetBool("isJumping", true);
         }
 
         HandleHorizontal ();
