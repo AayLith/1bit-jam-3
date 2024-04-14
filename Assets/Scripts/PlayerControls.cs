@@ -161,12 +161,12 @@ public class PlayerControls : ResetableObject
         {
             _velocity.y = 0;
             coyoteTimeCounter = coyoteTime;
-            _animator.SetBool("isJumping", false);
+            _animator.SetBool ( "isJumping" , false );
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool ( "isJumping" , true );
         }
 
         HandleHorizontal ();
@@ -183,8 +183,8 @@ public class PlayerControls : ResetableObject
         // grab our current _velocity to use as a base for all calculations
         _velocity = _controller.velocity;
 
-        _animator.SetFloat("xVelocity", Mathf.Abs(_velocity.x));
-        _animator.SetFloat("yVelocity", _velocity.y);
+        _animator.SetFloat ( "xVelocity" , Mathf.Abs ( _velocity.x ) );
+        _animator.SetFloat ( "yVelocity" , _velocity.y );
 
     }
 
@@ -205,7 +205,7 @@ public class PlayerControls : ResetableObject
             if ( transform.localScale.x > 0f )
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
-            
+
         }
         else
         {
@@ -230,7 +230,7 @@ public class PlayerControls : ResetableObject
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             coyoteTimeCounter = 0;
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool ( "isJumping" , true );
         }
 
         // apply horizontal speed smoothing it. don't really do this with Lerp. Use SmoothDamp or something that provides more control
@@ -320,7 +320,7 @@ public class PlayerControls : ResetableObject
             bool shouldBeBlack = mod < period;
             if ( shouldBeBlack )
             {
-                sprite.color = Color.black;
+                sprite.color = new Color ( 0 , 0 , 0 , 0 );
             }
             else
             {
