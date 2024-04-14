@@ -30414,6 +30414,10 @@ PrefabInstance:
       propertyPath: destinationOffset.y
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7674006569374409423, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: movingPlatform
+      value: 
+      objectReference: {fileID: 1966405560}
     - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: gravity
       value: -27
