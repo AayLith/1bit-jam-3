@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public Vector3 destinationOffset; // Offset from starting point to destination point
-    public float speed = 2.0f; // Constant speed of platform movement
+    // Offset from starting point to destination point
+    public Vector3 destinationOffset;
 
-    private Vector3 startingPoint; // Starting point of the platform
-    private Vector3 destinationPoint; // Destination point of the platform
-    private GameObject playerObject; // Reference to the player object
+    // Constant speed of platform movement
+    public float speed = 2.0f;
+
+    // Toggle for platform activation
+    public bool isActive = true;
+
+    private Vector3 startingPoint;
+
+    private Vector3 destinationPoint;
+
+    // Reference to the player object
+    private GameObject playerObject;
 
     void Start()
     {
@@ -20,6 +29,10 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
+        // If the platform is not active, skip the movement logic
+        if (!isActive)
+            return;
+
         // If the player is on the platform, parent it to move with the platform
         if (playerObject != null)
         {
@@ -33,11 +46,9 @@ public class MovingPlatform : MonoBehaviour
             }
         }
 
-        // Calculate the direction and distance to the destination
         Vector3 direction = (destinationPoint - startingPoint).normalized;
         float distanceToDestination = Vector3.Distance(transform.position, destinationPoint);
 
-        // Calculate the movement amount based on the constant speed
         float movementAmount = speed * Time.deltaTime;
         if (movementAmount >= distanceToDestination)
         {
@@ -53,12 +64,12 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+    // Draw visual representation in the editor
     void OnDrawGizmos()
     {
-        // Access the BoxCollider2D component
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
 
-        // Draw a visual representation of the collider in the editor
+        // Draw the collider in the editor
         if (collider != null)
         {
             // Draw a green cube for the starting point
@@ -102,5 +113,11 @@ public class MovingPlatform : MonoBehaviour
             // Reset the player object reference
             playerObject = null;
         }
+    }
+
+    // Toggle platform activation
+    public void ToggleActivation()
+    {
+        isActive = !isActive;
     }
 }
