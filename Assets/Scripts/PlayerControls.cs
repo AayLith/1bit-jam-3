@@ -23,6 +23,8 @@ public class PlayerControls : ResetableObject
     public float maxFallSpeed = -9;
     private float normalizedHorizontalSpeed = 0;
     public float shellCarrySpeedMult = 0.5f;
+    private Vector3 _lastPosition;
+    private Vector3 _currentVelocity;
 
     [Header ( "Jump" )]
     public float coyoteTime = 0.15f;
@@ -101,6 +103,7 @@ public class PlayerControls : ResetableObject
         {
             healthComponent.onDeath += OnDeath;
         }
+        _lastPosition = transform.position;
     }
 
 
@@ -161,6 +164,7 @@ public class PlayerControls : ResetableObject
         {
             _velocity.y = 0;
             coyoteTimeCounter = coyoteTime;
+            _animator.SetBool("isJumping", false);
         }
         else
         {
@@ -172,6 +176,7 @@ public class PlayerControls : ResetableObject
         HandleVertical ();
         ClampFallSpeed ();
         FlashIfInvulnerable ();
+        CalculateMovement();
         HandleActions ();
         if ( shell != null )
             HandleShell ();
@@ -180,6 +185,17 @@ public class PlayerControls : ResetableObject
 
         // grab our current _velocity to use as a base for all calculations
         _velocity = _controller.velocity;
+
+        _animator.SetFloat("xVelocity", Mathf.Abs(_velocity.x));
+        _animator.SetFloat("yVelocity", _velocity.y);
+        _lastPosition = transform.position;
+
+    }
+
+    void CalculateMovement()
+    {
+        _currentVelocity = (transform.position - _lastPosition) / Time.deltaTime;
+
     }
 
     void HandleHorizontal ()
@@ -191,11 +207,6 @@ public class PlayerControls : ResetableObject
             if ( transform.localScale.x < 0f )
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
-            if ( _controller.isGrounded )
-            {
-                SetAnimationState ( AnimationState.Running );
-                PlayAnimation ( "Run" );
-            }
         }
         else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
         {
@@ -204,17 +215,13 @@ public class PlayerControls : ResetableObject
             if ( transform.localScale.x > 0f )
                 transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
 
-            if ( _controller.isGrounded )
-            {
-                SetAnimationState ( AnimationState.Running );
-                PlayAnimation ( "Run" );
-            }
+            
         }
         else
         {
             normalizedHorizontalSpeed = 0;
 
-            if ( _controller.isGrounded )
+            /*if ( _controller.isGrounded )
             {
                 SetAnimationState ( AnimationState.Idle );
                 PlayAnimation ( "Idle" );
@@ -223,7 +230,7 @@ public class PlayerControls : ResetableObject
             {
                 SetAnimationState ( AnimationState.Falling );
                 PlayAnimation ( "Fall" );
-            }
+            }*/
         }
     }
 
@@ -232,9 +239,8 @@ public class PlayerControls : ResetableObject
         if ( jumpPressed && coyoteTimeCounter > 0f )
         {
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
-            SetAnimationState ( AnimationState.Jumping );
-            PlayAnimation ( "Jump" );
             coyoteTimeCounter = 0;
+            _animator.SetBool("isJumping", true);
         }
 
         // apply horizontal speed smoothing it. don't really do this with Lerp. Use SmoothDamp or something that provides more control
