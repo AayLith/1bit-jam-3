@@ -2500,7 +2500,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "Pressure_Plate",
+			"identifier": "PressurePlate",
 			"uid": 461,
 			"tags": [],
 			"exportToToc": false,
@@ -2813,22 +2813,6 @@
 							"__worldY": 400
 						},
 						{
-							"__identifier": "Pressure_Plate",
-							"__grid": [22,22],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#68386C",
-							"iid": "baee5610-d7b0-11ee-b354-7517322d0c43",
-							"width": 32,
-							"height": 32,
-							"defUid": 461,
-							"px": [720,720],
-							"fieldInstances": [],
-							"__worldX": 432,
-							"__worldY": 720
-						},
-						{
 							"__identifier": "Moving_Platforms",
 							"__grid": [25,19],
 							"__pivot": [0.5,0.5],
@@ -2858,6 +2842,22 @@
 							"px": [784,720],
 							"fieldInstances": [],
 							"__worldX": 496,
+							"__worldY": 720
+						},
+						{
+							"__identifier": "PressurePlate",
+							"__grid": [22,22],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#68386C",
+							"iid": "1f26aaa0-d7b0-11ee-b21c-1ba4fd613f42",
+							"width": 32,
+							"height": 32,
+							"defUid": 461,
+							"px": [720,720],
+							"fieldInstances": [],
+							"__worldX": 432,
 							"__worldY": 720
 						}
 					]
