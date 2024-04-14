@@ -23,8 +23,6 @@ public class PlayerControls : ResetableObject
     public float maxFallSpeed = -9;
     private float normalizedHorizontalSpeed = 0;
     public float shellCarrySpeedMult = 0.5f;
-    private Vector3 _lastPosition;
-    private Vector3 _currentVelocity;
 
     [Header ( "Jump" )]
     public float coyoteTime = 0.15f;
@@ -103,7 +101,6 @@ public class PlayerControls : ResetableObject
         {
             healthComponent.onDeath += OnDeath;
         }
-        _lastPosition = transform.position;
     }
 
 
@@ -176,7 +173,6 @@ public class PlayerControls : ResetableObject
         HandleVertical ();
         ClampFallSpeed ();
         FlashIfInvulnerable ();
-        CalculateMovement();
         HandleActions ();
         if ( shell != null )
             HandleShell ();
@@ -188,13 +184,6 @@ public class PlayerControls : ResetableObject
 
         _animator.SetFloat("xVelocity", Mathf.Abs(_velocity.x));
         _animator.SetFloat("yVelocity", _velocity.y);
-        _lastPosition = transform.position;
-
-    }
-
-    void CalculateMovement()
-    {
-        _currentVelocity = (transform.position - _lastPosition) / Time.deltaTime;
 
     }
 
