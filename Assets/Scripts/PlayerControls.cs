@@ -71,12 +71,15 @@ public class PlayerControls : ResetableObject
     private RaycastHit2D _lastControllerColliderHit;
     private Vector3 _velocity;
 
-    // Inputs
+
+    [Header("Audio")]
+    public AudioClip jumpSound;
+    public AudioClip throwSound;
+    private AudioSource _audioSource;
+
+    [Header("Inputs")]
     private bool jumpPressed = false;
     private bool jumpReleased = false;
-    private float horizontalInput;
-    private bool pickupInput;
-    private bool throwInput;
     private bool lockInput = false;
 
 
@@ -93,6 +96,7 @@ public class PlayerControls : ResetableObject
         healthComponent = GetComponent<Health> ();
         sprite = GetComponent<SpriteRenderer> ();
         rb = GetComponent<Rigidbody2D> ();
+        _audioSource = GetComponentInChildren<AudioSource>();
         if ( sprite == null )
         {
             sprite = GetComponentInChildren<SpriteRenderer> ();
@@ -228,8 +232,17 @@ public class PlayerControls : ResetableObject
     {
         if ( jumpPressed && coyoteTimeCounter > 0f )
         {
+            if (jumpSound != null && _audioSource != null)
+            {
+                _audioSource.PlayOneShot(jumpSound);
+            }
+            else
+            {
+                Debug.LogError("Jump sound or AudioSource is not set properly");
+            }
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             coyoteTimeCounter = 0;
+            
             _animator.SetBool ( "isJumping" , true );
         }
 
@@ -352,6 +365,7 @@ public class PlayerControls : ResetableObject
 
     void ThrowShell ()
     {
+        _audioSource.PlayOneShot(throwSound);
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
     }
 
