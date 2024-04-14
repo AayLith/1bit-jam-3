@@ -24687,6 +24687,10 @@ PrefabInstance:
       propertyPath: destinationOffset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7596014931415177615, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.044
+      objectReference: {fileID: 0}
     - target: {fileID: -7285664312654349834, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -24695,6 +24699,10 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
       objectReference: {fileID: 2094623297}
+    - target: {fileID: -4799209361631278022, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4103256764548639801, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -27627,6 +27635,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6636599973425728075, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6682884053198613386, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: destinationOffset.x
       value: -4
@@ -30290,6 +30302,34 @@ PrefabInstance:
     - target: {fileID: 6815022132018686475, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[12].Array.data[3].Y
       value: 70000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: gravity
+      value: -27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: runSpeed
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: jumpHeight
+      value: 2.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: maxFallSpeed
+      value: -9.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: throwStrength.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: shellCarryJumpMult
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089607140484111105, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: shellCarrySpeedMult
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 8875146181611051571, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_Layer
