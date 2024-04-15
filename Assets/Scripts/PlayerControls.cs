@@ -81,6 +81,8 @@ public class PlayerControls : ResetableObject
     private bool jumpPressed = false;
     private bool jumpReleased = false;
     private bool lockInput = false;
+    private bool wasPickupPressedLastFrame = false;
+    private bool wasThrowPressedLastFrame = false;
 
 
     void Awake ()
@@ -277,12 +279,16 @@ public class PlayerControls : ResetableObject
         }
     }
 
-    void HandleActions ()
+    void HandleActions()
     {
-        // Pickup or throw shell
+        // Read the current state of the pickup and throw inputs
+        bool pickupPressed = Input.GetAxis("Pickup Shell") > inputDeadZoneAmount;
+        bool throwPressed = Input.GetAxis("Throw Shell") > inputDeadZoneAmount;
+
         if (!lockInput)
         {
-            if (Input.GetAxis("Pickup Shell") > inputDeadZoneAmount)
+            // Handle pickup action: only if the button was not pressed last frame but is pressed now
+            if (pickupPressed && !wasPickupPressedLastFrame)
             {
                 if (shell)
                 {
@@ -300,15 +306,19 @@ public class PlayerControls : ResetableObject
                         }
                     }
                 }
-                StartCoroutine(lockInputsDelay());
             }
-            else if (Input.GetAxis("Throw Shell") > inputDeadZoneAmount && shell != null)
+
+            // Handle throw action: only if the button was not pressed last frame but is pressed now
+            if (throwPressed && !wasThrowPressedLastFrame && shell != null)
             {
                 ThrowShell();
                 dropShell();
-                StartCoroutine(lockInputsDelay());
             }
         }
+
+        // Update last frame state for next frame's comparison
+        wasPickupPressedLastFrame = pickupPressed;
+        wasThrowPressedLastFrame = throwPressed;
     }
 
     void HandleShell ()
