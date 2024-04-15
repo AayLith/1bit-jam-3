@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    [Tooltip("Assign GameObjects with components that implement the IActivatable interface. Can assign up to 4 objects.")]
     public GameObject[] activatableObjects = new GameObject[4];
-
     private IsActivatable[] activatables = new IsActivatable[4];
     private int numColliders = 0;
 
+    public Sprite inactiveSprite; // Sprite when the plate is not pressed
+    public Sprite activeSprite;   // Sprite when the plate is pressed
+    private SpriteRenderer spriteRenderer;
+
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("No SpriteRenderer component found on the pressure plate object.");
+            return;
+        }
+
+        spriteRenderer.sprite = inactiveSprite; // Set the initial sprite to inactive
+
         // get the IsActivatable component from each assigned GameObject
         for (int i = 0; i < activatableObjects.Length; i++)
         {
@@ -28,11 +39,12 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8)  // Assuming layer 8 is the player and shells layer
+        if (other.gameObject.layer == 8) // Assuming layer 8 is the player and shells layer
         {
             numColliders++;
             if (numColliders == 1)
             {
+                spriteRenderer.sprite = activeSprite; // Change to active sprite
                 foreach (var activatable in activatables)
                 {
                     if (activatable != null)
@@ -51,6 +63,7 @@ public class PressurePlate : MonoBehaviour
             numColliders--;
             if (numColliders == 0)
             {
+                spriteRenderer.sprite = inactiveSprite; // Revert to inactive sprite
                 foreach (var activatable in activatables)
                 {
                     if (activatable != null)
