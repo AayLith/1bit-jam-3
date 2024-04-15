@@ -14,12 +14,12 @@ public class Shell : ResetableObject
 
     [Header("Audio")]
     public AudioClip landingSound;
-    private AudioSource audioSource;
+    protected AudioSource audioSource;
 
     [Header("Throwing")]
     public bool isThrown = false;
 
-    private void Start()
+    protected void Start()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -41,6 +41,16 @@ public class Shell : ResetableObject
         canBePickedUp = true;
     }
 
+    public virtual void onEquip ( PlayerControls p )
+    {
+
+    }
+
+    public virtual void onUnequip ( PlayerControls p )
+    {
+
+    }
+
     public void outlineOn()
     {
         // Implementation for outline on
@@ -51,7 +61,7 @@ public class Shell : ResetableObject
         // Implementation for outline off
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         int groundLayer = LayerMask.NameToLayer("Ground");
         int wallLayer = LayerMask.NameToLayer("Wall");

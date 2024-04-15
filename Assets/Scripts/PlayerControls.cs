@@ -15,6 +15,7 @@ public class PlayerControls : ResetableObject
     private playerDirection direction = playerDirection.right;
 
     [Header ( "Movement" )]
+    public float defaultGravity = -25;
     public float gravity = -25;
     public float runSpeed = 8;
     public float groundDamping = 20; // how fast do we change direction? higher means faster
@@ -361,6 +362,7 @@ public class PlayerControls : ResetableObject
         if (!s.canBePickedUp)
             return;
 
+        s.onEquip ( this );
         shell = s;
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
@@ -375,6 +377,7 @@ public class PlayerControls : ResetableObject
         if (shell == null)
             return;
 
+        shell.onUnequip ( this );
         shell.transform.parent = null;
         shell.GetComponent<Rigidbody2D>().gravityScale = 2;
         shell.groundCollision.enabled = true;
@@ -387,6 +390,8 @@ public class PlayerControls : ResetableObject
     {
         if (shell == null)
             return;
+
+        shell.onUnequip ( this );
         shell.isThrown = true;
         _audioSource.PlayOneShot(throwSound);
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
