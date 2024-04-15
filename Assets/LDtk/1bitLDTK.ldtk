@@ -11,7 +11,7 @@
 	"iid": "7c2858b0-d7b0-11ee-b890-c5873932fdf4",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 463,
+	"nextUid": 465,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -2568,6 +2568,41 @@
 			"pivotX": 0.5,
 			"pivotY": 0.5,
 			"fieldDefs": []
+		},
+		{
+			"identifier": "Interruptor",
+			"uid": 463,
+			"tags": [],
+			"exportToToc": false,
+			"allowOutOfBounds": false,
+			"doc": null,
+			"width": 32,
+			"height": 32,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": true,
+			"color": "#411245",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"fieldDefs": []
 		}
 	], "tilesets": [
 		{
@@ -2720,22 +2755,6 @@
 							"__worldY": 720
 						},
 						{
-							"__identifier": "PressurePlate",
-							"__grid": [22,22],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#68386C",
-							"iid": "abc209e0-d7b0-11ee-8974-0b981cc34e8f",
-							"width": 32,
-							"height": 32,
-							"defUid": 461,
-							"px": [720,720],
-							"fieldInstances": [],
-							"__worldX": 432,
-							"__worldY": 720
-						},
-						{
 							"__identifier": "Moving_Platforms",
 							"__grid": [24,19],
 							"__pivot": [0.5,0.5],
@@ -2829,6 +2848,22 @@
 							"px": [1136,720],
 							"fieldInstances": [],
 							"__worldX": 848,
+							"__worldY": 720
+						},
+						{
+							"__identifier": "Interruptor",
+							"__grid": [22,22],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#411245",
+							"iid": "d87c5880-d7b0-11ee-a1ec-b3e37516658d",
+							"width": 32,
+							"height": 32,
+							"defUid": 463,
+							"px": [720,720],
+							"fieldInstances": [],
+							"__worldX": 432,
 							"__worldY": 720
 						}
 					]

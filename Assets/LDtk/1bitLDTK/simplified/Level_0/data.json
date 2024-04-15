@@ -107,30 +107,6 @@
 				"customFields" : {}
 			}
 		],
-		"PressurePlate": [
-			{
-				"id": "PressurePlate",
-				"iid": "abc209e0-d7b0-11ee-8974-0b981cc34e8f",
-				"layer": "Game_Objects",
-				"x": 720,
-				"y": 720,
-				"width": 32,
-				"height": 32,
-				"color": 6830188,
-				"customFields" : {}
-			},
-			{
-				"id": "PressurePlate",
-				"iid": "863b7be0-d7b0-11ee-9b41-4f79dced6cc3",
-				"layer": "Game_Objects",
-				"x": 880,
-				"y": 720,
-				"width": 32,
-				"height": 32,
-				"color": 6830188,
-				"customFields" : {}
-			}
-		],
 		"Moving_Platforms": [
 			{
 				"id": "Moving_Platforms",
@@ -144,6 +120,19 @@
 				"customFields" : {}
 			}
 		],
+		"PressurePlate": [
+			{
+				"id": "PressurePlate",
+				"iid": "863b7be0-d7b0-11ee-9b41-4f79dced6cc3",
+				"layer": "Game_Objects",
+				"x": 880,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 6830188,
+				"customFields" : {}
+			}
+		],
 		"Moving_Wall": [
 			{
 				"id": "Moving_Wall",
@@ -154,6 +143,19 @@
 				"width": 32,
 				"height": 32,
 				"color": 268042,
+				"customFields" : {}
+			}
+		],
+		"Interruptor": [
+			{
+				"id": "Interruptor",
+				"iid": "d87c5880-d7b0-11ee-a1ec-b3e37516658d",
+				"layer": "Game_Objects",
+				"x": 720,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 4264517,
 				"customFields" : {}
 			}
 		]
