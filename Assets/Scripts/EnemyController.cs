@@ -146,7 +146,7 @@ public class EnemyController : MonoBehaviour
             Debug.DrawRay(transform.position,deltaPosition.normalized*visionRange,Color.red);
             if(hits.Length > 0)
             {
-                var hitPlayer = hits[0].collider.gameObject.GetComponentInParent<PlayerController>();
+                var hitPlayer = hits[0].collider.gameObject.GetComponentInParent<PlayerControls>();
                 if(hitPlayer !=null)
                 {
                     lastKnownPlayerPosition = hitPlayer.transform.position;
