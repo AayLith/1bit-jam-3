@@ -466,6 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22c026e255bad438bf9d71c68563bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultGravity: -25
   gravity: -25
   runSpeed: 5
   groundDamping: 20
@@ -493,6 +494,8 @@ MonoBehaviour:
   groundShell: {fileID: 3992220565883280827}
   shellSlot: {fileID: 1798492938648038993}
   shell: {fileID: 0}
+  jumpSound: {fileID: 0}
+  throwSound: {fileID: 0}
 --- !u!114 &1376846720663531455
 MonoBehaviour:
   m_ObjectHideFlags: 0
