@@ -18,7 +18,6 @@ public class Interruptor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
-            Debug.LogWarning("No SpriteRenderer component found on the interruptor object.");
             return;
         }
 
@@ -32,7 +31,6 @@ public class Interruptor : MonoBehaviour
                 activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
                 if (activatables[i] == null)
                 {
-                    Debug.LogWarning("Assigned GameObject at index " + i + " does not contain a component implementing IsActivatable");
                 }
             }
         }
