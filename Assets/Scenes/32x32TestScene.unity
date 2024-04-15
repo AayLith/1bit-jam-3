@@ -20367,8 +20367,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -8.9, y: 0}
       - {x: -8.9, y: -25}
-      - {x: 34, y: -25}
-      - {x: 34, y: 0}
+      - {x: 42, y: -25}
+      - {x: 42, y: 0}
   m_UseDelaunayMesh: 0
 --- !u!1 &2031639340
 GameObject:
