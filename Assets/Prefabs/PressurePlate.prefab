@@ -93,7 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05d0a092485a084cb2108ea82a24a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingPlatform: {fileID: 0}
+  activatableObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inactiveSprite: {fileID: 21300000, guid: 2f13a1404d7d4e54cb6c8f8f1fa745f9, type: 3}
+  activeSprite: {fileID: 21300000, guid: 03955aeeb99942a4687c1c3e9dd29c76, type: 3}
 --- !u!212 &7057268948451949902
 SpriteRenderer:
   m_ObjectHideFlags: 0
