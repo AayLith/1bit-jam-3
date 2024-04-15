@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float playerSpottedDelay = 2;
     private float secondsInCurrentState = 0;
-    private PlayerController player;
+    private PlayerControls player;
     private SpriteRenderer spriteRenderer;
     private bool facingLeft = false;
     [SerializeField]
@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         SetAnimationState(AnimationState.Idle);
-        player = FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<PlayerControls>();
         health = GetComponent<Health>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
