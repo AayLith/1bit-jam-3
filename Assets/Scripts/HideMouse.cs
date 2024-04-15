@@ -5,6 +5,8 @@ using UnityEngine;
 public class HideMouse : MonoBehaviour
 {
     private bool isGamePaused = false;
+
+#if !UNITY_EDITOR
     //Attach this to any game object in the scene
     void Start()
     {
@@ -57,4 +59,5 @@ public class HideMouse : MonoBehaviour
             Debug.Log("Game Resumed");
         }
     }
+#endif
 }

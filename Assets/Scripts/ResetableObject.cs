@@ -8,7 +8,7 @@ public abstract class ResetableObject : MonoBehaviour, NotificationReceiver
     protected Quaternion startRotation;
     protected Vector2 startVelocity;
 
-    private void Awake ()
+    protected virtual void Awake ()
     {
         startPosition = transform.position;
         startRotation = transform.rotation;

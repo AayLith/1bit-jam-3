@@ -28,6 +28,12 @@ public class Shell : ResetableObject
         }
     }
 
+    protected override void Awake ()
+    {
+        base.Awake ();
+        NotificationCenter.instance.AddObserver ( this , Notification.notifications.resetlevel );
+    }
+
     public IEnumerator Cooldown()
     {
         canBePickedUp = false;
