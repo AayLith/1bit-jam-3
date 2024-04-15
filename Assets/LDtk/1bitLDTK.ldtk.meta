@@ -29,6 +29,8 @@ ScriptedImporter:
     _asset: {fileID: 8376960081822664990, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
   - _key: Moving_Platforms
     _asset: {fileID: 4769294290291333154, guid: dea0308e2244b2342a0d4b5e41c471cb, type: 3}
+  - _key: Moving_Wall
+    _asset: {fileID: 7117586164392893454, guid: 68474c0a7d9516a4eb08168a86f9eb05, type: 3}
   - _key: Checkpoints
     _asset: {fileID: 5939842656334817234, guid: 2568d622c98881b4698fa3db49114e92, type: 3}
   - _key: NormalShell

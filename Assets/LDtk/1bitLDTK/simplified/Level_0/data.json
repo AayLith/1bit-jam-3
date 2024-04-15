@@ -13,97 +13,20 @@
 		"Walls.png"
 	],
 	"entities": {
-		"Moving_Platforms": [
+		"Player": [
 			{
-				"id": "Moving_Platforms",
-				"iid": "b16bc3c0-d7b0-11ee-86bf-394b5ff6a020",
+				"id": "Player",
+				"iid": "69b8cc60-d7b0-11ee-86bf-7d76b74bdc5c",
 				"layer": "Game_Objects",
-				"x": 912,
-				"y": 624,
+				"x": 240,
+				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 4098376,
-				"customFields" : {}
-			},
-			{
-				"id": "Moving_Platforms",
-				"iid": "eec66630-d7b0-11ee-86bf-5be2000809d6",
-				"layer": "Game_Objects",
-				"x": 1232,
-				"y": 624,
-				"width": 32,
-				"height": 32,
-				"color": 4098376,
-				"customFields" : {}
-			},
-			{
-				"id": "Moving_Platforms",
-				"iid": "b6e7c030-d7b0-11ee-86bf-f7faa24ca95e",
-				"layer": "Game_Objects",
-				"x": 208,
-				"y": 688,
-				"width": 32,
-				"height": 32,
-				"color": 4098376,
-				"customFields" : {}
-			},
-			{
-				"id": "Moving_Platforms",
-				"iid": "eb9fd830-d7b0-11ee-86bf-0d46cd2338d5",
-				"layer": "Game_Objects",
-				"x": 144,
-				"y": 560,
-				"width": 32,
-				"height": 32,
-				"color": 4098376,
-				"customFields" : {}
-			},
-			{
-				"id": "Moving_Platforms",
-				"iid": "be0b4d80-d7b0-11ee-b354-0d80ff3af625",
-				"layer": "Game_Objects",
-				"x": 816,
-				"y": 624,
-				"width": 32,
-				"height": 32,
-				"color": 4098376,
+				"color": 3079936,
 				"customFields" : {}
 			}
 		],
 		"Checkpoints": [
-			{
-				"id": "Checkpoints",
-				"iid": "b4bfd0c0-d7b0-11ee-86bf-7d81727982ba",
-				"layer": "Game_Objects",
-				"x": 1264,
-				"y": 592,
-				"width": 32,
-				"height": 32,
-				"color": 4415959,
-				"customFields" : {}
-			},
-			{
-				"id": "Checkpoints",
-				"iid": "54c28470-d7b0-11ee-86bf-4171217007a6",
-				"layer": "Game_Objects",
-				"x": 80,
-				"y": 400,
-				"width": 32,
-				"height": 32,
-				"color": 4415959,
-				"customFields" : {}
-			},
-			{
-				"id": "Checkpoints",
-				"iid": "563aa580-d7b0-11ee-86bf-a7a3616667d0",
-				"layer": "Game_Objects",
-				"x": 1328,
-				"y": 400,
-				"width": 32,
-				"height": 32,
-				"color": 4415959,
-				"customFields" : {}
-			},
 			{
 				"id": "Checkpoints",
 				"iid": "58200750-d7b0-11ee-86bf-ed87b845eaf6",
@@ -128,7 +51,7 @@
 			},
 			{
 				"id": "Checkpoints",
-				"iid": "5f2339a0-d7b0-11ee-86bf-d37461eb1a33",
+				"iid": "620b1c30-d7b0-11ee-9b41-bfd505d66757",
 				"layer": "Game_Objects",
 				"x": 848,
 				"y": 592,
@@ -136,18 +59,16 @@
 				"height": 32,
 				"color": 4415959,
 				"customFields" : {}
-			}
-		],
-		"Player": [
+			},
 			{
-				"id": "Player",
-				"iid": "69b8cc60-d7b0-11ee-86bf-7d76b74bdc5c",
+				"id": "Checkpoints",
+				"iid": "8d0eeba0-d7b0-11ee-9b41-3dd52a08feec",
 				"layer": "Game_Objects",
-				"x": 240,
+				"x": 1136,
 				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 3079936,
+				"color": 4415959,
 				"customFields" : {}
 			}
 		],
@@ -173,18 +94,16 @@
 				"height": 32,
 				"color": 16217634,
 				"customFields" : {}
-			}
-		],
-		"Enemy": [
+			},
 			{
-				"id": "Enemy",
-				"iid": "9f97e480-d7b0-11ee-b354-f583ad727811",
+				"id": "NormalShell",
+				"iid": "88e05d20-d7b0-11ee-9b41-c51366ef5960",
 				"layer": "Game_Objects",
-				"x": 208,
-				"y": 400,
+				"x": 912,
+				"y": 720,
 				"width": 32,
 				"height": 32,
-				"color": 14957380,
+				"color": 16217634,
 				"customFields" : {}
 			}
 		],
@@ -198,6 +117,43 @@
 				"width": 32,
 				"height": 32,
 				"color": 6830188,
+				"customFields" : {}
+			},
+			{
+				"id": "PressurePlate",
+				"iid": "863b7be0-d7b0-11ee-9b41-4f79dced6cc3",
+				"layer": "Game_Objects",
+				"x": 880,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 6830188,
+				"customFields" : {}
+			}
+		],
+		"Moving_Platforms": [
+			{
+				"id": "Moving_Platforms",
+				"iid": "60262f90-d7b0-11ee-9b41-7f630387b0b0",
+				"layer": "Game_Objects",
+				"x": 784,
+				"y": 624,
+				"width": 32,
+				"height": 32,
+				"color": 4098376,
+				"customFields" : {}
+			}
+		],
+		"Moving_Wall": [
+			{
+				"id": "Moving_Wall",
+				"iid": "8a2b2ca0-d7b0-11ee-9b41-e9c68ad77a70",
+				"layer": "Game_Objects",
+				"x": 1008,
+				"y": 720,
+				"width": 32,
+				"height": 32,
+				"color": 268042,
 				"customFields" : {}
 			}
 		]
