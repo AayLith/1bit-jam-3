@@ -38,7 +38,7 @@ ScriptedImporter:
   - _key: SkullShell
     _asset: {instanceID: 0}
   - _key: SunshadeShell
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4990044664101875360, guid: 8a94c894ae4d4b64fb79d0cc95da04a7, type: 3}
   - _key: GeyserShell
     _asset: {instanceID: 0}
   - _key: Enemy
