@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class Interruptor : MonoBehaviour
 {
     public GameObject[] activatableObjects = new GameObject[4];
     private IsActivatable[] activatables = new IsActivatable[4];
-    private int numColliders = 0;
 
-    public Sprite inactiveSprite; // Sprite when the plate is not pressed
-    public Sprite activeSprite;   // Sprite when the plate is pressed
+    public Sprite inactiveSprite; // Sprite when the interruptor is not pressed
+    public Sprite activeSprite;   // Sprite when the interruptor is pressed
     private SpriteRenderer spriteRenderer;
+    private bool isActive = false; // Tracks the active state of the interruptor
+    private bool isPlayerPresent = false; // Tracks if the player is currently on the interruptor
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
-            Debug.LogWarning("No SpriteRenderer component found on the pressure plate object.");
+            Debug.LogWarning("No SpriteRenderer component found on the interruptor object.");
             return;
         }
 
         spriteRenderer.sprite = inactiveSprite; // Set the initial sprite to inactive
 
-        // get the IsActivatable component from each assigned GameObject
+        // Get the IsActivatable component from each assigned GameObject
         for (int i = 0; i < activatableObjects.Length; i++)
         {
             if (activatableObjects[i] != null)
@@ -31,6 +32,7 @@ public class PressurePlate : MonoBehaviour
                 activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
                 if (activatables[i] == null)
                 {
+                    Debug.LogWarning("Assigned GameObject at index " + i + " does not contain a component implementing IsActivatable");
                 }
             }
         }
@@ -38,20 +40,10 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8) // Assuming layer 8 is the player and shells layer
+        if (other.gameObject.layer == 8 && !isPlayerPresent) // Check layer and if player is not already present
         {
-            numColliders++;
-            if (numColliders == 1)
-            {
-                spriteRenderer.sprite = activeSprite; // Change to active sprite
-                foreach (var activatable in activatables)
-                {
-                    if (activatable != null)
-                    {
-                        activatable.ToggleActivation();
-                    }
-                }
-            }
+            isPlayerPresent = true;
+            TogglePlate();
         }
     }
 
@@ -59,17 +51,20 @@ public class PressurePlate : MonoBehaviour
     {
         if (other.gameObject.layer == 8)
         {
-            numColliders--;
-            if (numColliders == 0)
+            isPlayerPresent = false;
+        }
+    }
+
+    private void TogglePlate()
+    {
+        isActive = !isActive;
+        spriteRenderer.sprite = isActive ? activeSprite : inactiveSprite;
+
+        foreach (var activatable in activatables)
+        {
+            if (activatable != null)
             {
-                spriteRenderer.sprite = inactiveSprite; // Revert to inactive sprite
-                foreach (var activatable in activatables)
-                {
-                    if (activatable != null)
-                    {
-                        activatable.ToggleActivation();
-                    }
-                }
+                activatable.ToggleActivation();
             }
         }
     }
