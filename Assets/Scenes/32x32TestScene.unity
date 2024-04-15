@@ -9992,7 +9992,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -24987,6 +24987,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.044
       objectReference: {fileID: 0}
+    - target: {fileID: -7315996097143563323, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: landingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5de46cab001f0844b9d8206cb0c2eb88, type: 3}
+    - target: {fileID: -7315996097143563323, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: pickupCooldown
+      value: 0.24
+      objectReference: {fileID: 0}
     - target: {fileID: -7285664312654349834, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -27970,6 +27978,14 @@ PrefabInstance:
     - target: {fileID: 6682884053198613386, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: destinationOffset.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784078300463444349, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: landingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5de46cab001f0844b9d8206cb0c2eb88, type: 3}
+    - target: {fileID: 6784078300463444349, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
+      propertyPath: pickupCooldown
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 6815022132018686475, guid: 1cf61763582809248a0e9ecd26355abd, type: 3}
       propertyPath: m_ColliderPaths.Array.size

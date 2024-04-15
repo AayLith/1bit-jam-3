@@ -344,3 +344,7 @@ MonoBehaviour:
   playerCollision: {fileID: 6527238528021112602}
   groundCollision: {fileID: 4676415148869396613}
   shellHeight: 0
+  canBePickedUp: 1
+  pickupCooldown: 0.24
+  landingSound: {fileID: 8300000, guid: 5de46cab001f0844b9d8206cb0c2eb88, type: 3}
+  isThrown: 0

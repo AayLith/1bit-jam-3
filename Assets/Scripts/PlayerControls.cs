@@ -280,29 +280,33 @@ public class PlayerControls : ResetableObject
     void HandleActions ()
     {
         // Pickup or throw shell
-        if ( !lockInput )
+        if (!lockInput)
         {
-            if ( Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount )
+            if (Input.GetAxis("Pickup Shell") > inputDeadZoneAmount)
             {
-                Shell s = shell;
-                if ( shell )
-                    dropShell ();
-                if ( groundShell.collisions.Count > 0 )
+                if (shell)
                 {
-                    foreach ( Collider2D c in groundShell.collisions )
-                        if ( c.transform.parent.GetComponent<Shell> () != s )
+                    dropShell();
+                }
+                else if (groundShell.collisions.Count > 0)
+                {
+                    foreach (Collider2D c in groundShell.collisions)
+                    {
+                        Shell potentialShell = c.transform.parent.GetComponent<Shell>();
+                        if (potentialShell != null && potentialShell.canBePickedUp)
                         {
-                            pickUpShell ( c.transform.parent.GetComponent<Shell> () );
+                            pickUpShell(potentialShell);
                             break;
                         }
+                    }
                 }
-                StartCoroutine ( lockInputsDelay () );
+                StartCoroutine(lockInputsDelay());
             }
-            else if ( Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount && shell != null )
+            else if (Input.GetAxis("Throw Shell") > inputDeadZoneAmount && shell != null)
             {
-                ThrowShell ();
-                dropShell ();
-                StartCoroutine ( lockInputsDelay () );
+                ThrowShell();
+                dropShell();
+                StartCoroutine(lockInputsDelay());
             }
         }
     }
@@ -342,29 +346,38 @@ public class PlayerControls : ResetableObject
         }
     }
 
-    void pickUpShell ( Shell s )
+    void pickUpShell(Shell s)
     {
+        if (!s.canBePickedUp)
+            return;
+
         shell = s;
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
-        s.GetComponent<Rigidbody2D> ().gravityScale = 0;
-        //s.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
+        s.GetComponent<Rigidbody2D>().gravityScale = 0;
         s.playerCollision.enabled = false;
         s.groundCollision.enabled = false;
-        shellCollider ();
+        shellCollider();
     }
 
-    void dropShell ()
+    void dropShell()
     {
+        if (shell == null)
+            return;
+
         shell.transform.parent = null;
-        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
+        shell.GetComponent<Rigidbody2D>().gravityScale = 2;
         shell.groundCollision.enabled = true;
+        StartCoroutine(shell.Cooldown());  // Start the cooldown
         shell = null;
-        disableShellColliders ();
+        disableShellColliders();
     }
 
     void ThrowShell ()
     {
+        if (shell == null)
+            return;
+        shell.isThrown = true;
         _audioSource.PlayOneShot(throwSound);
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
     }
