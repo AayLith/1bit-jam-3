@@ -71,13 +71,18 @@ public class PlayerControls : ResetableObject
     private RaycastHit2D _lastControllerColliderHit;
     private Vector3 _velocity;
 
-    // Inputs
+
+    [Header("Audio")]
+    public AudioClip jumpSound;
+    public AudioClip throwSound;
+    private AudioSource _audioSource;
+
+    [Header("Inputs")]
     private bool jumpPressed = false;
     private bool jumpReleased = false;
-    private float horizontalInput;
-    private bool pickupInput;
-    private bool throwInput;
     private bool lockInput = false;
+    private bool wasPickupPressedLastFrame = false;
+    private bool wasThrowPressedLastFrame = false;
 
 
     void Awake ()
@@ -93,6 +98,7 @@ public class PlayerControls : ResetableObject
         healthComponent = GetComponent<Health> ();
         sprite = GetComponent<SpriteRenderer> ();
         rb = GetComponent<Rigidbody2D> ();
+        _audioSource = GetComponentInChildren<AudioSource>();
         if ( sprite == null )
         {
             sprite = GetComponentInChildren<SpriteRenderer> ();
@@ -228,8 +234,17 @@ public class PlayerControls : ResetableObject
     {
         if ( jumpPressed && coyoteTimeCounter > 0f )
         {
+            if (jumpSound != null && _audioSource != null)
+            {
+                _audioSource.PlayOneShot(jumpSound);
+            }
+            else
+            {
+                Debug.LogError("Jump sound or AudioSource is not set properly");
+            }
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             coyoteTimeCounter = 0;
+            
             _animator.SetBool ( "isJumping" , true );
         }
 
@@ -264,34 +279,46 @@ public class PlayerControls : ResetableObject
         }
     }
 
-    void HandleActions ()
+    void HandleActions()
     {
-        // Pickup or throw shell
-        if ( !lockInput )
+        // Read the current state of the pickup and throw inputs
+        bool pickupPressed = Input.GetAxis("Pickup Shell") > inputDeadZoneAmount;
+        bool throwPressed = Input.GetAxis("Throw Shell") > inputDeadZoneAmount;
+
+        if (!lockInput)
         {
-            if ( Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount )
+            // Handle pickup action: only if the button was not pressed last frame but is pressed now
+            if (pickupPressed && !wasPickupPressedLastFrame)
             {
-                Shell s = shell;
-                if ( shell )
-                    dropShell ();
-                if ( groundShell.collisions.Count > 0 )
+                if (shell)
                 {
-                    foreach ( Collider2D c in groundShell.collisions )
-                        if ( c.transform.parent.GetComponent<Shell> () != s )
+                    dropShell();
+                }
+                else if (groundShell.collisions.Count > 0)
+                {
+                    foreach (Collider2D c in groundShell.collisions)
+                    {
+                        Shell potentialShell = c.transform.parent.GetComponent<Shell>();
+                        if (potentialShell != null && potentialShell.canBePickedUp)
                         {
-                            pickUpShell ( c.transform.parent.GetComponent<Shell> () );
+                            pickUpShell(potentialShell);
                             break;
                         }
+                    }
                 }
-                StartCoroutine ( lockInputsDelay () );
             }
-            else if ( Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount && shell != null )
+
+            // Handle throw action: only if the button was not pressed last frame but is pressed now
+            if (throwPressed && !wasThrowPressedLastFrame && shell != null)
             {
-                ThrowShell ();
-                dropShell ();
-                StartCoroutine ( lockInputsDelay () );
+                ThrowShell();
+                dropShell();
             }
         }
+
+        // Update last frame state for next frame's comparison
+        wasPickupPressedLastFrame = pickupPressed;
+        wasThrowPressedLastFrame = throwPressed;
     }
 
     void HandleShell ()
@@ -329,29 +356,39 @@ public class PlayerControls : ResetableObject
         }
     }
 
-    void pickUpShell ( Shell s )
+    void pickUpShell(Shell s)
     {
+        if (!s.canBePickedUp)
+            return;
+
         shell = s;
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
-        s.GetComponent<Rigidbody2D> ().gravityScale = 0;
-        //s.playerCollision.GetComponent<Collider2D> ().isTrigger = true;
+        s.GetComponent<Rigidbody2D>().gravityScale = 0;
         s.playerCollision.enabled = false;
         s.groundCollision.enabled = false;
-        shellCollider ();
+        shellCollider();
     }
 
-    void dropShell ()
+    void dropShell()
     {
+        if (shell == null)
+            return;
+
         shell.transform.parent = null;
-        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
+        shell.GetComponent<Rigidbody2D>().gravityScale = 2;
         shell.groundCollision.enabled = true;
+        StartCoroutine(shell.Cooldown());  // Start the cooldown
         shell = null;
-        disableShellColliders ();
+        disableShellColliders();
     }
 
     void ThrowShell ()
     {
+        if (shell == null)
+            return;
+        shell.isThrown = true;
+        _audioSource.PlayOneShot(throwSound);
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
     }
 

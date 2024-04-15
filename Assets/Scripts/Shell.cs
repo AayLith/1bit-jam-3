@@ -1,31 +1,80 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shell : ResetableObject
 {
     public Collider2D playerCollision;
     public Collider2D groundCollision;
-    public enum shellHeights { small,medium,tall}
+    public enum shellHeights { small, medium, tall }
     public shellHeights shellHeight;
 
-    public void outlineOn ()
-    {
+    [Header("Cooldown")]
+    public bool canBePickedUp = true;
+    public float pickupCooldown = 0.15f;
 
+    [Header("Audio")]
+    public AudioClip landingSound;
+    private AudioSource audioSource;
+
+    [Header("Throwing")]
+    public bool isThrown = false;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {  // Ensure there is an AudioSource component
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
-    public void outlineOff ()
+    public IEnumerator Cooldown()
     {
-
+        canBePickedUp = false;
+        yield return new WaitForSeconds(pickupCooldown);
+        canBePickedUp = true;
     }
 
-    public override void receiveNotification ( Notification notification )
+    public void outlineOn()
     {
-        switch ( notification.name )
+        // Implementation for outline on
+    }
+
+    public void outlineOff()
+    {
+        // Implementation for outline off
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int groundLayer = LayerMask.NameToLayer("Ground");
+        int wallLayer = LayerMask.NameToLayer("Wall");
+        int trapLayer = LayerMask.NameToLayer("Trap");
+
+        // Use a layer mask to check if the collision object is on one of these layers
+        int layerMask = (1 << groundLayer) | (1 << wallLayer) | (1 << trapLayer);
+
+        if (isThrown && (((1 << collision.gameObject.layer) & layerMask) != 0 && landingSound != null))
+        {
+            audioSource.PlayOneShot(landingSound);
+            isThrown = false;
+        }
+    }
+
+    public override void receiveNotification(Notification notification)
+    {
+        switch (notification.name)
         {
             case Notification.notifications.resetlevel:
-                reset ();
+                reset();
                 break;
         }
+    }
+
+    protected override void reset()
+    {
+        base.reset();
+        isThrown = false;
+        // Reset specific properties if needed
     }
 }

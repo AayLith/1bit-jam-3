@@ -4,22 +4,42 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    // Reference to the MovingPlatform script
-    public MovingPlatform movingPlatform;
+    [Tooltip("Assign GameObjects with components that implement the IActivatable interface. Can assign up to 4 objects.")]
+    public GameObject[] activatableObjects = new GameObject[4];
 
+    private IsActivatable[] activatables = new IsActivatable[4];
     private int numColliders = 0;
 
-    // Called when a collider enters the pressure plate collider
+    private void Start()
+    {
+        // get the IsActivatable component from each assigned GameObject
+        for (int i = 0; i < activatableObjects.Length; i++)
+        {
+            if (activatableObjects[i] != null)
+            {
+                activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
+                if (activatables[i] == null)
+                {
+                    Debug.LogWarning("Assigned GameObject at index " + i + " does not contain a component implementing IActivatable");
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the colliding object is on layer 8 (playerphysics layer)
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8)  // Assuming layer 8 is the player and shells layer
         {
             numColliders++;
-            // Toggle the activation of the moving platform and this is the first collider entering
-            if (movingPlatform != null && numColliders == 1)
+            if (numColliders == 1)
             {
-                movingPlatform.ToggleActivation();
+                foreach (var activatable in activatables)
+                {
+                    if (activatable != null)
+                    {
+                        activatable.ToggleActivation();
+                    }
+                }
             }
         }
     }
@@ -29,21 +49,28 @@ public class PressurePlate : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             numColliders--;
-            // Untoggle the activation of the moving platform if there are no more colliders in contact
-            if (movingPlatform != null && numColliders == 0)
+            if (numColliders == 0)
             {
-                movingPlatform.ToggleActivation();
+                foreach (var activatable in activatables)
+                {
+                    if (activatable != null)
+                    {
+                        activatable.ToggleActivation();
+                    }
+                }
             }
         }
     }
 
-    //  // Draw a purple line in the editor between the pressure plate and the designated moving platform
     void OnDrawGizmos()
     {
-        if (movingPlatform != null)
+        foreach (var obj in activatableObjects)
         {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(transform.position, movingPlatform.transform.position);
+            if (obj != null)
+            {
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawLine(transform.position, obj.transform.position);
+            }
         }
     }
 }

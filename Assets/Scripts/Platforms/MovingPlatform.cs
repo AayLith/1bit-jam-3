@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : MonoBehaviour, IsActivatable
 {
     // Offset from starting point to destination point
     public Vector3 destinationOffset;
@@ -10,11 +10,10 @@ public class MovingPlatform : MonoBehaviour
     // Constant speed of platform movement
     public float speed = 2.0f;
 
-    // Toggle for platform activation
+    // platform activation toggle
     public bool isActive = true;
 
     private Vector3 startingPoint;
-
     private Vector3 destinationPoint;
 
     // Reference to the player object
@@ -29,7 +28,6 @@ public class MovingPlatform : MonoBehaviour
 
     void Update()
     {
-        // If the platform is not active, skip the movement logic
         if (!isActive)
             return;
 
@@ -64,31 +62,28 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // Draw visual representation in the editor
+    // Draw representation of colliders and pathing in the editor
     void OnDrawGizmos()
     {
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
-
-        // Draw the collider in the editor
         if (collider != null)
         {
-            // Draw a green cube for the starting point
+            // green cube for the starting point
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size);
 
             Vector3 destinationCenter = collider.bounds.center + destinationOffset;
 
-            // Draw a red cube for the destination point
+            // red cube for the destination point
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(destinationCenter, collider.bounds.size);
 
-            // Draw a yellow line between both points
+            // yellow line for the pathing
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(collider.bounds.center, destinationCenter);
         }
     }
 
-    // On collision with another collider
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the collider belongs to the player
@@ -115,7 +110,7 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // Toggle platform activation
+    // Toggle platform activation as defined by the IsActivatable interface
     public void ToggleActivation()
     {
         isActive = !isActive;
