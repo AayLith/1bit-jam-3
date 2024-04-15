@@ -11,7 +11,6 @@ public class MovingWall : MonoBehaviour, IsActivatable
     private Vector3 startingPoint;
     private Vector3 destinationPoint;
     private GameObject playerObject = null;
-    private bool movingToDestination = true;
 
     void Start()
     {
