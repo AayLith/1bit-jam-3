@@ -7,6 +7,7 @@ Shader "Unlit/ColourReplacement"
         _ColorAReplacement ("Color A replacement", Color) = (0, 0, 0, 1)
         _ColorB ("Color B", Color) = (1, 1, 1, 1)
         _ColorBReplacement ("Color B replacement", Color) = (1, 1, 1, 1)
+        _Tolerance ("Tolerance",Float) = 0.05
         
     }
     SubShader
@@ -14,8 +15,8 @@ Shader "Unlit/ColourReplacement"
         Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
-
+        ZWrite On
+        Cull Off
         Pass
         {
             CGPROGRAM
@@ -29,6 +30,7 @@ Shader "Unlit/ColourReplacement"
             fixed4 _ColorAReplacement;
             fixed4 _ColorB;
             fixed4 _ColorBReplacement;
+            float _Tolerance;
 
             #include "UnityCG.cginc"
 
@@ -60,11 +62,15 @@ Shader "Unlit/ColourReplacement"
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                if(col.r == _ColorA.r && col.g == _ColorA.g && _ColorA.b == col.b && _ColorA.a == col.a )
+                fixed diff = col.r - _ColorA.r + col.g - _ColorA.g + col.b - _ColorA.b + col.a - _ColorA.a;
+                if(diff>-_Tolerance && diff < _Tolerance)
                     col = _ColorAReplacement;
-                
-                if(col.r == _ColorB.r && col.g == _ColorB.g && _ColorB.b == col.b && _ColorB.a == col.a )
+            
+                diff = col.r - _ColorB.r + col.g - _ColorB.g + col.b - _ColorB.b + col.b -_ColorB.a;
+                if(diff>-_Tolerance && diff < _Tolerance)
                     col = _ColorBReplacement;
+
+                
                 //col *= _ColorA;
                 //col *= i.color;
                 return col;
