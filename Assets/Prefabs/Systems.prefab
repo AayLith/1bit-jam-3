@@ -60,6 +60,6 @@ MonoBehaviour:
   ColourSwapMaterial: {fileID: 2100000, guid: 17995db6a7f2c6347bcac73bbc1085fc, type: 2}
   defaultCameraBackgroundColor: {r: 0.2, g: 0.1764706, b: 0.30588236, a: 0}
   colourA: {r: 0.8705883, g: 0.86274517, b: 0.69411767, a: 0}
-  colourAReplacement: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
+  colourAReplacement: {r: 0.8705883, g: 0.86274517, b: 0.69411767, a: 0}
   colourB: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
   colourBReplacement: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
