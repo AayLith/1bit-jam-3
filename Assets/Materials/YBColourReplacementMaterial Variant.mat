@@ -27,8 +27,8 @@ Material:
     m_Floats:
     - _Tolerance: 0.1
     m_Colors:
-    - _ColorA: {r: 0.8705883, g: 0.86274517, b: 0.69411767, a: 1}
-    - _ColorAReplacement: {r: 0, g: 0.24034691, b: 1, a: 1}
-    - _ColorB: {r: 0.17647004, g: 0.17254847, b: 0.25882298, a: 1}
-    - _ColorBReplacement: {r: 0.17647028, g: 0.17254871, b: 0.25882322, a: 1}
+    - _ColorA: {r: 0.8705883, g: 0.86274517, b: 0.69411767, a: 0}
+    - _ColorAReplacement: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
+    - _ColorB: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
+    - _ColorBReplacement: {r: 0.1764706, g: 0.17254902, b: 0.25882354, a: 0}
   m_BuildTextureStacks: []
