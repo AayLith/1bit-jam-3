@@ -20,9 +20,12 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ResetHealth();
+    }
+    public void ResetHealth()
+    {
         currentHealth = maxHealth;
     }
-
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;

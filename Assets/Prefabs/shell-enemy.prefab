@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8149528388494702342}
   - component: {fileID: 6188376765773469863}
   - component: {fileID: 4187228443231817303}
+  - component: {fileID: 6319070341915575101}
   m_Layer: 20
   m_Name: shell-enemy
   m_TagString: Untagged
@@ -217,3 +218,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+--- !u!114 &6319070341915575101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489594442397602394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4ec7f638b6a8841a1e470e6827fb77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToPlayer: 10
+  damageToEnemy: 0

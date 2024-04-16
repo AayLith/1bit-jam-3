@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ResetableObject : MonoBehaviour, NotificationReceiver
+public abstract class ResettableObject : MonoBehaviour, NotificationReceiver
 {
     protected Vector3 startPosition;
     protected Quaternion startRotation;
@@ -15,7 +15,7 @@ public abstract class ResetableObject : MonoBehaviour, NotificationReceiver
         startVelocity = GetComponent<Rigidbody2D> ().velocity;
     }
 
-    private void Start ()
+    protected void Start ()
     {
         NotificationCenter.instance.AddObserver ( this , Notification.notifications.resetlevel );
     }

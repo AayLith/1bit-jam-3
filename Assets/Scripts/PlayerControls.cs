@@ -9,7 +9,7 @@ using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 using Unity.VisualScripting;
 
-public class PlayerControls : ResetableObject
+public class PlayerControls : ResettableObject
 {
     enum playerDirection { right, left }
     private playerDirection direction = playerDirection.right;
@@ -470,6 +470,7 @@ public class PlayerControls : ResetableObject
             dropShell ();
         base.reset ();
         _velocity = Vector3.zero;
+        healthComponent.ResetHealth();
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
         {

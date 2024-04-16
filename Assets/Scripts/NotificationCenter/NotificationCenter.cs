@@ -88,7 +88,7 @@ public class NotificationCenter : MonoBehaviour
         // Create an array to keep track of invalid observers that we need to remove
         List<NotificationReceiver> observersToRemove = new List<NotificationReceiver> ();
 
-        // Itterate through all the objects that have signed up to be notified by this type of notification.
+        // Iterate through all the objects that have signed up to be notified by this type of notification.
         foreach ( NotificationReceiver observer in notifyList )
         {
             // If the observer isn't valid, then keep track of it so we can remove it later.
@@ -96,6 +96,7 @@ public class NotificationCenter : MonoBehaviour
             if ( observer == null ) { observersToRemove.Add ( observer ); }
             else
             {
+                
                 // If the observer is valid, then send it the notification. The message that's sent is the name of the notification.
                 if ( target == null )
                     // observer.SendMessage ( aNotification.name , aNotification , SendMessageOptions.DontRequireReceiver );
