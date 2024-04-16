@@ -15234,6 +15234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial_Level
       objectReference: {fileID: 0}
+    - target: {fileID: -7068125129672571629, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: sceneToLoad
+      value: Level_1
+      objectReference: {fileID: 0}
     - target: {fileID: -6033216907271805269, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
