@@ -595,17 +595,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22c026e255bad438bf9d71c68563bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGravity: -25
-  gravity: -25
-  runSpeed: 5
+  defaultGravity: -24
+  gravity: -24
+  runSpeed: 4.6
   groundDamping: 20
   inAirDamping: 5
   jumpHeight: 2.5
   maxFallSpeed: -9
-  shellCarrySpeedMult: 0.5
+  shellCarrySpeedMult: 0.8
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  shellCarryJumpMult: 0.5
+  shellCarryJumpMult: 0.6
   throwStrength: {x: 10, y: 3}
   flashWhileInvulnerable: 1
   addPlayerVelocityToThrow: 1
