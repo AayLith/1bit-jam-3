@@ -393,7 +393,6 @@ public class PlayerControls : ResetableObject
 
         shell.onUnequip ( this );
         shell.isThrown = true;
-        _audioSource.PlayOneShot(throwSound);
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
     }
 
