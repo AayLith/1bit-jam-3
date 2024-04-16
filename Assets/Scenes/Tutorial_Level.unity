@@ -16446,14 +16446,6 @@ PrefabInstance:
       propertyPath: destinationOffset.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -337222105709900640, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ddf85b9550d1a974eb73b30516431d6b, type: 3}
-    - target: {fileID: -337222105709900640, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
-      propertyPath: throwSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9d3d0e0e9c76620429d860f5274713c2, type: 3}
     - target: {fileID: 117216743953450570, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -16468,11 +16460,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2202574035613519846, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -38.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202574035613519846, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2202574035613519846, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalPosition.z
