@@ -14,7 +14,7 @@ ScriptedImporter:
   _customLevelPrefab: {instanceID: 0}
   _intGridValueColorsVisible: 0
   _useCompositeCollider: 1
-  _geometryType: 0
+  _geometryType: 1
   _createBackgroundColor: 0
   _createLevelBoundsTrigger: 0
   _intGridValues:
@@ -47,6 +47,8 @@ ScriptedImporter:
     _asset: {fileID: 2002073921549188920, guid: 2817f8c18f724a549a56836b20d52b61, type: 3}
   - _key: Interruptor
     _asset: {fileID: 8534504551266397135, guid: 3266178eccf63f945a6fe2a43a119aa8, type: 3}
+  - _key: Level_End
+    _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
