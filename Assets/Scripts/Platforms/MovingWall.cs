@@ -27,7 +27,7 @@ public class MovingWall : MonoBehaviour, IsActivatable
             MoveWall(targetPoint);
         }
 
-        UpdatePlayerParenting();
+        UpdatePlayerParenting();  // Always update parenting regardless of isActive state
     }
 
     private void MoveWall(Vector3 targetPoint)
@@ -45,7 +45,7 @@ public class MovingWall : MonoBehaviour, IsActivatable
     {
         if (playerObject != null)
         {
-            playerObject.transform.parent = isActive ? transform : null;
+            playerObject.transform.parent = transform; // Always parent the playerObject
         }
     }
 
@@ -73,7 +73,7 @@ public class MovingWall : MonoBehaviour, IsActivatable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == 8) // Check if object is on layer 8
         {
             playerObject = other.gameObject;
         }
@@ -81,10 +81,33 @@ public class MovingWall : MonoBehaviour, IsActivatable
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.layer == 8)
         {
-            playerObject.transform.parent = null;
-            playerObject = null;
+            if (playerObject == other.gameObject)
+            {
+                playerObject.transform.parent = null;
+                playerObject = null;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8) // Check if object is on layer 8
+        {
+            playerObject = collision.gameObject;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            if (playerObject == collision.gameObject)
+            {
+                playerObject.transform.parent = null;
+                playerObject = null;
+            }
         }
     }
 }
