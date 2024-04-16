@@ -391,6 +391,14 @@ public class PlayerControls : ResettableObject
         if (shell == null)
             return;
 
+        if (throwSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(throwSound);
+        }
+        else
+        {
+            Debug.LogError("Throw sound or AudioSource is not set properly");
+        }
         shell.onUnequip ( this );
         shell.isThrown = true;
         shell.GetComponent<Rigidbody2D> ().velocity = new Vector2 ( direction == playerDirection.right ? throwStrength.x : -throwStrength.x , throwStrength.y ) + ( addPlayerVelocityToThrow ? GetComponent<Rigidbody2D> ().velocity : Vector2.zero );
