@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Shell : ResetableObject
+public class Shell : ResettableObject
 {
     public Collider2D playerCollision;
     public Collider2D groundCollision;

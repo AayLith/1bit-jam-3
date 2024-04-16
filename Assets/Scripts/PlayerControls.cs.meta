@@ -3,7 +3,13 @@ guid: 8c22c026e255bad438bf9d71c68563bd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - physicsCollider: {instanceID: 0}
+  - groundShell: {instanceID: 0}
+  - shellSlot: {instanceID: 0}
+  - shell: {instanceID: 0}
+  - jumpSound: {fileID: 8300000, guid: ddf85b9550d1a974eb73b30516431d6b, type: 3}
+  - throwSound: {fileID: 8300000, guid: 9d3d0e0e9c76620429d860f5274713c2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -48,7 +48,7 @@ ScriptedImporter:
   - _key: Interruptor
     _asset: {fileID: 8534504551266397135, guid: 3266178eccf63f945a6fe2a43a119aa8, type: 3}
   - _key: Level_End
-    _asset: {instanceID: 0}
+    _asset: {fileID: 9200938689472747016, guid: 00f90c6db68ae2f48a5fce08f583831f, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 

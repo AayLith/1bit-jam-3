@@ -15,7 +15,7 @@ enum EnemyState
 }
 
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : ResettableObject
 {
     [SerializeField]
     private const int waitBeforeChaseOrFleeSeconds = 1;
@@ -45,8 +45,9 @@ public class EnemyController : MonoBehaviour
     private Vector2?  lastKnownPlayerPosition = null;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         animator = GetComponent<Animator>();
         SetAnimationState(AnimationState.Idle);
         player = FindObjectOfType<PlayerControls>();
@@ -105,7 +106,7 @@ public class EnemyController : MonoBehaviour
     private void ChasePlayer()
     {
         FindPlayer();
-        UnityEngine.Debug.Log($"player spotted while chasing? {lastKnownPlayerPosition}");
+        //UnityEngine.Debug.Log($"player spotted while chasing? {lastKnownPlayerPosition}");
         if ( lastKnownPlayerPosition != null)
         {
             var deltaPos = lastKnownPlayerPosition.Value - (Vector2) transform.position;
@@ -223,5 +224,15 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         spriteRenderer.flipX = facingLeft;
+    }
+
+    public override void receiveNotification ( Notification notification )
+    {
+        switch ( notification.name )
+        {
+            case Notification.notifications.resetlevel:
+                reset ();
+                break;
+        }
     }
 }
