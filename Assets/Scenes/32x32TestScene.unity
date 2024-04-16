@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: activatableObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1211281188}
+    - target: {fileID: -6468991436494152679, guid: a4e63e510493f3d4f880afe9cb15da4a, type: 3}
+      propertyPath: isStartingCheckpoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5569738647792511167, guid: a4e63e510493f3d4f880afe9cb15da4a, type: 3}
       propertyPath: isActive
       value: 0
