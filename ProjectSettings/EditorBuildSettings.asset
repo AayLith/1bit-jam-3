@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/AayLithScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/32x32TestScene.unity
     guid: 2f87f1eb90f8b224eb6e63ad52bd6a61
   - enabled: 1

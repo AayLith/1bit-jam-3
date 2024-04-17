@@ -309,9 +309,12 @@ public class PlayerControls : ResettableObject
                 }
             }
 
-            // Handle throw action: only if the button was not pressed last frame but is pressed now
             if (throwPressed && !wasThrowPressedLastFrame && shell != null)
             {
+                if (shell is Skull)
+                {
+                    (shell as Skull).ActivateHitbox();
+                }
                 ThrowShell();
                 dropShell();
             }

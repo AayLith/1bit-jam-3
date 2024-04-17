@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6188376765773469863}
   - component: {fileID: 4187228443231817303}
   - component: {fileID: 6319070341915575101}
+  - component: {fileID: 9210045023128682920}
   m_Layer: 20
   m_Name: shell-enemy
   m_TagString: Untagged
@@ -232,3 +233,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageToPlayer: 10
   damageToEnemy: 0
+--- !u!60 &9210045023128682920
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7489594442397602394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.37313175, y: -0.54023933}
+      - {x: -0.36994267, y: 0.45608902}
+      - {x: 0.4675913, y: 0.4362774}
+      - {x: 0.45928, y: 0.20918083}
+      - {x: 0.48347378, y: -0.040172577}
+      - {x: 0.489851, y: -0.5466175}
+  m_UseDelaunayMesh: 0
