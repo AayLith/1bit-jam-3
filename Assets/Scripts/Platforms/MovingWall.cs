@@ -26,7 +26,7 @@ public class MovingWall : ResettableObject, IsActivatable
         base.Start();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 targetPoint = isActive ? destinationPoint : startingPoint;
 

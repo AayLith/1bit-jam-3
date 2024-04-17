@@ -28,7 +28,7 @@ public class MovingPlatform : ResettableObject, IsActivatable
         base.Start();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!isActive)
             return;
