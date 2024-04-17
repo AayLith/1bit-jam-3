@@ -24,6 +24,8 @@ ScriptedImporter:
     _asset: {instanceID: 0}
   - _key: Walls_3
     _asset: {instanceID: 0}
+  - _key: Walls_4
+    _asset: {instanceID: 0}
   _entities:
   - _key: Player
     _asset: {fileID: 8376960081822664990, guid: 138377bda2f1b26479e032b13ef3f2f4, type: 3}
@@ -36,11 +38,11 @@ ScriptedImporter:
   - _key: NormalShell
     _asset: {fileID: 5853233868171607574, guid: 326007edbbc09914b824e57ac2797aea, type: 3}
   - _key: SkullShell
-    _asset: {instanceID: 0}
+    _asset: {fileID: 5189277872937642807, guid: fecd788cdc6ea0246a9e47afd52d0b27, type: 3}
   - _key: SunshadeShell
     _asset: {fileID: 4990044664101875360, guid: 8a94c894ae4d4b64fb79d0cc95da04a7, type: 3}
   - _key: GeyserShell
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1440314978966794624, guid: 8f4ebbd6f96114b43a65d5e6841afef3, type: 3}
   - _key: Enemy
     _asset: {fileID: 7489594442397602394, guid: b1a106e6be5c8c84c94c6b57c5265cc2, type: 3}
   - _key: PressurePlate
