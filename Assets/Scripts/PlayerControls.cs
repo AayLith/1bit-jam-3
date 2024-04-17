@@ -25,6 +25,7 @@ public class PlayerControls : ResettableObject
     private float normalizedHorizontalSpeed = 0;
     public float shellCarrySpeedMult = 0.5f;
     public float fallSpeedModifier = 1;
+    public float gravityFallModifier = 1;
 
     [Header ( "Jump" )]
     public float coyoteTime = 0.15f;
@@ -74,12 +75,12 @@ public class PlayerControls : ResettableObject
     public Vector3 _velocity;
 
 
-    [Header("Audio")]
+    [Header ( "Audio" )]
     public AudioClip jumpSound;
     public AudioClip throwSound;
     private AudioSource _audioSource;
 
-    [Header("Inputs")]
+    [Header ( "Inputs" )]
     private bool jumpPressed = false;
     private bool jumpReleased = false;
     private bool lockInput = false;
@@ -87,8 +88,10 @@ public class PlayerControls : ResettableObject
     private bool wasThrowPressedLastFrame = false;
 
 
-    void Awake ()
+    protected override void Awake ()
     {
+        base.Awake ();
+
         _animator = GetComponent<Animator> ();
         _controller = GetComponent<CharacterController2D> ();
 
@@ -100,7 +103,7 @@ public class PlayerControls : ResettableObject
         healthComponent = GetComponent<Health> ();
         sprite = GetComponent<SpriteRenderer> ();
         rb = GetComponent<Rigidbody2D> ();
-        _audioSource = GetComponentInChildren<AudioSource>();
+        _audioSource = GetComponentInChildren<AudioSource> ();
         if ( sprite == null )
         {
             sprite = GetComponentInChildren<SpriteRenderer> ();
@@ -238,17 +241,17 @@ public class PlayerControls : ResettableObject
     {
         if ( jumpPressed && coyoteTimeCounter > 0f )
         {
-            if (jumpSound != null && _audioSource != null)
+            if ( jumpSound != null && _audioSource != null )
             {
-                _audioSource.PlayOneShot(jumpSound);
+                _audioSource.PlayOneShot ( jumpSound );
             }
             else
             {
-                Debug.LogError("Jump sound or AudioSource is not set properly");
+                Debug.LogError ( "Jump sound or AudioSource is not set properly" );
             }
             _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
             coyoteTimeCounter = 0;
-            
+
             _animator.SetBool ( "isJumping" , true );
         }
 
@@ -256,7 +259,11 @@ public class PlayerControls : ResettableObject
         var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
         _velocity.x = Mathf.Lerp ( _velocity.x , normalizedHorizontalSpeed * runSpeed , Time.deltaTime * smoothedMovementFactor );
         // apply gravity before moving
-        _velocity.y += gravity * Time.deltaTime;
+
+        if ( _velocity.y < 0 )
+            _velocity.y += gravity * gravityFallModifier * Time.deltaTime ;
+        else
+            _velocity.y += gravity * Time.deltaTime;
 
         // Short jumps
         if ( Input.GetButtonUp ( "Jump" ) )
@@ -283,43 +290,43 @@ public class PlayerControls : ResettableObject
         }
     }
 
-    void HandleActions()
+    void HandleActions ()
     {
         // Read the current state of the pickup and throw inputs
-        bool pickupPressed = Input.GetAxis("Pickup Shell") > inputDeadZoneAmount;
-        bool throwPressed = Input.GetAxis("Throw Shell") > inputDeadZoneAmount;
+        bool pickupPressed = Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount;
+        bool throwPressed = Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount;
 
-        if (!lockInput)
+        if ( !lockInput )
         {
             // Handle pickup action: only if the button was not pressed last frame but is pressed now
-            if (pickupPressed && !wasPickupPressedLastFrame)
+            if ( pickupPressed && !wasPickupPressedLastFrame )
             {
-                if (shell)
+                if ( shell )
                 {
-                    dropShell();
+                    dropShell ();
                 }
-                else if (groundShell.collisions.Count > 0)
+                else if ( groundShell.collisions.Count > 0 )
                 {
-                    foreach (Collider2D c in groundShell.collisions)
+                    foreach ( Collider2D c in groundShell.collisions )
                     {
-                        Shell potentialShell = c.transform.parent.GetComponent<Shell>();
-                        if (potentialShell != null && potentialShell.canBePickedUp)
+                        Shell potentialShell = c.transform.parent.GetComponent<Shell> ();
+                        if ( potentialShell != null && potentialShell.canBePickedUp )
                         {
-                            pickUpShell(potentialShell);
+                            pickUpShell ( potentialShell );
                             break;
                         }
                     }
                 }
             }
 
-            if (throwPressed && !wasThrowPressedLastFrame && shell != null)
+            if ( throwPressed && !wasThrowPressedLastFrame && shell != null )
             {
-                if (shell is Skull)
+                if ( shell is Skull )
                 {
-                    (shell as Skull).ActivateHitbox();
+                    ( shell as Skull ).ActivateHitbox ();
                 }
-                ThrowShell();
-                dropShell();
+                ThrowShell ();
+                dropShell ();
             }
         }
 
@@ -363,47 +370,47 @@ public class PlayerControls : ResettableObject
         }
     }
 
-    void pickUpShell(Shell s)
+    void pickUpShell ( Shell s )
     {
-        if (!s.canBePickedUp)
+        if ( !s.canBePickedUp )
             return;
 
         s.onEquip ( this );
         shell = s;
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
-        s.GetComponent<Rigidbody2D>().gravityScale = 0;
+        s.GetComponent<Rigidbody2D> ().gravityScale = 0;
         s.playerCollision.enabled = false;
         s.groundCollision.enabled = false;
-        shellCollider();
+        shellCollider ();
     }
 
-    void dropShell()
+    void dropShell ()
     {
-        if (shell == null)
+        if ( shell == null )
             return;
 
         shell.onUnequip ( this );
         shell.transform.parent = null;
-        shell.GetComponent<Rigidbody2D>().gravityScale = 2;
+        shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
         shell.groundCollision.enabled = true;
-        StartCoroutine(shell.Cooldown());  // Start the cooldown
+        StartCoroutine ( shell.Cooldown () );  // Start the cooldown
         shell = null;
-        disableShellColliders();
+        disableShellColliders ();
     }
 
     void ThrowShell ()
     {
-        if (shell == null)
+        if ( shell == null )
             return;
 
-        if (throwSound != null && _audioSource != null)
+        if ( throwSound != null && _audioSource != null )
         {
-            _audioSource.PlayOneShot(throwSound);
+            _audioSource.PlayOneShot ( throwSound );
         }
         else
         {
-            Debug.LogError("Throw sound or AudioSource is not set properly");
+            Debug.LogError ( "Throw sound or AudioSource is not set properly" );
         }
         shell.onUnequip ( this );
         shell.isThrown = true;
@@ -484,7 +491,7 @@ public class PlayerControls : ResettableObject
             dropShell ();
         base.reset ();
         _velocity = Vector3.zero;
-        healthComponent.ResetHealth();
+        healthComponent.ResetHealth ();
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
         {
