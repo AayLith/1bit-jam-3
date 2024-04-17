@@ -10,15 +10,15 @@ public class MovingWall : ResettableObject, IsActivatable
 
     private Vector3 startingPoint;
     private Vector3 destinationPoint;
-    private GameObject playerObject = null;
-    private bool initialActiveState; // Store the initial active state
+    private List<GameObject> objectsOnWall = new List<GameObject>();
+    private bool initialActiveState;
 
     protected override void Awake()
     {
         base.Awake();
         startingPoint = transform.position;
         destinationPoint = transform.position + destinationOffset;
-        initialActiveState = isActive; // Store initial active state at Awake
+        initialActiveState = isActive;
     }
 
     new void Start()
@@ -35,7 +35,7 @@ public class MovingWall : ResettableObject, IsActivatable
             MoveWall(targetPoint);
         }
 
-        UpdatePlayerParenting();  // Always update parenting regardless of isActive state
+        UpdatePlayerParenting();
     }
 
     private void MoveWall(Vector3 targetPoint)
@@ -51,9 +51,9 @@ public class MovingWall : ResettableObject, IsActivatable
 
     private void UpdatePlayerParenting()
     {
-        if (playerObject != null)
+        foreach (var obj in objectsOnWall)
         {
-            playerObject.transform.parent = transform; // Always parent the playerObject
+            obj.transform.parent = transform;
         }
     }
 
@@ -64,9 +64,10 @@ public class MovingWall : ResettableObject, IsActivatable
 
     protected override void reset()
     {
-        base.reset(); // Reset position
-        destinationPoint = transform.position + destinationOffset; // Recalculate the destination
-        isActive = initialActiveState; // Reset to initial active state
+        base.reset();
+        transform.position = startingPoint;
+        destinationPoint = startingPoint + destinationOffset;
+        isActive = initialActiveState;
     }
 
     public override void receiveNotification(Notification notification)
@@ -74,6 +75,40 @@ public class MovingWall : ResettableObject, IsActivatable
         if (notification.name == Notification.notifications.resetlevel)
         {
             reset();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            objectsOnWall.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            other.transform.parent = null;
+            objectsOnWall.Remove(other.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            objectsOnWall.Add(collision.gameObject);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 8)
+        {
+            collision.gameObject.transform.parent = null;
+            objectsOnWall.Remove(collision.gameObject);
         }
     }
 
