@@ -31,7 +31,7 @@ public class Interruptor : ResettableObject
         initialActiveState = isActive;
     }
 
-    private void Start()
+    private new void Start()
     {
         base.Start();
 

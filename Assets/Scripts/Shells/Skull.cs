@@ -7,7 +7,7 @@ public class Skull : Shell
     [Header("Hitbox")]
     public Collider2D hitbox; // Assign this in the Unity editor
 
-    void Start()
+    new void Start()
     {
         base.Start();
         if (hitbox == null)
@@ -33,8 +33,9 @@ public class Skull : Shell
         }
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected new void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D (collision);
         if (isThrown) // Ensure 'isThrown' is properly declared and managed
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

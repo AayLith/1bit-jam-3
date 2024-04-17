@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     private const float inputDeadZoneAmount = 0.1f;
     [SerializeField]
     private const float airMovementFactor = 0.75f;
-    [SerializeField]
-    private bool flashWhileInvulnerable = true;
     public static PlayerController instance;
 
     public bool isGrounded = false;

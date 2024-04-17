@@ -19,13 +19,14 @@ public class Shell : ResettableObject
     [Header("Throwing")]
     public bool isThrown = false;
 
-    protected void Start()
+    protected new void Start()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {  // Ensure there is an AudioSource component
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        base.Start();
     }
 
     protected override void Awake ()

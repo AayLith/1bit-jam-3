@@ -1,4 +1,4 @@
-﻿#define DEBUG_CC2D_RAYS
+#define DEBUG_CC2D_RAYS
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -435,7 +435,7 @@ public class CharacterController2D : MonoBehaviour
 				var slopeModifier = slopeSpeedMultiplier.Evaluate( angle );
 				deltaMovement.x *= slopeModifier;
 
-				// we dont set collisions on the sides for this since a slope is not technically a side collision.
+				// we don't set collisions on the sides for this since a slope is not technically a side collision.
 				// smooth y movement when we climb. we make the y movement equivalent to the actual y location that corresponds
 				// to our new x location using our good friend Pythagoras
 				deltaMovement.y = Mathf.Abs( Mathf.Tan( angle * Mathf.Deg2Rad ) * deltaMovement.x );
@@ -568,6 +568,8 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 	}
+
+	
 
 	#endregion
 

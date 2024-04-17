@@ -12,7 +12,12 @@ public abstract class ResettableObject : MonoBehaviour, NotificationReceiver
     {
         startPosition = transform.position;
         startRotation = transform.rotation;
-        startVelocity = GetComponent<Rigidbody2D> ().velocity;
+        var rb = GetComponent<Rigidbody2D> ();
+        if (rb != null)
+        {
+            startVelocity = rb.velocity;
+        }
+        
     }
 
     protected void Start ()
@@ -24,7 +29,12 @@ public abstract class ResettableObject : MonoBehaviour, NotificationReceiver
     {
         transform.position = startPosition;
         transform.rotation = startRotation;
-        GetComponent<Rigidbody2D> ().velocity = startVelocity;
+        var rb = GetComponent<Rigidbody2D> ();
+        if( rb != null )
+        {
+            rb.velocity = startVelocity;
+        }
+        
     }
 
     public abstract void receiveNotification ( Notification notification );

@@ -21,7 +21,7 @@ public class MovingWall : ResettableObject, IsActivatable
         initialActiveState = isActive; // Store initial active state at Awake
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
     }

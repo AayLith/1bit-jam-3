@@ -13,7 +13,7 @@ public class Notification
     }
     public enum datas
     {
-        amount, // when you need to aadd or remove
+        amount, // when you need to add or remove
         value, // set to this value
         gameObject
     }

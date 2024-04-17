@@ -23,7 +23,7 @@ public class MovingPlatform : ResettableObject, IsActivatable
         initialActiveState = isActive;
     }
 
-    void Start()
+    new void Start()
     {
         base.Start();
     }

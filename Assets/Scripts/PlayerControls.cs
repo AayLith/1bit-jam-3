@@ -285,7 +285,7 @@ public class PlayerControls : ResettableObject
         // this lets us jump down through one way platforms
         if ( _controller.isGrounded && Input.GetAxis ( "Vertical" ) < -inputDeadZoneAmount )
         {
-            //_velocity.y *= 3f; // superjump
+            //_velocity.y *= 3f; // super jump
             _controller.ignoreOneWayPlatformsThisFrame = true;
         }
     }
@@ -351,7 +351,7 @@ public class PlayerControls : ResettableObject
     void FlashIfInvulnerable ()
     {
         bool invulnerable = CheckAndGetIsInvulnerable ();
-        if ( invulnerable )
+        if ( invulnerable && flashWhileInvulnerable)
         {
             //bool black = sprite.color==Color.black;
             float seconds = ( float ) invulnerabilityTimer.Elapsed.TotalSeconds * flashesPerSecond;
@@ -361,10 +361,12 @@ public class PlayerControls : ResettableObject
             bool shouldBeBlack = mod < period;
             if ( shouldBeBlack )
             {
-                sprite.color = new Color ( 0 , 0 , 0 , 0 );
+                sprite.enabled = false;
+                sprite.color = new Color ( 1 , 1 , 1 , 0 );
             }
             else
             {
+                sprite.enabled = true;
                 sprite.color = Color.white;
             }
         }
