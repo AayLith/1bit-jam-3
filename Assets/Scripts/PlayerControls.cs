@@ -86,6 +86,8 @@ public class PlayerControls : ResettableObject
     private bool lockInput = false;
     private bool wasPickupPressedLastFrame = false;
     private bool wasThrowPressedLastFrame = false;
+    private bool pickupPressed = false;
+    private bool throwPressed = false;
 
 
     protected override void Awake ()
@@ -168,36 +170,55 @@ public class PlayerControls : ResettableObject
             jumpReleased = true;
         }
 
-        if ( _controller.isGrounded )
-        {
-            _velocity.y = 0;
-            coyoteTimeCounter = coyoteTime;
-            _animator.SetBool ( "isJumping" , false );
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-            _animator.SetBool ( "isJumping" , true );
-        }
+       
 
-        HandleHorizontal ();
-        HandleJump ();
-        HandleVertical ();
-        ClampFallSpeed ();
-        FlashIfInvulnerable ();
-        HandleActions ();
-        if ( shell != null )
-            HandleShell ();
+        
+        
+        
+        
+        
+        pickupPressed = Input.GetAxis("Pickup Shell") > inputDeadZoneAmount;
+        throwPressed = Input.GetAxis("Throw Shell") > inputDeadZoneAmount;
 
-        if ( _velocity.y < 0 )
-            _velocity.y *= fallSpeedModifier;
-        _controller.move ( _velocity * Time.deltaTime );
 
-        // grab our current _velocity to use as a base for all calculations
-        _velocity = _controller.velocity;
 
         _animator.SetFloat ( "xVelocity" , Mathf.Abs ( _velocity.x ) );
         _animator.SetFloat ( "yVelocity" , _velocity.y );
+
+    }
+
+    void FixedUpdate()
+    {
+        if (_controller.isGrounded)
+        {
+            _velocity.y = 0;
+            coyoteTimeCounter = coyoteTime;
+            _animator.SetBool("isJumping", false);
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.fixedDeltaTime;
+            _animator.SetBool("isJumping", true);
+        }
+
+        if (shell != null)
+            HandleShell();
+        if (_velocity.y < 0)
+            _velocity.y *= fallSpeedModifier;
+        
+        HandleHorizontal();
+        HandleJump();
+        HandleActions();
+        ClampFallSpeed();
+        FlashIfInvulnerable();
+        HandleVertical();
+
+        _controller.move(_velocity * Time.deltaTime);
+
+        // grab our current _velocity to use as a base for all calculations
+        _velocity = _controller.velocity;
+        jumpPressed = false;
+        jumpReleased = false;
 
     }
 
@@ -266,17 +287,12 @@ public class PlayerControls : ResettableObject
             _velocity.y += gravity * Time.deltaTime;
 
         // Short jumps
-        if ( Input.GetButtonUp ( "Jump" ) )
-        {
-            jumpReleased = true;
-        }
+        
         if ( jumpReleased && _velocity.y > 0 )
         {
             _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
 
-        jumpReleased = false;
-        jumpPressed = false;
     }
 
     void HandleVertical ()
@@ -292,9 +308,6 @@ public class PlayerControls : ResettableObject
 
     void HandleActions ()
     {
-        // Read the current state of the pickup and throw inputs
-        bool pickupPressed = Input.GetAxis ( "Pickup Shell" ) > inputDeadZoneAmount;
-        bool throwPressed = Input.GetAxis ( "Throw Shell" ) > inputDeadZoneAmount;
 
         if ( !lockInput )
         {
