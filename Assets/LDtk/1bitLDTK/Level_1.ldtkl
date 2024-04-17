@@ -598,7 +598,7 @@
 				},
 				{
 					"__identifier": "Interruptor",
-					"__grid": [90,18],
+					"__grid": [90,17],
 					"__pivot": [0.5,0.5],
 					"__tags": [],
 					"__tile": null,
@@ -607,10 +607,10 @@
 					"width": 32,
 					"height": 32,
 					"defUid": 463,
-					"px": [2896,592],
+					"px": [2896,560],
 					"fieldInstances": [],
 					"__worldX": 8944,
-					"__worldY": 1040
+					"__worldY": 1008
 				},
 				{
 					"__identifier": "NormalShell",
