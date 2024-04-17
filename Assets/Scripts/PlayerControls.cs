@@ -70,7 +70,7 @@ public class PlayerControls : ResettableObject
     private Rigidbody2D rb;
 
     private RaycastHit2D _lastControllerColliderHit;
-    private Vector3 _velocity;
+    public Vector3 _velocity;
 
 
     [Header("Audio")]
