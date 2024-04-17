@@ -257,7 +257,7 @@ MonoBehaviour:
   pickupCooldown: 0.24
   landingSound: {fileID: 8300000, guid: 5de46cab001f0844b9d8206cb0c2eb88, type: 3}
   isThrown: 0
-  fallSpeed: 0.9
+  fallSpeed: 0.85
   gravityFallSpeed: 1
 --- !u!1 &8542207976337749223
 GameObject:
