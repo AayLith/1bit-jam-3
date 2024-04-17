@@ -52,7 +52,8 @@ public class Skull : Shell
     {
         if (hitbox != null && hitbox.enabled && other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            Destroy(other.gameObject); // Destroy enemy on contact
+            other.GetComponent<EnemyController> ().kill ();
+            //Destroy(other.gameObject); // Destroy enemy on contact
         }
     }
 }

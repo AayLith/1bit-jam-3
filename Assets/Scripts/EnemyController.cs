@@ -187,6 +187,7 @@ public class EnemyController : ResettableObject
         }
         SetAnimationState(animationState);
     }
+
     bool switchingState = false;
     private void UpdateState()
     {   FindPlayer();
@@ -218,6 +219,20 @@ public class EnemyController : ResettableObject
                 currentState = EnemyState.Idle;
             }
         }
+    }
+
+    public void kill ()
+    {
+        spriteRenderer.enabled = false;
+        rb.simulated = false;
+    }
+
+    protected override void reset ()
+    {
+        base.reset ();
+        SetAnimationState ( AnimationState.Idle );
+        spriteRenderer.enabled = true;
+        rb.simulated = true;
     }
 
     // Update is called once per frame

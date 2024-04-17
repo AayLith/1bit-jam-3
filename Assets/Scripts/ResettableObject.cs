@@ -7,6 +7,7 @@ public abstract class ResettableObject : MonoBehaviour, NotificationReceiver
     protected Vector3 startPosition;
     protected Quaternion startRotation;
     protected Vector2 startVelocity;
+
     protected virtual void Awake ()
     {
         startPosition = transform.position;

@@ -35,8 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - PlayerDetector
+  - WallDetector
   m_SortingLayers:
   - name: Default
     uniqueID: 0
