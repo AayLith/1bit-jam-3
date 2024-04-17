@@ -33,11 +33,6 @@ public class BublleStreamer : MonoBehaviour
         {
             PlayerControls pc = collision.GetComponent<PlayerControls> ();
             pc.gravity = pc.defaultGravity;
-            if ( pc.shell && pc.shell.GetComponent<SunshadeShell> () )
-            {
-                pc.gravity *= pc.shell.GetComponent<SunshadeShell> ().gravity;
-                pc._velocity = new Vector2 ( pc._velocity.x , pc._velocity.y* 0.5f );
-            }
             return;
         }
         catch { }

@@ -24,6 +24,7 @@ public class PlayerControls : ResettableObject
     public float maxFallSpeed = -9;
     private float normalizedHorizontalSpeed = 0;
     public float shellCarrySpeedMult = 0.5f;
+    public float fallSpeedModifier = 1;
 
     [Header ( "Jump" )]
     public float coyoteTime = 0.15f;
@@ -185,6 +186,8 @@ public class PlayerControls : ResettableObject
         if ( shell != null )
             HandleShell ();
 
+        if ( _velocity.y < 0 )
+            _velocity.y *= fallSpeedModifier;
         _controller.move ( _velocity * Time.deltaTime );
 
         // grab our current _velocity to use as a base for all calculations

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SunshadeShell : Shell
 {
-    public float gravity;
+    public float fallSpeed;
 
     public override void onEquip ( PlayerControls p )
     {
         base.onEquip ( p );
-        p.gravity = p.defaultGravity * gravity;
+        p.fallSpeedModifier = fallSpeed;
     }
 
     public override void onUnequip ( PlayerControls p )
     {
         base.onUnequip ( p );
-        p.gravity = p.defaultGravity;
+        p.fallSpeedModifier = 1;
     }
 }
