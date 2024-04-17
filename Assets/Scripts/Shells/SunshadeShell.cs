@@ -5,7 +5,6 @@ using UnityEngine;
 public class SunshadeShell : Shell
 {
     public float fallSpeed;
-    [HideInInspector]
     public float gravityFallSpeed = 1;
 
     public override void onEquip ( PlayerControls p )

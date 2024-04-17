@@ -2,36 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class PressurePlate : ResettableObject
 {
     public GameObject[] activatableObjects = new GameObject[4];
     private IsActivatable[] activatables = new IsActivatable[4];
-    private int numColliders = 0;
 
     public Sprite inactiveSprite; // Sprite when the plate is not pressed
     public Sprite activeSprite;   // Sprite when the plate is pressed
     private SpriteRenderer spriteRenderer;
 
+    // Initial states to reset to
+    private Sprite initialSprite;
+    private bool isPressed;
+    private int objectsOnPlate = 0;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            initialSprite = spriteRenderer.sprite; // Store the initial sprite
+        }
+    }
+
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
-        {
-            Debug.LogWarning("No SpriteRenderer component found on the pressure plate object.");
-            return;
-        }
+        base.Start();
 
-        spriteRenderer.sprite = inactiveSprite; // Set the initial sprite to inactive
+        // Store the initial state
+        isPressed = false;
 
-        // get the IsActivatable component from each assigned GameObject
+        // Get the IsActivatable component from each assigned GameObject
         for (int i = 0; i < activatableObjects.Length; i++)
         {
             if (activatableObjects[i] != null)
             {
                 activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
-                if (activatables[i] == null)
-                {
-                }
             }
         }
     }
@@ -40,17 +47,10 @@ public class PressurePlate : MonoBehaviour
     {
         if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
         {
-            numColliders++;
-            if (numColliders == 1)
+            objectsOnPlate++;
+            if (!isPressed)
             {
-                spriteRenderer.sprite = activeSprite; // Change to active sprite
-                foreach (var activatable in activatables)
-                {
-                    if (activatable != null)
-                    {
-                        activatable.ToggleActivation();
-                    }
-                }
+                TogglePlate(true);
             }
         }
     }
@@ -59,18 +59,41 @@ public class PressurePlate : MonoBehaviour
     {
         if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
         {
-            numColliders--;
-            if (numColliders == 0)
+            objectsOnPlate--;
+            if (isPressed && objectsOnPlate == 0)
             {
-                spriteRenderer.sprite = inactiveSprite; // Revert to inactive sprite
-                foreach (var activatable in activatables)
-                {
-                    if (activatable != null)
-                    {
-                        activatable.ToggleActivation();
-                    }
-                }
+                TogglePlate(false);
             }
+        }
+    }
+
+    private void TogglePlate(bool pressed)
+    {
+        isPressed = pressed;
+        spriteRenderer.sprite = isPressed ? activeSprite : inactiveSprite;
+
+        foreach (var activatable in activatables)
+        {
+            if (activatable != null)
+            {
+                activatable.ToggleActivation();
+            }
+        }
+    }
+
+    protected override void reset()
+    {
+        base.reset(); // Reset any required properties from base class
+        spriteRenderer.sprite = initialSprite; // Reset to initial sprite
+        isPressed = false; // Reset plate state
+        objectsOnPlate = 0; // Reset object count
+    }
+
+    public override void receiveNotification(Notification notification)
+    {
+        if (notification.name == Notification.notifications.resetlevel)
+        {
+            reset();
         }
     }
 
