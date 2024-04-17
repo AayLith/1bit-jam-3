@@ -38,7 +38,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8) // Assuming layer 8 is the player and shells layer
+        if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
         {
             numColliders++;
             if (numColliders == 1)
@@ -57,7 +57,7 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
         {
             numColliders--;
             if (numColliders == 0)

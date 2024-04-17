@@ -46,7 +46,7 @@ public class Interruptor : ResettableObject
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8 && !isPlayerPresent)
+        if ((other.gameObject.layer == 8 || other.gameObject.layer == 23) && !isPlayerPresent) // Check for layer 8 or layer 23
         {
             isPlayerPresent = true;
             TogglePlate();
@@ -55,7 +55,7 @@ public class Interruptor : ResettableObject
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
         {
             isPlayerPresent = false;
         }
