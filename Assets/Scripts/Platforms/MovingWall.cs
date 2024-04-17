@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingWall : MonoBehaviour, IsActivatable
+public class MovingWall : ResettableObject, IsActivatable
 {
     public Vector3 destinationOffset;
     public float speed = 2.0f;
@@ -11,11 +11,19 @@ public class MovingWall : MonoBehaviour, IsActivatable
     private Vector3 startingPoint;
     private Vector3 destinationPoint;
     private GameObject playerObject = null;
+    private bool initialActiveState; // Store the initial active state
+
+    protected override void Awake()
+    {
+        base.Awake();
+        startingPoint = transform.position;
+        destinationPoint = transform.position + destinationOffset;
+        initialActiveState = isActive; // Store initial active state at Awake
+    }
 
     void Start()
     {
-        startingPoint = transform.position;
-        destinationPoint = transform.position + destinationOffset;
+        base.Start();
     }
 
     void Update()
@@ -54,6 +62,21 @@ public class MovingWall : MonoBehaviour, IsActivatable
         isActive = !isActive;
     }
 
+    protected override void reset()
+    {
+        base.reset(); // Reset position
+        destinationPoint = transform.position + destinationOffset; // Recalculate the destination
+        isActive = initialActiveState; // Reset to initial active state
+    }
+
+    public override void receiveNotification(Notification notification)
+    {
+        if (notification.name == Notification.notifications.resetlevel)
+        {
+            reset();
+        }
+    }
+
     void OnDrawGizmos()
     {
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
@@ -68,46 +91,6 @@ public class MovingWall : MonoBehaviour, IsActivatable
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(collider.bounds.center, destinationCenter);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 8) // Check if object is on layer 8
-        {
-            playerObject = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 8)
-        {
-            if (playerObject == other.gameObject)
-            {
-                playerObject.transform.parent = null;
-                playerObject = null;
-            }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 8) // Check if object is on layer 8
-        {
-            playerObject = collision.gameObject;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 8)
-        {
-            if (playerObject == collision.gameObject)
-            {
-                playerObject.transform.parent = null;
-                playerObject = null;
-            }
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interruptor : MonoBehaviour
+public class Interruptor : ResettableObject
 {
     public GameObject[] activatableObjects = new GameObject[4];
     private IsActivatable[] activatables = new IsActivatable[4];
@@ -13,32 +13,40 @@ public class Interruptor : MonoBehaviour
     private bool isActive = false; // Tracks the active state of the interruptor
     private bool isPlayerPresent = false; // Tracks if the player is currently on the interruptor
 
-    private void Start()
+    // Initial states to reset to
+    private Sprite initialSprite;
+    private bool initialActiveState;
+
+    protected override void Awake()
     {
+        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
+        if (spriteRenderer != null)
         {
-            return;
+            initialSprite = inactiveSprite; // Initially inactive
+            spriteRenderer.sprite = initialSprite;
         }
 
-        spriteRenderer.sprite = inactiveSprite; // Set the initial sprite to inactive
+        // Save the initial active state
+        initialActiveState = isActive;
+    }
 
-        // Get the IsActivatable component from each assigned GameObject
+    private void Start()
+    {
+        base.Start();
+
         for (int i = 0; i < activatableObjects.Length; i++)
         {
             if (activatableObjects[i] != null)
             {
                 activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
-                if (activatables[i] == null)
-                {
-                }
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8 && !isPlayerPresent) // Check layer and if player is not already present
+        if (other.gameObject.layer == 8 && !isPlayerPresent)
         {
             isPlayerPresent = true;
             TogglePlate();
@@ -64,6 +72,23 @@ public class Interruptor : MonoBehaviour
             {
                 activatable.ToggleActivation();
             }
+        }
+    }
+
+    protected override void reset()
+    {
+        base.reset();
+        spriteRenderer.sprite = initialSprite;
+        isActive = initialActiveState;
+        isPlayerPresent = false;
+
+    }
+
+    public override void receiveNotification(Notification notification)
+    {
+        if (notification.name == Notification.notifications.resetlevel)
+        {
+            reset();
         }
     }
 

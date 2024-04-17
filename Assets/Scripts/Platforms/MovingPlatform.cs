@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour, IsActivatable
+public class MovingPlatform : ResettableObject, IsActivatable
 {
     public Vector3 destinationOffset;
     public float speed = 2.0f;
@@ -10,12 +10,22 @@ public class MovingPlatform : MonoBehaviour, IsActivatable
 
     private Vector3 startingPoint;
     private Vector3 destinationPoint;
+    private bool initialActiveState;
+    private Vector3 initialPosition;
     private List<GameObject> objectsOnPlatform = new List<GameObject>();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        initialPosition = transform.position;
+        startingPoint = initialPosition;
+        destinationPoint = initialPosition + destinationOffset;
+        initialActiveState = isActive;
+    }
 
     void Start()
     {
-        startingPoint = transform.position;
-        destinationPoint = transform.position + destinationOffset;
+        base.Start();
     }
 
     void Update()
@@ -23,13 +33,11 @@ public class MovingPlatform : MonoBehaviour, IsActivatable
         if (!isActive)
             return;
 
-        // Make sure all objects on the platform move with it
         foreach (var obj in objectsOnPlatform)
         {
             obj.transform.parent = transform;
         }
 
-        // Handle movement of the platform
         Vector3 direction = (destinationPoint - startingPoint).normalized;
         float distanceToDestination = Vector3.Distance(transform.position, destinationPoint);
         float movementAmount = speed * Time.deltaTime;
@@ -84,6 +92,23 @@ public class MovingPlatform : MonoBehaviour, IsActivatable
     public void ToggleActivation()
     {
         isActive = !isActive;
+    }
+
+    protected override void reset()
+    {
+        base.reset();
+        transform.position = initialPosition;
+        startingPoint = initialPosition;
+        destinationPoint = initialPosition + destinationOffset;
+        isActive = initialActiveState;
+    }
+
+    public override void receiveNotification(Notification notification)
+    {
+        if (notification.name == Notification.notifications.resetlevel)
+        {
+            reset();
+        }
     }
 
     void OnDrawGizmos()
