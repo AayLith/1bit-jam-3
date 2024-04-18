@@ -595,10 +595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22c026e255bad438bf9d71c68563bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGravity: -23.5
-  gravity: -23.5
-  runSpeed: 4.6
-  groundDamping: 20
+  defaultGravity: -20
+  gravity: -20
+  runSpeed: 4.45
+  groundDamping: 32
   inAirDamping: 5
   jumpHeight: 2.55
   maxFallSpeed: -8.8
