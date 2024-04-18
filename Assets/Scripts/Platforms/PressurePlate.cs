@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PressurePlate : ResettableObject
@@ -11,7 +11,6 @@ public class PressurePlate : ResettableObject
     public Sprite activeSprite;   // Sprite when the plate is pressed
     private SpriteRenderer spriteRenderer;
 
-    // Initial states to reset to
     private Sprite initialSprite;
     private bool isPressed;
     private int objectsOnPlate = 0;
@@ -23,32 +22,34 @@ public class PressurePlate : ResettableObject
         if (spriteRenderer != null)
         {
             initialSprite = spriteRenderer.sprite; // Store the initial sprite
+            Debug.Log("Pressure Plate Initialized: Sprite set to initial.");
         }
     }
 
     private void Start()
     {
         base.Start();
-
-        // Store the initial state
+        // Initialize state
         isPressed = false;
+        Debug.Log("Pressure Plate Start: isPressed set to false.");
 
-        // Get the IsActivatable component from each assigned GameObject
         for (int i = 0; i < activatableObjects.Length; i++)
         {
             if (activatableObjects[i] != null)
             {
                 activatables[i] = activatableObjects[i].GetComponent<IsActivatable>();
+                Debug.Log("Activatable object [" + i + "] set.");
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
+        if (other.gameObject.layer == 8 || other.gameObject.layer == 23)
         {
-            objectsOnPlate++;
-            if (!isPressed)
+            UpdateObjectsOnPlate(1);
+            Debug.Log("Object entered: Total objects on plate now = " + objectsOnPlate);
+            if (!isPressed && objectsOnPlate > 0)
             {
                 TogglePlate(true);
             }
@@ -57,9 +58,10 @@ public class PressurePlate : ResettableObject
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8 || other.gameObject.layer == 23) // Check for layer 8 or layer 23
+        if (other.gameObject.layer == 8 || other.gameObject.layer == 23)
         {
-            objectsOnPlate--;
+            UpdateObjectsOnPlate(-1);
+            Debug.Log("Object exited: Total objects on plate now = " + objectsOnPlate);
             if (isPressed && objectsOnPlate == 0)
             {
                 TogglePlate(false);
@@ -67,26 +69,47 @@ public class PressurePlate : ResettableObject
         }
     }
 
+    private void UpdateObjectsOnPlate(int change)
+    {
+        objectsOnPlate += change;
+        if (objectsOnPlate < 0)
+        {
+            objectsOnPlate = 0; // Prevent objectsOnPlate from going negative
+        }
+        Debug.Log("UpdateObjectsOnPlate: Change = " + change + ", New Count = " + objectsOnPlate);
+    }
+
+    public int GetObjectsOnPlate()
+    {
+        return objectsOnPlate;
+    }
+
     private void TogglePlate(bool pressed)
     {
-        isPressed = pressed;
-        spriteRenderer.sprite = isPressed ? activeSprite : inactiveSprite;
-
-        foreach (var activatable in activatables)
+        if (isPressed != pressed)  // Check if there is a state change
         {
-            if (activatable != null)
+            isPressed = pressed;
+            spriteRenderer.sprite = isPressed ? activeSprite : inactiveSprite;
+            Debug.Log("Toggle Plate: isPressed = " + isPressed);
+
+            foreach (var activatable in activatables)
             {
-                activatable.ToggleActivation();
+                if (activatable != null)
+                {
+                    activatable.ToggleActivation();
+                }
             }
         }
     }
 
     protected override void reset()
     {
-        base.reset(); // Reset any required properties from base class
+        base.reset();
+        isPressed = false;
+        objectsOnPlate = 0;
         spriteRenderer.sprite = initialSprite; // Reset to initial sprite
-        isPressed = false; // Reset plate state
-        objectsOnPlate = 0; // Reset object count
+        TogglePlate(false); // Ensure the plate is visually and functionally reset
+        Debug.Log("Pressure Plate Reset: State reset successfully.");
     }
 
     public override void receiveNotification(Notification notification)
