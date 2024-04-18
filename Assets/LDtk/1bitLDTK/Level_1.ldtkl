@@ -101,22 +101,6 @@
 					"__worldY": 784
 				},
 				{
-					"__identifier": "PressurePlate",
-					"__grid": [63,24],
-					"__pivot": [0.5,0.5],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#68386C",
-					"iid": "ead9cf70-d7b0-11ee-8865-2bcc61f68cbb",
-					"width": 32,
-					"height": 32,
-					"defUid": 461,
-					"px": [2032,784],
-					"fieldInstances": [],
-					"__worldX": 8080,
-					"__worldY": 1232
-				},
-				{
 					"__identifier": "Moving_Wall",
 					"__grid": [70,24],
 					"__pivot": [0.5,0.5],
@@ -611,6 +595,22 @@
 					"fieldInstances": [],
 					"__worldX": 6448,
 					"__worldY": 752
+				},
+				{
+					"__identifier": "PressurePlate",
+					"__grid": [63,24],
+					"__pivot": [0.5,0.5],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#68386C",
+					"iid": "0738c520-d7b0-11ee-a53e-a3e9106f6890",
+					"width": 32,
+					"height": 32,
+					"defUid": 461,
+					"px": [2032,784],
+					"fieldInstances": [],
+					"__worldX": 8080,
+					"__worldY": 1232
 				}
 			]
 		},
