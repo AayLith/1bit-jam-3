@@ -595,12 +595,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c22c026e255bad438bf9d71c68563bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultGravity: -24
-  gravity: -24
-  runSpeed: 4.6
+  defaultGravity: -25
+  gravity: -25
+  runSpeed: 4.65
   groundDamping: 20
   inAirDamping: 5
-  jumpHeight: 2.5
+  jumpHeight: 2.55
   maxFallSpeed: -9
   shellCarrySpeedMult: 0.8
   fallSpeedModifier: 1
@@ -760,9 +760,9 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6282166469367552029
 MonoBehaviour:
   m_ObjectHideFlags: 0

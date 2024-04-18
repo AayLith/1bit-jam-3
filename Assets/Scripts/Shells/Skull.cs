@@ -38,7 +38,7 @@ public class Skull : Shell
         base.OnCollisionEnter2D (collision);
         if (isThrown) // Ensure 'isThrown' is properly declared and managed
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
                 if (hitbox != null)
                 {

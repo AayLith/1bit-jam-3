@@ -128,7 +128,7 @@ MonoBehaviour:
   currentState: 0
   visionRange: 10
   playerSpottedDelay: 1
-  movementSpeed: 3
+  movementSpeed: 2.5
   visionLayers:
     serializedVersion: 2
     m_Bits: 1920
