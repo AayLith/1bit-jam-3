@@ -445,7 +445,7 @@ MonoBehaviour:
   moraySprite: {fileID: 8875737509316302544}
   morayRange: -3
   exitSpeed: 3
-  enterSpeed: 1
+  enterSpeed: 0.8
   morayStartPos: {x: 0, y: 0, z: 0}
   morayEndPos: {x: 0, y: 0, z: 0}
   moveTime: 0

@@ -78,6 +78,9 @@ public class PlayerControls : ResettableObject
     [Header ( "Audio" )]
     public AudioClip jumpSound;
     public AudioClip throwSound;
+    public AudioClip pickupSound;
+    public AudioClip dropSound;
+    public AudioClip deathSound;
     private AudioSource _audioSource;
 
     [Header ( "Inputs" )]
@@ -392,6 +395,10 @@ public class PlayerControls : ResettableObject
 
         s.onEquip ( this );
         shell = s;
+        if (pickupSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(pickupSound);
+        }
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
         s.GetComponent<Rigidbody2D> ().gravityScale = 0;
@@ -405,6 +412,10 @@ public class PlayerControls : ResettableObject
         if ( shell == null )
             return;
 
+        if (dropSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(dropSound);
+        }
         shell.onUnequip ( this );
         shell.transform.parent = null;
         shell.GetComponent<Rigidbody2D> ().gravityScale = 2;
@@ -460,6 +471,10 @@ public class PlayerControls : ResettableObject
     private void OnDeath ()
     {
         UnityEngine.Debug.Log ( "Player death" );
+        if (deathSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(deathSound);
+        }
         NotificationCenter.instance.PostNotification ( this , Notification.notifications.resetlevel );
     }
 

@@ -383,7 +383,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -603,6 +603,8 @@ MonoBehaviour:
   jumpHeight: 2.5
   maxFallSpeed: -9
   shellCarrySpeedMult: 0.8
+  fallSpeedModifier: 1
+  gravityFallModifier: 1
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   shellCarryJumpMult: 0.6
@@ -623,8 +625,12 @@ MonoBehaviour:
   groundShell: {fileID: 3992220565883280827}
   shellSlot: {fileID: 1798492938648038993}
   shell: {fileID: 0}
+  _velocity: {x: 0, y: 0, z: 0}
   jumpSound: {fileID: 8300000, guid: ddf85b9550d1a974eb73b30516431d6b, type: 3}
   throwSound: {fileID: 8300000, guid: 9d3d0e0e9c76620429d860f5274713c2, type: 3}
+  pickupSound: {fileID: 8300000, guid: 2de57a2e989d47340a36c551f0e6186e, type: 3}
+  dropSound: {fileID: 8300000, guid: 7552df6f112f8614f8fc48f40fd116e8, type: 3}
+  deathSound: {fileID: 8300000, guid: bba5c8fdbb8661f4f9c7520470535992, type: 3}
 --- !u!114 &1376846720663531455
 MonoBehaviour:
   m_ObjectHideFlags: 0
