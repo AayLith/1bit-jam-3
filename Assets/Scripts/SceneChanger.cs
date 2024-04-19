@@ -4,11 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public string sceneToLoad;
-    public float secondsToWait;
+    [SerializeField]
+    private string sceneToLoad;
+    [SerializeField]
+    private float secondsToWait;
+    [SerializeField]
+    private AudioClip onTriggerSound;
     public bool oneShot = true;
     public bool victoryJump = true;
     private bool triggered = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!triggered && collision.gameObject.tag == "Player")
@@ -20,7 +25,7 @@ public class SceneChanger : MonoBehaviour
             if(victoryJump)
             {
                 playerControls.jumpHeight *= 2;
-                playerControls.Jump(true);
+                playerControls.Jump(true, onTriggerSound);
                 playerControls.jumpHeight /= 2;
             }
             

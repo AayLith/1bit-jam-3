@@ -145,5 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   secondsToWait: 1
+  onTriggerSound: {fileID: 8300000, guid: 2ffad1f6fa7aa874099668f5a781d383, type: 3}
   oneShot: 1
   victoryJump: 1

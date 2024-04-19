@@ -291,11 +291,12 @@ public class PlayerControls : ResettableObject
 
     }
 
-    public void Jump(bool force = false)
+    public void Jump(bool force = false, AudioClip soundOverride = null)
     {
+        AudioClip sfx = soundOverride == null ? jumpSound : soundOverride;
         if (jumpSound != null && _audioSource != null)
         {
-            _audioSource.PlayOneShot(jumpSound);
+            _audioSource.PlayOneShot(sfx);
         }
         else
         {
