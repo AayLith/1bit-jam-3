@@ -15251,6 +15251,10 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: Level_1
       objectReference: {fileID: 0}
+    - target: {fileID: -6092472961134778137, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_SortingOrder
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: -6033216907271805269, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -16447,9 +16451,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: -3592233562607424549, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3592233562607424549, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_ColliderPaths.Array.data[0].m_Collider
+      value: 
+      objectReference: {fileID: 1751642742}
     - target: {fileID: -2654322566432715548, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: destinationOffset.y
-      value: 5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: -564291702411963960, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: destinationOffset.x
@@ -31127,6 +31139,18 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[5].Array.data[317].Y
       value: 155000000
       objectReference: {fileID: 0}
+    - target: {fileID: 5579243089037172035, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109032186029839473, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109032186029839473, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_ColliderPaths.Array.data[0].m_Collider
+      value: 
+      objectReference: {fileID: 1751642743}
     - target: {fileID: 7232587665735370671, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -31164,6 +31188,16 @@ TilemapCollider2D:
 --- !u!19719996 &1751642741 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: -3310066417121406365, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+  m_PrefabInstance: {fileID: 1751642738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!19719996 &1751642742 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: -2182530299227643768, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+  m_PrefabInstance: {fileID: 1751642738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!19719996 &1751642743 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7007982194462918375, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
   m_PrefabInstance: {fileID: 1751642738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797786665

@@ -5239,6 +5239,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -5511820038059172295, guid: 58248ecd858119349b077f77beb36c41, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5511820038059172295, guid: 58248ecd858119349b077f77beb36c41, type: 3}
+      propertyPath: m_ColliderPaths.Array.data[0].m_Collider
+      value: 
+      objectReference: {fileID: 361437089}
     - target: {fileID: -5453750882288038822, guid: 58248ecd858119349b077f77beb36c41, type: 3}
       propertyPath: destinationOffset.y
       value: 1
@@ -30203,6 +30211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -3609830999325781831, guid: 58248ecd858119349b077f77beb36c41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 43
+      objectReference: {fileID: 0}
     - target: {fileID: -3596252323315178664, guid: 58248ecd858119349b077f77beb36c41, type: 3}
       propertyPath: isStartingCheckpoint
       value: 1
@@ -38985,7 +38997,7 @@ PrefabInstance:
       objectReference: {fileID: 986850290}
     - target: {fileID: 4889204925557824118, guid: 58248ecd858119349b077f77beb36c41, type: 3}
       propertyPath: destinationOffset.y
-      value: 5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4994227485657439157, guid: 58248ecd858119349b077f77beb36c41, type: 3}
       propertyPath: m_Name
@@ -39101,6 +39113,11 @@ TilemapCollider2D:
 --- !u!19719996 &361437088 stripped
 TilemapCollider2D:
   m_CorrespondingSourceObject: {fileID: 5390513943709243772, guid: 58248ecd858119349b077f77beb36c41, type: 3}
+  m_PrefabInstance: {fileID: 361437085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!19719996 &361437089 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6101156067256392369, guid: 58248ecd858119349b077f77beb36c41, type: 3}
   m_PrefabInstance: {fileID: 361437085}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &721089294 stripped
@@ -54150,7 +54167,7 @@ Transform:
   m_GameObject: {fileID: 1722548727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.8, y: -10.010624, z: -0.03936726}
+  m_LocalPosition: {x: 11.81, y: -10.010624, z: -0.03936726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
