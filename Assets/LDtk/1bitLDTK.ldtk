@@ -11,7 +11,7 @@
 	"iid": "7c2858b0-d7b0-11ee-b890-c5873932fdf4",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 664,
+	"nextUid": 665,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -4460,6 +4460,41 @@
 			"pivotX": 0.5,
 			"pivotY": -1,
 			"fieldDefs": []
+		},
+		{
+			"identifier": "Moving_Spikes",
+			"uid": 664,
+			"tags": [],
+			"exportToToc": false,
+			"allowOutOfBounds": false,
+			"doc": null,
+			"width": 32,
+			"height": 32,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": true,
+			"color": "#A22633",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"fieldDefs": []
 		}
 	], "tilesets": [
 		{
@@ -4576,16 +4611,16 @@
 			"externalRelPath": "1bitLDTK/Level_3.ldtkl",
 			"fieldInstances": [],
 			"layerInstances": null,
-			"__neighbours": [ { "levelIid": "dc67d660-d7b0-11ee-8fb1-857dd936348d", "dir": "w" }, { "levelIid": "e4c4f360-d7b0-11ee-8fb1-4b376d9747fc", "dir": "e" } ]
+			"__neighbours": [{ "levelIid": "dc67d660-d7b0-11ee-8fb1-857dd936348d", "dir": "w" }]
 		},
 		{
 			"identifier": "Level_4",
 			"iid": "e4c4f360-d7b0-11ee-8fb1-4b376d9747fc",
 			"uid": 472,
-			"worldX": 18944,
+			"worldX": 19104,
 			"worldY": -1376,
 			"worldDepth": 0,
-			"pxWid": 5216,
+			"pxWid": 6048,
 			"pxHei": 2048,
 			"__bgColor": "#696A79",
 			"bgColor": null,
@@ -4599,7 +4634,7 @@
 			"externalRelPath": "1bitLDTK/Level_4.ldtkl",
 			"fieldInstances": [],
 			"layerInstances": null,
-			"__neighbours": [{ "levelIid": "e0204a80-d7b0-11ee-8fb1-cf855275cfa6", "dir": "w" }]
+			"__neighbours": []
 		},
 		{
 			"identifier": "Level_5",

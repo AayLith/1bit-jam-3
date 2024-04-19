@@ -53,6 +53,8 @@ ScriptedImporter:
     _asset: {fileID: 9200938689472747016, guid: 00f90c6db68ae2f48a5fce08f583831f, type: 3}
   - _key: Geyser
     _asset: {fileID: 858657000429800633, guid: 5c97fc36ec8573d4393e1644ea9fccdd, type: 3}
+  - _key: Moving_Spikes
+    _asset: {fileID: 4769294290291333154, guid: 8fa9c0285289d304a90236e8ff2c9c81, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
