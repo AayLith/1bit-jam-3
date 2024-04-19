@@ -1270,19 +1270,19 @@
 				},
 				{
 					"__identifier": "Player",
-					"__grid": [113,42],
+					"__grid": [20,25],
 					"__pivot": [0.5,0.5],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#2EFF00",
-					"iid": "1498b910-d7b0-11ee-87db-6d1e69a8624c",
+					"iid": "09abacf0-d7b0-11ee-87db-19017388efa9",
 					"width": 32,
 					"height": 32,
 					"defUid": 456,
-					"px": [3632,1360],
+					"px": [656,816],
 					"fieldInstances": [],
-					"__worldX": 22736,
-					"__worldY": -16
+					"__worldX": 19760,
+					"__worldY": -560
 				}
 			]
 		},
