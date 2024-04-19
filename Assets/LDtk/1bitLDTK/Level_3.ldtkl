@@ -4673,6 +4673,31 @@
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
+		},
+		{
+			"__identifier": "Tiles",
+			"__type": "Tiles",
+			"__cWid": 111,
+			"__cHei": 89,
+			"__gridSize": 32,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": 2,
+			"__tilesetRelPath": "1bitLDTK/32x32Tileset.png",
+			"iid": "20daf960-d7b0-11ee-a756-0b5337502576",
+			"levelId": 471,
+			"layerDefUid": 662,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 7438754,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
 		}
 	],
 	"__neighbours": [{ "levelIid": "dc67d660-d7b0-11ee-8fb1-857dd936348d", "dir": "w" }]
