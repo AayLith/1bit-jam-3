@@ -144,3 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  secondsToWait: 1
+  oneShot: 1
+  victoryJump: 1

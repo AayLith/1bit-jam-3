@@ -92,7 +92,6 @@ public class PlayerControls : ResettableObject
     private bool pickupPressed = false;
     private bool throwPressed = false;
 
-
     protected override void Awake ()
     {
         base.Awake ();
@@ -265,18 +264,7 @@ public class PlayerControls : ResettableObject
     {
         if ( jumpPressed && coyoteTimeCounter > 0f )
         {
-            if ( jumpSound != null && _audioSource != null )
-            {
-                _audioSource.PlayOneShot ( jumpSound );
-            }
-            else
-            {
-                Debug.LogError ( "Jump sound or AudioSource is not set properly" );
-            }
-            _velocity.y = Mathf.Sqrt ( 2f * jumpHeight * -gravity * ( shell ? shellCarryJumpMult : 1 ) );
-            coyoteTimeCounter = 0;
-
-            _animator.SetBool ( "isJumping" , true );
+            Jump();
         }
 
         // apply horizontal speed smoothing it. don't really do this with Lerp. Use SmoothDamp or something that provides more control
@@ -296,6 +284,31 @@ public class PlayerControls : ResettableObject
             _velocity = new Vector2 ( _velocity.x , _velocity.y * 0.5f );
         }
 
+    }
+
+    public void DisableInput(bool disable)
+    {
+
+    }
+
+    public void Jump(bool force = false)
+    {
+        if (jumpSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(jumpSound);
+        }
+        else
+        {
+            Debug.LogError("Jump sound or AudioSource is not set properly");
+        }
+        if(force)
+        {
+            jumpPressed = true;
+        }
+        _velocity.y = Mathf.Sqrt(2f * jumpHeight * -gravity * (shell ? shellCarryJumpMult : 1));
+        coyoteTimeCounter = 0;
+
+        _animator.SetBool("isJumping", true);
     }
 
     void HandleVertical ()
@@ -487,10 +500,10 @@ public class PlayerControls : ResettableObject
         return invulnerabilityTimer.IsRunning;
     }
 
-    IEnumerator lockInputsDelay ()
+    public IEnumerator lockInputsDelay (float delay = 0.1f)
     {
         lockInput = true;
-        yield return new WaitForSeconds ( 0.1f );
+        yield return new WaitForSeconds ( delay );
         lockInput = false;
     }
 

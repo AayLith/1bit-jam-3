@@ -15251,6 +15251,10 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: Level_1
       objectReference: {fileID: 0}
+    - target: {fileID: -7068125129672571629, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: secondsToWait
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6092472961134778137, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_SortingOrder
       value: -5
