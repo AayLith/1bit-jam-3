@@ -633,8 +633,8 @@ MonoBehaviour:
   defaultGravity: -20
   gravity: -20
   runSpeed: 4.45
-  groundDamping: 250
-  inAirDamping: 250
+  groundDamping: 20
+  inAirDamping: 5
   jumpHeight: 2.55
   maxFallSpeed: -8.8
   shellCarrySpeedMult: 0.85
