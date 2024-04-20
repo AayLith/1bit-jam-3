@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1692088362898533259}
   - component: {fileID: 4218993961870631575}
   - component: {fileID: 965027099386183573}
-  - component: {fileID: 51139512193165231}
+  - component: {fileID: 5411387517506487252}
   m_Layer: 23
   m_Name: Geyser
   m_TagString: Untagged
@@ -206,7 +206,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1dd29d2440cefdb4dae154184985b5e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d8d3fa45746a2e1469376177618cba75, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -292,7 +292,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &51139512193165231
+--- !u!114 &5411387517506487252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
