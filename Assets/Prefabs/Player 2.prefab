@@ -634,7 +634,7 @@ MonoBehaviour:
   gravity: -20
   runSpeed: 4.45
   groundDamping: 20
-  inAirDamping: 5
+  inAirDamping: 10
   jumpHeight: 2.55
   maxFallSpeed: -8.8
   shellCarrySpeedMult: 0.85
@@ -657,6 +657,7 @@ MonoBehaviour:
   smallShellColliderOffset: {x: 0, y: -0.1}
   mediumShellColliderOffset: {x: 0, y: 0.1}
   tallShellColliderOffset: {x: 0, y: 0.3}
+  _controller: {fileID: 0}
   groundShell: {fileID: 3992220565883280827}
   shellSlot: {fileID: 1798492938648038993}
   shell: {fileID: 0}
