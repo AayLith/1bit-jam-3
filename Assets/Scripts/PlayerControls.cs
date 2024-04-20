@@ -413,6 +413,13 @@ public class PlayerControls : ResettableObject
         {
             _audioSource.PlayOneShot(pickupSound);
         }
+
+        Rigidbody2D shellRigidbody = s.GetComponent<Rigidbody2D>();
+        if (shellRigidbody != null)
+        {
+            shellRigidbody.velocity = Vector2.zero; // Zero out the shell's velocity
+            shellRigidbody.gravityScale = 0; // Set gravity scale to zero to prevent it from falling
+        }
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
         s.GetComponent<Rigidbody2D> ().gravityScale = 0;

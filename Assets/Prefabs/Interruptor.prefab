@@ -102,7 +102,7 @@ MonoBehaviour:
   inactiveSprite: {fileID: 21300000, guid: 2f78d568cd974ae41837229004975f83, type: 3}
   activeSprite: {fileID: 21300000, guid: 15c18ba9b0b88e543be68cc33d63ee73, type: 3}
   activationSound: {fileID: 8300000, guid: 2e7a2ee9780e7af4b85c7d5df3118165, type: 3}
-  deactivationSound: {fileID: 8300000, guid: 7b35ef77f99d025468820c69f98b07a9, type: 3}
+  deactivationSound: {fileID: 8300000, guid: 8e30522f5ee76fb41a684946e812389f, type: 3}
   audioSource: {fileID: 2441995421511013895}
 --- !u!212 &8867635631452594170
 SpriteRenderer:
