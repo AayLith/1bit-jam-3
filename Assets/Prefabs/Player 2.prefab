@@ -59,8 +59,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3433494296495429907}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20158312, y: -0.000000041281634, z: 0.000000008496093, w: 0.97947145}
-  m_LocalPosition: {x: 36.5, y: 56.548897, z: -9.187285}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.25879, y: 37.200012, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -633,8 +633,8 @@ MonoBehaviour:
   defaultGravity: -20
   gravity: -20
   runSpeed: 4.45
-  groundDamping: 32
-  inAirDamping: 5
+  groundDamping: 250
+  inAirDamping: 250
   jumpHeight: 2.55
   maxFallSpeed: -8.8
   shellCarrySpeedMult: 0.85

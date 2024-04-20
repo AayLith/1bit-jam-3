@@ -124,8 +124,14 @@ public class PlayerControls : ResettableObject
     void onControllerCollider ( RaycastHit2D hit )
     {
         // bail out on plain old ground hits cause they aren't very interesting
-        if ( hit.normal.y == 1f )
-            return;
+        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walls"))
+        {
+            // If the normal of the hit is horizontal, zero out the x velocity
+            if (Mathf.Abs(hit.normal.x) > 0)
+            {
+                _velocity.x = 0;
+            }
+        }
 
         // logs any collider hits if uncommented. it gets noisy so it is commented out for the demo
         //Debug.Log( "flags: " + _controller.collisionState + ", hit.normal: " + hit.normal );
@@ -224,39 +230,38 @@ public class PlayerControls : ResettableObject
 
     }
 
-    void HandleHorizontal ()
+    void HandleHorizontal()
     {
-        if ( Input.GetAxis ( "Horizontal" ) > inputDeadZoneAmount )
+        float input = Input.GetAxis("Horizontal");
+
+        if (Mathf.Abs(input) > inputDeadZoneAmount)
         {
-            direction = playerDirection.right;
-            normalizedHorizontalSpeed = 1 * ( shell ? shellCarrySpeedMult : 1 );
-            if ( transform.localScale.x < 0f )
-                transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
+            direction = input > 0 ? playerDirection.right : playerDirection.left;
+            normalizedHorizontalSpeed = Mathf.Sign(input) * (shell ? shellCarrySpeedMult : 1);
 
-        }
-        else if ( Input.GetAxis ( "Horizontal" ) < -inputDeadZoneAmount )
-        {
-            direction = playerDirection.left;
-            normalizedHorizontalSpeed = -1 * ( shell ? shellCarrySpeedMult : 1 );
-            if ( transform.localScale.x > 0f )
-                transform.localScale = new Vector3 ( -transform.localScale.x , transform.localScale.y , transform.localScale.z );
-
-
+            // Adjust sprite facing based on direction
+            if ((direction == playerDirection.right && transform.localScale.x < 0) ||
+                (direction == playerDirection.left && transform.localScale.x > 0))
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
         }
         else
         {
             normalizedHorizontalSpeed = 0;
+            _velocity.x = 0;  // Set horizontal velocity to zero immediately
 
-            /*if ( _controller.isGrounded )
+            // Optional: Set animation state to idle if needed
+            if (_controller.isGrounded)
             {
-                SetAnimationState ( AnimationState.Idle );
-                PlayAnimation ( "Idle" );
+                 SetAnimationState(AnimationState.Idle);
+                 PlayAnimation("Idle");
             }
-            else if ( _velocity.y < 0 )
+            else if (_velocity.y < 0)
             {
-                SetAnimationState ( AnimationState.Falling );
-                PlayAnimation ( "Fall" );
-            }*/
+                 SetAnimationState(AnimationState.Falling);
+                 PlayAnimation("Fall");
+            }
         }
     }
 
@@ -400,11 +405,6 @@ public class PlayerControls : ResettableObject
                 sprite.color = Color.white;
             }
         }
-        else
-        {
-            sprite.enabled = true;
-            sprite.color = Color.white;
-        }
     }
 
     void pickUpShell ( Shell s )
@@ -417,13 +417,6 @@ public class PlayerControls : ResettableObject
         if (pickupSound != null && _audioSource != null)
         {
             _audioSource.PlayOneShot(pickupSound);
-        }
-
-        Rigidbody2D shellRigidbody = s.GetComponent<Rigidbody2D>();
-        if (shellRigidbody != null)
-        {
-            shellRigidbody.velocity = Vector2.zero; // Zero out the shell's velocity
-            shellRigidbody.gravityScale = 0; // Set gravity scale to zero to prevent it from falling
         }
         s.transform.parent = shellSlot.transform;
         s.transform.position = shellSlot.transform.position;
@@ -506,11 +499,11 @@ public class PlayerControls : ResettableObject
 
     private bool CheckAndGetIsInvulnerable ()
     {
-        if ( invulnerabilityTimer!=null && invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds )
+        if ( invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds )
         {
             invulnerabilityTimer.Stop ();
         }
-        return invulnerabilityTimer?.IsRunning == true;
+        return invulnerabilityTimer.IsRunning;
     }
 
     public IEnumerator lockInputsDelay (float delay = 0.1f)
@@ -543,16 +536,11 @@ public class PlayerControls : ResettableObject
 
     protected override void reset ()
     {
-        StartCoroutine(lockInputsDelay(0.5f));
         if ( shell )
             dropShell ();
         base.reset ();
         _velocity = Vector3.zero;
         healthComponent.ResetHealth ();
-        
-        
-        lockInput = false;
-        sprite.enabled = true;
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
         {
