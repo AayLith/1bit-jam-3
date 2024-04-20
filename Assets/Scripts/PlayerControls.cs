@@ -92,6 +92,8 @@ public class PlayerControls : ResettableObject
     private bool pickupPressed = false;
     private bool throwPressed = false;
 
+    bool wasGroundedLastFrame = false;
+
     protected override void Awake ()
     {
         base.Awake ();
@@ -177,22 +179,12 @@ public class PlayerControls : ResettableObject
         {
             jumpReleased = true;
         }
-
-       
-
-        
-        
-        
-        
-        
+                
         pickupPressed = Input.GetAxis("Pickup Shell") > inputDeadZoneAmount;
         throwPressed = Input.GetAxis("Throw Shell") > inputDeadZoneAmount;
 
-
-
         _animator.SetFloat ( "xVelocity" , Mathf.Abs ( _velocity.x ) );
         _animator.SetFloat ( "yVelocity" , _velocity.y );
-
     }
 
     void FixedUpdate()
@@ -228,6 +220,7 @@ public class PlayerControls : ResettableObject
         jumpPressed = false;
         jumpReleased = false;
 
+        wasGroundedLastFrame = _controller.isGrounded;
     }
 
     void HandleHorizontal()
