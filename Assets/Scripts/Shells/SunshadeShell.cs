@@ -21,6 +21,8 @@ public class SunshadeShell : Shell
 
     private void Update ()
     {
+        if ( !play ) return;
+
         if ( rb._velocity.y > 0 || rb._controller.isGrounded)
         {
             fallSource.volume = 0;
