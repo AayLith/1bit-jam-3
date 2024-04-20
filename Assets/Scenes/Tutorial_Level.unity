@@ -15101,6 +15101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial_Level
       objectReference: {fileID: 0}
+    - target: {fileID: -8841267383200914711, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: isStartingCheckpoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.6364765
@@ -15112,6 +15116,22 @@ PrefabInstance:
     - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_LocalPosition.z
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7375615922713903358, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7068125129672571629, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: sceneToLoad
@@ -16345,6 +16365,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -3161520044287858362, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -3161520044287858362, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2654322566432715548, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: destinationOffset.y
       value: 4.5
@@ -16425,6 +16453,10 @@ PrefabInstance:
       propertyPath: activatableObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1830610494}
+    - target: {fileID: 3858552891552031487, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4571132696877441339, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: activatableObjects.Array.data[0]
       value: 
@@ -31037,6 +31069,14 @@ PrefabInstance:
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
       value: 
       objectReference: {fileID: 1751642743}
+    - target: {fileID: 6383094105551913029, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383094105551913029, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7232587665735370671, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
       propertyPath: m_Layer
       value: 10
