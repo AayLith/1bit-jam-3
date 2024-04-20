@@ -38269,7 +38269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Throwing a Skull will kill enemies
+  m_text: Throw a Skull shell to kill enemies
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c18445036929ef64383f9d8976e3d41f, type: 2}
   m_sharedMaterial: {fileID: -767460779535307588, guid: c18445036929ef64383f9d8976e3d41f, type: 2}
@@ -38455,7 +38455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Equipping a Parasoul \n\nlets you FLOAAAT!!"
+  m_text: "Equipping a Parasol \n\nlets you FLOAAAT!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c18445036929ef64383f9d8976e3d41f, type: 2}
   m_sharedMaterial: {fileID: -767460779535307588, guid: c18445036929ef64383f9d8976e3d41f, type: 2}
