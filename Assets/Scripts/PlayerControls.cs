@@ -501,11 +501,11 @@ public class PlayerControls : ResettableObject
 
     private bool CheckAndGetIsInvulnerable ()
     {
-        if ( invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds )
+        if ( invulnerabilityTimer!=null && invulnerabilityTimer.IsRunning && invulnerabilityTimer.Elapsed.TotalSeconds > invulnerabilityPeriodAfterTakingDamageSeconds )
         {
             invulnerabilityTimer.Stop ();
         }
-        return invulnerabilityTimer.IsRunning;
+        return invulnerabilityTimer?.IsRunning == true;
     }
 
     public IEnumerator lockInputsDelay (float delay = 0.1f)
@@ -538,13 +538,14 @@ public class PlayerControls : ResettableObject
 
     protected override void reset ()
     {
+        StartCoroutine(lockInputsDelay(0.5f));
         if ( shell )
             dropShell ();
         base.reset ();
         _velocity = Vector3.zero;
         healthComponent.ResetHealth ();
         
-        invulnerabilityTimer = null;
+        
         lockInput = false;
         sprite.enabled = true;
         // Check if there is a last activated checkpoint.
