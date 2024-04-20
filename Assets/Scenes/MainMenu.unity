@@ -528,6 +528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 212534431}
+  normalSprite: {fileID: 21300000, guid: a152baf391e210c4d9a25df3348f41a7, type: 3}
+  hoverSprite: {fileID: 21300000, guid: b1b51f7fa86556843878b7734145b1c2, type: 3}
   transitionTime: 0.5
 --- !u!1001 &655534300
 PrefabInstance:
