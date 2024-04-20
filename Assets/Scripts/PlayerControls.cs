@@ -62,7 +62,7 @@ public class PlayerControls : ResettableObject
     public Vector2 tallShellColliderOffset;
 
     [Header ( "Objects" )]
-    private CharacterController2D _controller;
+    public CharacterController2D _controller;
     private Animator _animator;
     [SerializeField] private Collision2DTriggerRecorder groundShell;
     public GameObject shellSlot;
