@@ -400,6 +400,11 @@ public class PlayerControls : ResettableObject
                 sprite.color = Color.white;
             }
         }
+        else
+        {
+            sprite.enabled = true;
+            sprite.color = Color.white;
+        }
     }
 
     void pickUpShell ( Shell s )
