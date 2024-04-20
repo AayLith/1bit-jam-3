@@ -5,16 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class ClickableImage : MonoBehaviour
 {
-    private void OnMouseDown()
+    public Animator transition;
+
+    public float transitionTime = 0.5f;
+
+    private void Update()
     {
-        if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        if(Input.GetMouseButtonDown(0))
         {
-            LoadLevel();
+            LoadNextLevel();
         }
     }
 
-    void LoadLevel()
+    void LoadNextLevel()
     {
-        SceneManager.LoadScene(1); 
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+    
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelIndex);
     }
 }

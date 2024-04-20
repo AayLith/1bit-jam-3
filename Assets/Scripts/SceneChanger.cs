@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static System.TimeZoneInfo;
 
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
+    public Animator transition;
     private string sceneToLoad;
     [SerializeField]
     private float secondsToWait;
@@ -22,14 +24,8 @@ public class SceneChanger : MonoBehaviour
             PlayerControls playerControls = collision.gameObject.GetComponent<PlayerControls>();
             
             StartCoroutine(playerControls.lockInputsDelay(secondsToWait));
-            if(victoryJump)
-            {
-                playerControls.jumpHeight *= 2;
-                playerControls.Jump(true, onTriggerSound);
-                playerControls.jumpHeight /= 2;
-            }
-            
-            StartCoroutine(SwitchSceneAfterWait());
+
+            LoadNextLevel();
         }
     }
 
@@ -37,5 +33,16 @@ public class SceneChanger : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToWait);
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    void LoadNextLevel()
+    {
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(secondsToWait);
+        SceneManager.LoadScene(levelIndex);
     }
 }

@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714b02fd8b58b16478ac68e50984904b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
-  secondsToWait: 1
+  transition: {fileID: 0}
+  secondsToWait: 0.5
   onTriggerSound: {fileID: 8300000, guid: 2ffad1f6fa7aa874099668f5a781d383, type: 3}
   oneShot: 1
   victoryJump: 1
