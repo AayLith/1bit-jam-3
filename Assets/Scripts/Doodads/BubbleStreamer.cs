@@ -3,46 +3,49 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BublleStreamer : MonoBehaviour
+public class BubbleStreamer : MonoBehaviour
 {
-    public float push = 10;
+    public float push = 10f;
 
-    private void OnTriggerEnter2D ( Collider2D collision )
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        try
+        var playerControls = collision.GetComponent<PlayerControls>();
+        if (playerControls != null)
         {
-            Debug.Log ( collision.name );
-            PlayerControls pc = collision.GetComponent<PlayerControls> ();
-            pc.gravity = Mathf.Abs ( push );
-            return;
+            playerControls.gravity = Mathf.Abs(push);
         }
-        catch { }
-
-        try
+        else
         {
-            Rigidbody2D rb = collision.GetComponent<Rigidbody2D> ();
-            rb.gravityScale = Mathf.Abs ( rb.gravityScale ) * -1;
-            return;
+            var rb = collision.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.gravityScale = Mathf.Abs(rb.gravityScale) * -1;
+            }
+            else
+            {
+                Debug.LogError("No PlayerControls or Rigidbody2D found on the colliding object.");
+            }
         }
-        catch { }
     }
 
-    private void OnTriggerExit2D ( Collider2D collision )
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        try
+        var playerControls = collision.GetComponent<PlayerControls>();
+        if (playerControls != null)
         {
-            PlayerControls pc = collision.GetComponent<PlayerControls> ();
-            pc.gravity = pc.defaultGravity;
-            return;
+            playerControls.gravity = playerControls.defaultGravity;
         }
-        catch { }
-
-        try
+        else
         {
-            Rigidbody2D rb = collision.GetComponent<Rigidbody2D> ();
-            rb.gravityScale = Mathf.Abs ( rb.gravityScale );
-            return;
+            var rb = collision.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.gravityScale = Mathf.Abs(rb.gravityScale);
+            }
+            else
+            {
+                Debug.LogError("No PlayerControls or Rigidbody2D found on the colliding object.");
+            }
         }
-        catch { }
     }
 }
