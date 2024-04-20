@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8f4edd7b43b535f46bcae8b642a19b28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f8995806074c004db6c3903af01ef30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,8 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b92882b8591ff4dbdbcca2b383bf56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2765172907028471861}
+  activeSprite: {fileID: 21300000, guid: 8e159210a6ed0bd4e91a117e24e72f16, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 8f8995806074c004db6c3903af01ef30, type: 3}
   isStartingCheckpoint: 0
-  activationColor: {r: 0.87058824, g: 0.8627451, b: 0.69411767, a: 1}
 --- !u!212 &2515252312051819874
 SpriteRenderer:
   m_ObjectHideFlags: 0
