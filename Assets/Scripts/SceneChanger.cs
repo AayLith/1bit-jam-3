@@ -62,10 +62,25 @@ public class SceneChanger : MonoBehaviour
         StartCoroutine(LoadLevel(nextLevelIndex));
     }
 
+    private void DestroyDontDestroyOnLoadObjects()
+    {
+        var dontDestroyOnLoadObjects = FindObjectsOfType<GameObject>();
+        foreach (var obj in dontDestroyOnLoadObjects)
+        {
+            if (obj.scene.buildIndex == -1 && obj.tag != "Preserve")  // Use a tag like "Preserve" to protect certain objects
+            {
+                Destroy(obj);
+            }
+        }
+    }
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(secondsToWait);
+        if (levelIndex == 0)
+        {
+            DestroyDontDestroyOnLoadObjects();
+        }
         SceneManager.LoadScene(levelIndex);
     }
 }
