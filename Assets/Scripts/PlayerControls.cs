@@ -543,6 +543,10 @@ public class PlayerControls : ResettableObject
         base.reset ();
         _velocity = Vector3.zero;
         healthComponent.ResetHealth ();
+        
+        invulnerabilityTimer = null;
+        lockInput = false;
+        sprite.enabled = true;
         // Check if there is a last activated checkpoint.
         if ( Checkpoint.lastCheckpoint != null )
         {
