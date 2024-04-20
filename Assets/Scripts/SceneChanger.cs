@@ -24,7 +24,6 @@ public class SceneChanger : MonoBehaviour
             PlayerControls playerControls = collision.gameObject.GetComponent<PlayerControls>();
             
             StartCoroutine(playerControls.lockInputsDelay(secondsToWait));
-
             LoadNextLevel();
         }
     }

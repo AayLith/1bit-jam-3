@@ -15,6 +15,10 @@ public class PressurePlate : ResettableObject
     private bool isPressed;
     private int objectsOnPlate = 0;
 
+    public AudioSource audioSource;  // Reference to the AudioSource component
+    public AudioClip activationSound; // Sound when the plate is pressed
+    public AudioClip deactivationSound;
+
     protected override void Awake()
     {
         base.Awake();
@@ -91,6 +95,9 @@ public class PressurePlate : ResettableObject
             isPressed = pressed;
             spriteRenderer.sprite = isPressed ? activeSprite : inactiveSprite;
             Debug.Log("Toggle Plate: isPressed = " + isPressed);
+
+            audioSource.clip = pressed ? activationSound : deactivationSound;  // Choose the correct audio clip
+            audioSource.Play();
 
             foreach (var activatable in activatables)
             {

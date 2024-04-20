@@ -17,6 +17,10 @@ public class Interruptor : ResettableObject
     private Sprite initialSprite;
     private bool initialActiveState;
 
+    public AudioClip activationSound; // Sound when the interruptor is activated
+    public AudioClip deactivationSound; // Sound when the interruptor is deactivated
+    public AudioSource audioSource;
+
     protected override void Awake()
     {
         base.Awake();
@@ -65,6 +69,9 @@ public class Interruptor : ResettableObject
     {
         isActive = !isActive;
         spriteRenderer.sprite = isActive ? activeSprite : inactiveSprite;
+
+        audioSource.clip = isActive ? activationSound : deactivationSound; // Set the appropriate sound
+        audioSource.Play();
 
         foreach (var activatable in activatables)
         {
