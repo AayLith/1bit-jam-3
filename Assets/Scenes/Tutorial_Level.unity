@@ -5383,11 +5383,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!20 &688367963 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: -3503821804116285267, guid: b8c2f78a1de2f3948a98e8224680042a, type: 3}
-  m_PrefabInstance: {fileID: 1751642738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &735140316
 GameObject:
   m_ObjectHideFlags: 0
@@ -10432,7 +10427,7 @@ PrefabInstance:
     - target: {fileID: 6333826148617921896, guid: ee80384c0c7bf844bb59b9396e18c2b4, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 688367963}
+      objectReference: {fileID: 0}
     - target: {fileID: 6333826148617921896, guid: ee80384c0c7bf844bb59b9396e18c2b4, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -15627,6 +15622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1916803323475004792, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
+      propertyPath: m_PixelSnapping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2093788641830883219, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -15675,9 +15674,17 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1170856556}
-    - target: {fileID: 8165384922492846405, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
-      propertyPath: m_TrackedObjectOffset.y
-      value: 0.2
+    - target: {fileID: 8927885845660208434, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.385869
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927885845660208434, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000019073486
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927885845660208434, guid: cb6d3364f391e214cb5e66b5a3bd994c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15900,7 +15907,7 @@ Transform:
   m_GameObject: {fileID: 1722548727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.061, y: -10.010624, z: -0.03936726}
+  m_LocalPosition: {x: 13.061, y: -10.01061, z: -0.03936726}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
