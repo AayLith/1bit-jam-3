@@ -377,28 +377,29 @@ public class PlayerControls : ResettableObject
     }
 
     void FlashIfInvulnerable ()
+{
+    bool invulnerable = CheckAndGetIsInvulnerable ();
+    if ( invulnerable && flashWhileInvulnerable)
     {
-        bool invulnerable = CheckAndGetIsInvulnerable ();
-        if ( invulnerable && flashWhileInvulnerable)
+        float seconds = ( float ) invulnerabilityTimer.Elapsed.TotalSeconds * flashesPerSecond;
+        float period = 1 / flashesPerSecond;
+        float mod = seconds % ( 2 * period );
+        bool shouldBeBlack = mod < period;
+        if ( shouldBeBlack )
         {
-            //bool black = sprite.color==Color.black;
-            float seconds = ( float ) invulnerabilityTimer.Elapsed.TotalSeconds * flashesPerSecond;
-            // bool shouldBeBlack = Mathf.RoundToInt(seconds) > Mathf.FloorToInt(seconds);
-            float period = 1 / flashesPerSecond;
-            float mod = seconds % ( 2 * period );
-            bool shouldBeBlack = mod < period;
-            if ( shouldBeBlack )
-            {
-                sprite.enabled = false;
-                sprite.color = new Color ( 1 , 1 , 1 , 0 );
-            }
-            else
-            {
-                sprite.enabled = true;
-                sprite.color = Color.white;
-            }
+            sprite.enabled = false;
+        }
+        else
+        {
+            sprite.enabled = true;
         }
     }
+    else if (!invulnerable)
+    {
+        // Ensure sprite is visible if player is not invulnerable
+        sprite.enabled = true;
+    }
+}
 
     void pickUpShell ( Shell s )
     {
